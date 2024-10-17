@@ -14,11 +14,12 @@ public abstract class User {
     public abstract String getRole();
 
     public String getId() {
-        //System.out.println("User ID: " + id);
         return id;
     }
+    public String getName(){
+        return name;
+    }
     public String getPassword(){
-        //System.out.println("User Password: " + password);
         return password;
     }
 }
