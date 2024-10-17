@@ -22,4 +22,5 @@ public abstract class User {
     public String getPassword(){
         return password;
     }
+    public void displayUI(){};
 }
