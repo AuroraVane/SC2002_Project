@@ -22,5 +22,8 @@ public abstract class User {
     public String getPassword(){
         return password;
     }
+    public String getGender(){
+        return gender;
+    }
     public void displayUI(){};
 }

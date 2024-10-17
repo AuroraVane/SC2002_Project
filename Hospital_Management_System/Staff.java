@@ -10,5 +10,7 @@ public class Staff extends User{
     public String getRole() {
         return role;
     }
-    
+    public String getAge(){
+        return age;
+    }
 }

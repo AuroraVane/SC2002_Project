@@ -11,7 +11,6 @@ public class Patient extends User{
         this.bloodtype = bloodtype;
         this.contactinfo = contactinfo;
         this.patientUI = new PatientUI(this);
-        System.out.println("patientUI initialized: " + (this.patientUI != null));
     }
     @Override
     public String getRole() {

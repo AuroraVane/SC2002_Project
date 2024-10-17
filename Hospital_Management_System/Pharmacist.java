@@ -1,8 +1,9 @@
 public class Pharmacist extends Staff{
-    private PharmacistUI pharmacistUI = new PharmacistUI(this);
+    private PharmacistUI pharmacistUI;
 
     public Pharmacist(String id, String name, String password, String gender, String role, String age) {
         super(id,name,password,gender,role,age);
+        this.pharmacistUI = new PharmacistUI(this);
     }
 
     @Override

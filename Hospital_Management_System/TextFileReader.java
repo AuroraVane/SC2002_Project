@@ -32,7 +32,7 @@ public class TextFileReader {
 
         String line;
         while ((line = reader.readLine()) != null) {
-            String[] details = line.split("|");
+            String[] details = line.split("\\|"); // Special Character | requires \\
             String id = details[0];
             String name = details[1];
             String role = details[2];
