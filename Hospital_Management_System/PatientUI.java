@@ -14,4 +14,37 @@ public class PatientUI implements UserUI{
         System.out.println("8. View Past APpointment Outcome Records");
         System.out.println("9. Log Out");
     }
+    public void navigateMenu(int option){
+        switch(option){
+            case 1:
+                //viewMedicalRecord();
+                break;
+            case 2:
+                //updatePersonalInformation();
+                break;
+            case 3:
+                //viewAvailableAppointmentSlots();
+                break;
+            case 4:
+                //scheduleAppointment();
+                break;
+            case 5:
+                //rescheduleAppointment();
+                break;
+            case 6:
+                //cancelAppointment();
+                break;
+            case 7:
+                //viewScheduledAppointments();
+                break;
+            case 8:
+                //viewPastAppointmentOutcomeRecords();
+                break;
+            case 9:
+                System.out.println("Logging out...");
+                break;
+            default:
+                System.out.println("Invalid option. Please try again.");
+        }
+    }
 }

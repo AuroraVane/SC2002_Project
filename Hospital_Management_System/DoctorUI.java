@@ -13,4 +13,34 @@ public class DoctorUI implements UserUI{
         System.out.println("7. Record Appointment Outcome");
         System.out.println("8. Log Out");
     }
+    public void navigateMenu(int option){
+        switch(option){
+            case 1:
+                //viewPatientList();
+                break;
+            case 2:
+                //updatePatientMedicalRecords();
+                break;
+            case 3:
+                //viewPersonalSchedule();
+                break;
+            case 4:
+                //setAvailabilityForAppointments();
+                break;
+            case 5:
+                //acceptOrDeclineAppointment();
+                break;
+            case 6:
+                //viewUpcomingAppointments();
+                break;
+            case 7:
+                //recordAppointmentOutcome();
+                break;
+            case 8:
+                System.out.println("Logging out...");
+                break;
+            default:
+                System.out.println("Invalid option. Please try again.");
+        }
+    }
 }

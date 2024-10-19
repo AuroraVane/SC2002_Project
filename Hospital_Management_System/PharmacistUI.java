@@ -10,4 +10,25 @@ public class PharmacistUI implements UserUI{
         System.out.println("4. Submit Replenishment Request");
         System.out.println("5. Log Out");
     }
+    public void navigateMenu(int option){
+        switch(option){
+            case 1:
+                //viewAppointmentOutcomeRecord();
+                break;
+            case 2:
+                //updatePrescriptionStatus();
+                break;
+            case 3:
+                //viewMedicationInventory();
+                break;
+            case 4:
+                //submitReplenishmentRequest();
+                break;
+            case 5:
+                System.out.println("Logging out...");
+                break;
+            default:
+                System.out.println("Invalid option. Please try again.");
+        }
+    }
 }
