@@ -7,6 +7,7 @@ public class Hospital {
         String stafffilePath = "Staff_List.txt";
         Login login = new Login(patientFilePath, stafffilePath);
         System.err.println("Welcome to the XYZ Hospital");
+        @SuppressWarnings("resource") //Ignore warning for scanner VSCode things
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter ID:");
         String id = scanner.nextLine();

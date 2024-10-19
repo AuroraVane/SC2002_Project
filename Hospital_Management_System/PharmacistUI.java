@@ -13,16 +13,16 @@ public class PharmacistUI implements UserUI{
     public void navigateMenu(int option){
         switch(option){
             case 1:
-                //viewAppointmentOutcomeRecord();
+                skeletonAppointment();//viewAppointmentOutcomeRecord();
                 break;
             case 2:
-                //updatePrescriptionStatus();
+                skeletonPrescription();//updatePrescriptionStatus();
                 break;
             case 3:
-                //viewMedicationInventory();
+                skeletonMedicationInventory();//viewMedicationInventory();
                 break;
             case 4:
-                //submitReplenishmentRequest();
+                skeletonMedicationInventory();//submitReplenishmentRequest();
                 break;
             case 5:
                 System.out.println("Logging out...");
@@ -31,4 +31,14 @@ public class PharmacistUI implements UserUI{
                 System.out.println("Invalid option. Please try again.");
         }
     }
+    public void skeletonAppointment() {
+        System.out.println("Skeleton for Appointment");
+    }
+    public void skeletonPrescription() {
+        System.out.println("Skeleton for Prescription");
+    }
+    public void skeletonMedicationInventory() {
+        System.out.println("Skeleton for Medication Inventory");
+    }
+
 }

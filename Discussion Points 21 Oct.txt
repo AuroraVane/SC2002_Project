@@ -1,0 +1,8 @@
+- Discuss the distribution of work
+- Appointment Class
+	- Appointment related details (Timeslot etc)
+	- Polymorphism (Doctor or Patient)
+
+- Doctor Class
+	- How does doctor and patient link (Does a doctor has patients?)
+
