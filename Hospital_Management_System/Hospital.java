@@ -21,6 +21,8 @@ public class Hospital {
             System.out.println("Role: " + authenticatedUser.getRole());
             System.out.println("Navigating to main menu...\n");
             authenticatedUser.displayUI();
+            String option = scanner.nextLine();
+            //authenticatedUser.navigateMenu(option);
         }
         else{
             System.out.println("Invalid ID or password");

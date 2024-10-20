@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Register {
     public void showRegistrationForm(User currentUser){
-        @SuppressWarnings("resource")
+        @SuppressWarnings("resource") //Ignore warning for scanner VSCode things
         Scanner scanner = new Scanner(System.in);
         System.out.println("Choose role to register (Administrator, Pharmacist, Doctor): ");
         String role = scanner.nextLine();// input from user
