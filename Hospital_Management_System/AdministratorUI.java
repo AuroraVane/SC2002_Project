@@ -2,12 +2,10 @@ import java.io.IOException;
 
 public class AdministratorUI implements UserUI{
     private Administrator administrator;
-    private Register register;
     private ManageStaffController manageStaffController;
 
     public AdministratorUI(Administrator administrator){
         this.administrator = administrator;
-        this.register = new Register();
         try {
             this.manageStaffController = new ManageStaffController("Staff_List.txt");
         } catch (IOException e) {
@@ -38,7 +36,6 @@ public class AdministratorUI implements UserUI{
                 skeletonMedicationInventory();//approveReplenishmentRequests();
                 break;
             case 5:
-                register.showRegistrationForm(administrator);
                 break;
             case 6:
                 System.out.println("Logging out...");

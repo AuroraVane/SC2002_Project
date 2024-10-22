@@ -1,6 +1,5 @@
 public class DoctorUI implements UserUI {
     private Doctor doctor;
-    private Register register;
 
     public DoctorUI(Doctor doctor) {
         this.doctor = doctor;
@@ -42,7 +41,6 @@ public class DoctorUI implements UserUI {
                 skeletonAppointment();// recordAppointmentOutcome();
                 break;
             case 8:
-                register.showRegistrationForm(doctor);
                 break;
             case 9:
                 System.out.println("Logging out...");

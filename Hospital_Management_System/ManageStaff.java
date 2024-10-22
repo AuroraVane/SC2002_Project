@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Scanner;
 
 public class ManageStaff {
     private List<Staff> staffList;
@@ -13,7 +14,6 @@ public class ManageStaff {
     public void printViewStaffMenu(){
         System.out.println("\nView Staff By:");
         System.out.println("1. Name\n2. Role\n3. Gender\n4. Age\n");
-        System.out.println("Enter an option: ");
     }
     public void printViewStaff(List<Staff> staffList,int option){
         this.staffList = staffList;
@@ -36,5 +36,31 @@ public class ManageStaff {
                     System.out.println("Invalid option. Please try again.");
             }
         }
+    }
+    public String[] getStaffDetails() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter staff name: ");
+        String name = scanner.nextLine();
+
+        System.out.println("Enter staff role: ");
+        String role = scanner.nextLine();
+
+        System.out.println("Enter staff gender: ");
+        String gender = scanner.nextLine();
+
+        System.out.println("Enter staff age: ");
+        int age = Integer.parseInt(scanner.nextLine());
+
+
+        // Returning details as a String array (converting age to a String)
+        return new String[] {name, role, gender, String.valueOf(age)};
+    }
+
+    public String getStaffId() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter staff ID: ");
+        return scanner.nextLine();
     }
 }

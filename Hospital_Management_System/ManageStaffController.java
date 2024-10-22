@@ -6,7 +6,7 @@ import java.util.Comparator;
 public class ManageStaffController {
     private List<Staff> staffList;
     private ManageStaff manageStaff;
-
+    private TextFileWriter writer;
     public ManageStaffController(String fileName) throws IOException {
         staffList = TextFileReader.loadStaff(fileName);
         this.manageStaff = new ManageStaff();
@@ -94,14 +94,41 @@ public class ManageStaffController {
     }
 
     public void addStaff() {
-        System.out.println("Adding Staff");
+        String id = manageStaff.getStaffId();
+        String[] staffDetails = manageStaff.getStaffDetails();
+        this.writer = new TextFileWriter();
+        writer.addStaff(id, staffDetails[0], staffDetails[1], staffDetails[2], Integer.parseInt(staffDetails[3]), "password");
+        try{
+            staffList = TextFileReader.loadStaff("Staff_List.txt");
+        }catch(IOException e){
+            System.out.println("Error: Unable to reset staff list from file.");
+            e.printStackTrace();
+        }
+
     }
 
     public void removeStaff() {
-        System.out.println("Removing Staff");
+        String id = manageStaff.getStaffId();
+        this.writer = new TextFileWriter();
+        writer.deleteStaff(id);
+        try{
+            staffList = TextFileReader.loadStaff("Staff_List.txt");
+        }catch(IOException e){
+            System.out.println("Error: Unable to reset staff list from file.");
+            e.printStackTrace();
+        }
     }
 
     public void updateStaff() {
-        System.out.println("Updating Staff");
+        String id = manageStaff.getStaffId();
+        String[] staffDetails = manageStaff.getStaffDetails();
+        this.writer = new TextFileWriter();
+        writer.updateStaff(id, staffDetails[0], staffDetails[1], staffDetails[2], Integer.parseInt(staffDetails[3]), "password");
+        try{
+            staffList = TextFileReader.loadStaff("Staff_List.txt");
+        }catch(IOException e){
+            System.out.println("Error: Unable to reset staff list from file.");
+            e.printStackTrace();
+        }
     }
 }
