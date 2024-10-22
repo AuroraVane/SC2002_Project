@@ -5,4 +5,4 @@ A001|Sarah Lee|Administrator|Female|40|password
 P003|Annette Birkins|Pharmacist|Female|41|password
 A003|Albert Wesker|Administrator|Male|5|password
 A004|William Birkins|Administrator|Male|32|password
-A002|Alex Wesker|Administrator|Female|35|password
+A002|Alex Wesker|Administrator|Female|34|password

@@ -67,5 +67,21 @@ public class TextFileReader {
         reader.close();
         return appointments;
     }
-    // Add Medicine
+    public static List<MedicationInventory> loadMedicationInventory(String filePath) throws IOException {
+        List<MedicationInventory> medicationInventory = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] details = line.split("\\|"); // Special Character | requires \\
+            String medicationName = details[0];
+            String quantity = details[1];
+            String threshold = details[2];
+
+            medicationInventory.add(new MedicationInventory(medicationName, quantity, threshold));
+        }
+
+        reader.close();
+        return medicationInventory;
+    }
 }

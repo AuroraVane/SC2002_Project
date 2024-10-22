@@ -80,21 +80,70 @@ public class TextFileWriter {
              BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
 
             String currentLine;
-
+            Boolean firstLine = true;
             // Loop through the file and update the line with the matching ID
             while ((currentLine = reader.readLine()) != null) {
+                if (currentLine.trim().isEmpty()) {
+                    continue;
+                }
                 String[] staffDetails = currentLine.split("\\|");
                 if (staffDetails[0].equals(id)) {
                     // Write the updated staff details
-                    String updatedStaff = String.format("%s|%s|%s|%s|%d|%s", id, name, role, gender, age, password);
-                    writer.write(updatedStaff);
+                    currentLine = String.format("%s|%s|%s|%s|%d|%s", id, name, role, gender, age, password);
+                } 
+                if(!firstLine){
+                    writer.newLine();
                 } else {
-                    // Write the original staff details
-                    writer.write(currentLine);
+                    firstLine = false;
                 }
-                writer.newLine();
+                    // Write the original staff details
+                writer.write(currentLine);
             }
             System.out.println("Staff member updated successfully.");
+        } catch (IOException e) {
+            System.out.println("Error processing file: " + e.getMessage());
+        }
+
+        // Replace the original file with the updated file
+        if (!inputFile.delete()) {
+            System.out.println("Could not delete the original file.");
+        }
+        if (!tempFile.renameTo(inputFile)) {
+            System.out.println("Could not rename the temp file.");
+        }
+    }
+
+    public void updateMedicationInventory(String name,String stock){
+        File inputFile = new File("Medicine_List.txt");
+        File tempFile = new File("tempMedicineList.txt");
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+
+            String currentLine;
+            boolean firstLine = true;
+
+            // Loop through the file and update the line with the matching ID
+            while ((currentLine = reader.readLine()) != null) {
+
+                if (currentLine.trim().isEmpty()) {
+                    continue;
+                }
+
+                String[] staffDetails = currentLine.split("\\|");
+                if (staffDetails[0].equals(name)) {
+                    // Write the updated staff details
+                    currentLine = String.format("%s|%s|%s", name, stock,staffDetails[2]);
+                } 
+                if (!firstLine) {
+                    writer.newLine();
+                } else {
+                    firstLine = false;
+                }
+
+                writer.write(currentLine);
+            }
+            System.out.println("Medicine updated successfully.");
         } catch (IOException e) {
             System.out.println("Error processing file: " + e.getMessage());
         }
