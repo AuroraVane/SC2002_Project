@@ -2,7 +2,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ManageStaff {
-    private List<Staff> staffList;
     public void printMainMenu(){
         System.out.println("\nStaff Management Menu");
         System.out.println("1. View Staff");
@@ -16,7 +15,6 @@ public class ManageStaff {
         System.out.println("1. Name\n2. Role\n3. Gender\n4. Age\n");
     }
     public void printViewStaff(List<Staff> staffList,int option){
-        this.staffList = staffList;
         System.out.println("\nStaff List:");
         for (Staff staff : staffList) {
             switch(option){
@@ -38,6 +36,7 @@ public class ManageStaff {
         }
     }
     public String[] getStaffDetails() {
+        @SuppressWarnings("resource")
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter staff name: ");
@@ -58,6 +57,7 @@ public class ManageStaff {
     }
 
     public String getStaffId() {
+        @SuppressWarnings("resource")
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter staff ID: ");

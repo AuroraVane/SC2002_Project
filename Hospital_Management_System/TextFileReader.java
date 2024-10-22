@@ -20,12 +20,13 @@ public class TextFileReader {
             String contactinfo = details[5];
             String password = details[6];
 
-            patients.add(new Patient(id, name, password, gender,DOB, bloodtype, contactinfo));
+            patients.add(new Patient(id, name, password, gender, DOB, bloodtype, contactinfo));
         }
 
         reader.close();
         return patients;
     }
+
     public static List<Staff> loadStaff(String filePath) throws IOException {
         List<Staff> staff = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -47,5 +48,24 @@ public class TextFileReader {
         return staff;
     }
 
-    //Add Medicine
+    public static List<Appointment> loadAppointments(String filePath) throws IOException {
+        List<Appointment> appointments = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] details = line.split("\\|"); // Special Character | requires \\
+            String patientID = details[0];
+            String staffID = details[1];
+            String status = details[2];
+            String date = details[3];
+            String time = details[4];
+
+            appointments.add(new Appointment(patientID, staffID, status, date, time));
+        }
+
+        reader.close();
+        return appointments;
+    }
+    // Add Medicine
 }

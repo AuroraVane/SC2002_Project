@@ -1,58 +1,48 @@
 public class Appointment {
-    private Patient patient;
-    private Doctor doctor;
-    private Administrator admin;
-    private Pharmacist pharmacist;
+    private String patientID;
+    private String staffID;
+    private String status;
+    private String date;
+    private String time;
 
-    public Appointment(Patient patient){
-        this.patient = patient;
-    }
-    public Appointment(Doctor doctor){
-        this.doctor = doctor;
-    }
-    public Appointment(Administrator admin){
-        this.admin = admin;
-    }
-    public Appointment(Pharmacist pharmacist){
-        this.pharmacist = pharmacist;
-    }
-    public void viewAppointmentSlots(Doctor doctor){
-        System.out.println("Viewing Appointment Slots for ze Doctor");
-    }
-    public void scheduleAppointment(Patient patient, Doctor doctor){
-        System.out.println("Scheduling Appointment for ze Patient and Doctor");
-    }
-    public void rescheduleAppointment(Patient patient, Doctor doctor){
-        System.out.println("Rescheduling Appointment for ze Patient and Doctor");
-    }
-    public void cancelAppointment(Patient patient, Doctor doctor){
-        System.out.println("Cancelling Appointment for ze Patient and Doctor");
-    }
-    public void viewScheduledAppointments(Patient patient){
-        System.out.println("Viewing Scheduled Appointments for ze Patient");
-    }
-    public void viewPastAppointmentOutcomeRecords(Patient patient){
-        System.out.println("Viewing Past Appointment Outcome Records for ze Patient");
-    }
 
-    public void viewPersonalSchedule(Doctor doctor){
-        System.out.println("Viewing Personal Schedule for ze Doctor");
+    public Appointment(String patientID, String staffID, String status, String date, String time) {
+        //TODO Auto-generated constructor stub
+        this.patientID = patientID;
+        this.staffID = staffID;
+        this.status = status;
+        this.date = date;
+        this.time = time;
     }
-    public void setAvailabilityForAppointments(Doctor doctor){
-        System.out.println("Setting Availability for Appointments for ze Doctor");
+    public String getPatientID() {
+        return patientID;
     }
-    public void acceptOrDeclineAppointment(Doctor doctor){
-        System.out.println("Accepting or Declining Appointment for ze Doctor");
+    public void setPatientID(String patientID) {
+        this.patientID = patientID;
     }
-    public void viewUpcomingAppointments(Doctor doctor){
-        System.out.println("Viewing Upcoming Appointments for ze Doctor");
+    public String getStaffID() {
+        return staffID;
     }
-    public void recordAppointmentOutcome(Doctor doctor){
-        System.out.println("Recording Appointment Outcome for ze Doctor");
+    public void setStaffID(String staffID) {
+        this.staffID = staffID;
     }
-    
-    public void viewAppointmentDetails(Doctor doctor,Patient patient){
-        System.out.println("Viewing Appointment Details for ze Administrator");
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    public String getDate() {
+        return date;
+    }
+    public void setDate(String date) {
+        this.date = date;
+    }
+    public String getTime() {
+        return time;
+    }
+    public void setTime(String time) {
+        this.time = time;
     }
 
 }
