@@ -6,6 +6,7 @@ public class AdministratorUI implements UserUI{
     private ManageStaffController manageStaffController;
     private AppointmentController appointmentController;
     private MedicationInventoryController medicationInventoryController;
+    private ReplenishmentRequestController replenishmentRequestController;
 
     public AdministratorUI(Administrator administrator){
         this.administrator = administrator;
@@ -13,6 +14,7 @@ public class AdministratorUI implements UserUI{
             this.manageStaffController = new ManageStaffController("Staff_List.txt");
             this.appointmentController = new AppointmentController("Appointment_List.txt");
             this.medicationInventoryController = new MedicationInventoryController("Medicine_List.txt");
+            this.replenishmentRequestController = new ReplenishmentRequestController("Replenishment_List.txt");
         } catch (IOException e) {
             System.out.println("Error: Unable to load staff list from file.");
             e.printStackTrace(); // Optional: To print the stack trace for debugging
@@ -38,7 +40,7 @@ public class AdministratorUI implements UserUI{
                 medicationInventoryController.MenuController();
                 break;
             case 4:
-                skeletonMedicationInventory();//approveReplenishmentRequests();
+                replenishmentRequestController.MenuController();//approveReplenishmentRequests();
                 break;
             case 5:
                 break;
@@ -48,11 +50,5 @@ public class AdministratorUI implements UserUI{
             default:
                 System.out.println("Invalid option. Please try again.");
         }
-    }
-    public void skeletonAppointment(){
-        System.out.println("Skeleton for Appointment");
-    }
-    public void skeletonMedicationInventory(){
-        System.out.println("Skeleton for Medication Inventory");
     }
 }

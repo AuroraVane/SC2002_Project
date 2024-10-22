@@ -84,4 +84,22 @@ public class TextFileReader {
         reader.close();
         return medicationInventory;
     }
+    public static List<ReplenishmentRequest> loadReplenishmentRequest(String filePath) throws IOException {
+        List<ReplenishmentRequest> replenishmentRequests = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] details = line.split("\\|"); // Special Character | requires \\
+            String id = details[0];
+            String medicationName = details[1];
+            String status = details[2];
+            String quantity = details[3];
+
+            replenishmentRequests.add(new ReplenishmentRequest(id,medicationName, status, quantity));
+        }
+
+        reader.close();
+        return replenishmentRequests;
+    }
 }

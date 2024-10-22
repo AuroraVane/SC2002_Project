@@ -156,4 +156,48 @@ public class TextFileWriter {
             System.out.println("Could not rename the temp file.");
         }
     }
+    public String[] updateReplenishmentRequest(String name){
+        File inputFile = new File("Replenishment_List.txt");
+        File tempFile = new File("tempReplenishmentList.txt");
+        String medicinename = " ";
+        String quantity = " ";
+        try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+
+            String currentLine;
+            boolean firstLine = true;
+            // Loop through the file and update the line with the matching ID
+            while ((currentLine = reader.readLine()) != null) {
+
+                if (currentLine.trim().isEmpty()) {
+                    continue;
+                }
+                String[] staffDetails = currentLine.split("\\|");
+                if (staffDetails[0].equals(name)) {
+                    // Write the updated staff details
+                    currentLine = String.format("%s|%s|%s|%s", name, staffDetails[1],"Approved",staffDetails[3]);
+                    medicinename = staffDetails[1];
+                    quantity = staffDetails[3];
+                } 
+                if (!firstLine) {
+                    writer.newLine();
+                } else {
+                    firstLine = false;
+                }
+
+                writer.write(currentLine);
+            }
+        } catch (IOException e) {
+            System.out.println("Error processing file: " + e.getMessage());
+        }
+
+        // Replace the original file with the updated file
+        if (!inputFile.delete()) {
+            System.out.println("Could not delete the original file.");
+        }
+        if (!tempFile.renameTo(inputFile)) {
+            System.out.println("Could not rename the temp file.");
+        }
+        return new String[]{medicinename, quantity};
+    }
 }

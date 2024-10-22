@@ -58,8 +58,21 @@ public class MedicationInventoryController {
         String name = scanner.nextLine();
         System.out.println("Enter the new stock level: ");
         String stock = scanner.nextLine();
-        
+
         this.writer = new TextFileWriter();
         writer.updateMedicationInventory(name, stock);
+    }
+    
+    public void updateMedicationInventory(String name,String stock){
+        int newstock = -1;
+        for (MedicationInventory medicationInventory : medicationInventoryList) {
+            if (medicationInventory.getName().equals(name)) {
+                newstock = Integer.parseInt(medicationInventory.getStock()) + Integer.parseInt(stock);
+            }
+        }
+        this.writer = new TextFileWriter();
+        if(newstock != -1){
+            writer.updateMedicationInventory(name, String.valueOf(newstock));
+        }
     }
 }
