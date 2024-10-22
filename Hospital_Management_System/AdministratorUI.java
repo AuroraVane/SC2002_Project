@@ -1,10 +1,19 @@
+import java.io.IOException;
+
 public class AdministratorUI implements UserUI{
     private Administrator administrator;
     private Register register;
+    private ManageStaffController manageStaffController;
 
     public AdministratorUI(Administrator administrator){
         this.administrator = administrator;
         this.register = new Register();
+        try {
+            this.manageStaffController = new ManageStaffController("Staff_List.txt");
+        } catch (IOException e) {
+            System.out.println("Error: Unable to load staff list from file.");
+            e.printStackTrace(); // Optional: To print the stack trace for debugging
+        }
     }
     public void printMenu(){
         System.out.println("1. View and Manage Hospital Staff");
@@ -17,7 +26,7 @@ public class AdministratorUI implements UserUI{
     public void navigateMenu(int option){
         switch(option){
             case 1:
-                skeletonManageStaff();//viewAndManageStaff();
+                manageStaffController.MenuController();;
                 break;
             case 2:
                 skeletonAppointment();//viewAppointmentDetails();
@@ -37,9 +46,6 @@ public class AdministratorUI implements UserUI{
             default:
                 System.out.println("Invalid option. Please try again.");
         }
-    }
-    public void skeletonManageStaff(){
-        System.out.println("Skeleton for Manage Staff");
     }
     public void skeletonAppointment(){
         System.out.println("Skeleton for Appointment");
