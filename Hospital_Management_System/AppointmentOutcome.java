@@ -17,6 +17,15 @@ public class AppointmentOutcome {
         this.consultationNotes = consultationNotes;
     }
 
+    public AppointmentOutcome(int appointmentId, String dateOfAppointment, String service, String medicine, boolean status, String consultationNotes){
+        this.appointmentId = appointmentId;
+        this.dateOfAppointment = dateOfAppointment;
+        this.service = service;
+        this.medicine = medicine;
+        this.status = status;
+        this.consultationNotes = consultationNotes;
+    }
+
     public void outcomeRecord(){
         System.out.println(appointmentId);
         System.out.println(dateOfAppointment);

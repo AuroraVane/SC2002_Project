@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Pharmacist extends Staff{
@@ -22,6 +24,43 @@ public class Pharmacist extends Staff{
             pharmacistUI.navigateMenu(option);
         }while(option != 5);
         sc.close();
+    }
+
+    public void viewAppointmentOutcomeRecord() {
+        String filePath = "AppointmentOutcome_List.txt";
+        List<AppointmentOutcome> appointmentOutcomes;
+        try {
+            appointmentOutcomes = TextFileReader.loadAppointmentOutcomes(filePath);
+             for (AppointmentOutcome appointmentOutcome : appointmentOutcomes){
+                appointmentOutcome.outcomeRecord();
+             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updatePrescriptionStatus(int appointmentId, String medicine) {
+        System.out.println("Skeleton for Prescription");
+    }
+    
+    public void viewMedicationInventory() {
+        String filePath = "Medicine_List.txt";
+        List<Medicine> medicineList;
+        try {
+             medicineList = TextFileReader.loadMedicineList(filePath);
+             for (Medicine medicine : medicineList){
+                System.out.println(String.format("Medicine: %s", medicine.getMedicineName()));
+                System.out.println(medicine.getQuantity() > medicine.getLowQAlert() ? String.format("Quanity: %d", medicine.getQuantity()) : String.format("Quanity: %d (Low Quantity. Please Top Up)", medicine.getQuantity()));
+                System.out.println(String.format("Low Quantity Alert: %d \n", medicine.getLowQAlert()));
+             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void skeletonMedicationInventory() {
+        System.out.println("Skeleton for Medication Inventory");
     }
     
 }

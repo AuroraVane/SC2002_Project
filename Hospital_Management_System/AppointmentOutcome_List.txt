@@ -1,0 +1,2 @@
+1|2024-02-01|Consultation|Ibuprofen|false|NA
+2|2024-07-05|X-Ray|Amoxicillin|false|NA

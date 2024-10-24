@@ -64,4 +64,29 @@ public class TextFileReader {
         reader.close();
         return medicineList;
     }
+
+    public static List<AppointmentOutcome> loadAppointmentOutcomes(String filePath) throws IOException {
+        List<AppointmentOutcome> aoList = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] details = line.split("\\|"); // Special Character | requires \\
+            int id = Integer.parseInt(details[0]);
+            String date = details[1];
+            String service = details[2];
+            String medicine = details[3];
+            boolean status = details[4].equals("false") ? false : true;
+            String notes = details[5];
+
+            aoList.add(new AppointmentOutcome(id, date, service, medicine, status, notes));
+        }
+
+        reader.close();
+        return aoList;
+    }
+
+    public static void updateMedicineList(List<Medicine> medicineList) throws IOException {
+
+    }
 }
