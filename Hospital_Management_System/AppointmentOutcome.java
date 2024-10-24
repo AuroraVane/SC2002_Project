@@ -1,3 +1,7 @@
+import java.io.IOException;
+import java.util.List;
+import java.io.*;
+
 public class AppointmentOutcome {   
     private int appointmentId; 
     private String dateOfAppointment;
@@ -23,14 +27,58 @@ public class AppointmentOutcome {
         this.status = status;
         this.consultationNotes = consultationNotes;
     }
-    
+
+    public static List<AppointmentOutcome> getAllAppointmentOutcomes(){
+        String filePath = "AppointmentOutcome_List.txt";
+        List<AppointmentOutcome> appointmentOutcomes;
+        try {
+            appointmentOutcomes = TextFileReader.loadAppointmentOutcomes(filePath);
+            return appointmentOutcomes;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public int getAppointmentId() {
+        return appointmentId;
+    }
+
+    public static void updateAppointmentOutcomeStatus(int appointmentId){
+        List<AppointmentOutcome> appointmentOutcomes = getAllAppointmentOutcomes();
+        for (AppointmentOutcome appointmentOutcome : appointmentOutcomes){
+            if (appointmentOutcome.appointmentId == appointmentId){
+                appointmentOutcome.status = true;
+            }
+        }
+        updateAppointmentOutcomeFile(appointmentOutcomes);
+    }
+
+    @Override
+    public String toString() {
+        return appointmentId + "|" + dateOfAppointment + "|" + service + "|" + medicine + "|" + status + "|" + consultationNotes;
+    }
+
+    public static void updateAppointmentOutcomeFile(List<AppointmentOutcome> appointmentOutcomes) {
+        String filePath = "Medicine_List.txt";
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            for (AppointmentOutcome appointmentOutcome : appointmentOutcomes) {
+                writer.write(appointmentOutcome.toString());
+                writer.newLine();
+            }
+            System.out.println("File updated successfully.");
+        } catch (IOException e) {
+            System.err.println("Error updating the file: " + e.getMessage());
+        }
+    }
+
     public void outcomeRecord(){
-        System.out.println(appointmentId);
-        System.out.println(dateOfAppointment);
-        System.out.println(service);
-        System.out.println(medicine);
-        System.out.println((status == false) ? "Pending": "Dispensed");
-        System.out.println(consultationNotes);
+        System.out.println("AppointmentID: " + appointmentId);
+        System.out.println("Date of Appointment: " + dateOfAppointment);
+        System.out.println("Service provided: " + service);
+        System.out.println("Medicine Required: " + medicine);
+        System.out.println((status == false) ? "Status: Pending": "Status: Dispensed");
+        System.out.println("Consultation Notes: " + consultationNotes);
         System.out.println();
     }
     

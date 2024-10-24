@@ -28,6 +28,21 @@ public class Medicine {
         this.quantity = quantity;
     }
 
+    public static List<Medicine> getAllMedicines(){
+        
+        String filePath = "Medicine_List.txt";
+        List<Medicine> medicineList;
+        try {
+             medicineList = TextFileReader.loadMedicineList(filePath);
+             return medicineList;
+             
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+
     @Override
     public String toString() {
         return medicineName + "|" + quantity + "|" + lowQAlert;

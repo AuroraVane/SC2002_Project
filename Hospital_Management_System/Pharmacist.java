@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -26,30 +25,10 @@ public class Pharmacist extends Staff{
         sc.close();
     }
 
-    public List<AppointmentOutcome> getAllAppointmentOutcomes(){
-        String filePath = "AppointmentOutcome_List.txt";
-        List<AppointmentOutcome> appointmentOutcomes;
-        try {
-            appointmentOutcomes = TextFileReader.loadAppointmentOutcomes(filePath);
-            return appointmentOutcomes;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public List<Medicine> getAllMedicines(){
-        
-        String filePath = "Medicine_List.txt";
-        List<Medicine> medicineList;
-        try {
-             medicineList = TextFileReader.loadMedicineList(filePath);
-             return medicineList;
-             
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public void updatePrescriptionStatus(int appointmentId, String medicine) {
+        List<Medicine> medicines = Medicine.getAllMedicines();
+        List<AppointmentOutcome> appointmentOutcomes = AppointmentOutcome.getAllAppointmentOutcomes();
+        AppointmentOutcome.updateAppointmentOutcomeStatus(appointmentId);
     }
     
 }
