@@ -26,41 +26,30 @@ public class Pharmacist extends Staff{
         sc.close();
     }
 
-    public void viewAppointmentOutcomeRecord() {
+    public List<AppointmentOutcome> getAllAppointmentOutcomes(){
         String filePath = "AppointmentOutcome_List.txt";
         List<AppointmentOutcome> appointmentOutcomes;
         try {
             appointmentOutcomes = TextFileReader.loadAppointmentOutcomes(filePath);
-             for (AppointmentOutcome appointmentOutcome : appointmentOutcomes){
-                appointmentOutcome.outcomeRecord();
-             }
+            return appointmentOutcomes;
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
-    public void updatePrescriptionStatus(int appointmentId, String medicine) {
-        System.out.println("Skeleton for Prescription");
-    }
-    
-    public void viewMedicationInventory() {
+    public List<Medicine> getAllMedicines(){
+        
         String filePath = "Medicine_List.txt";
         List<Medicine> medicineList;
         try {
              medicineList = TextFileReader.loadMedicineList(filePath);
-             for (Medicine medicine : medicineList){
-                System.out.println(String.format("Medicine: %s", medicine.getMedicineName()));
-                System.out.println(medicine.getQuantity() > medicine.getLowQAlert() ? String.format("Quanity: %d", medicine.getQuantity()) : String.format("Quanity: %d (Low Quantity. Please Top Up)", medicine.getQuantity()));
-                System.out.println(String.format("Low Quantity Alert: %d \n", medicine.getLowQAlert()));
-             }
+             return medicineList;
+             
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-    }
-
-    public void skeletonMedicationInventory() {
-        System.out.println("Skeleton for Medication Inventory");
+        return null;
     }
     
 }

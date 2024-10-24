@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.List;
 
 public class PharmacistUI implements UserUI{
     private Pharmacist pharmacist;
@@ -17,20 +18,20 @@ public class PharmacistUI implements UserUI{
         Scanner sc = new Scanner(System.in);
         switch(option){
             case 1:
-                pharmacist.viewAppointmentOutcomeRecord();
+                viewAppointmentOutcomeRecord();
                 break;
             case 2:
                 System.out.println("Enter Appointment ID: ");
                 int appointmentId = sc.nextInt();
                 System.out.println("Enter Medicine to prescribe: ");
                 String medicine = sc.next();
-                pharmacist.updatePrescriptionStatus(appointmentId, medicine);
+                updatePrescriptionStatus(appointmentId, medicine);
                 break;
             case 3:
-                pharmacist.viewMedicationInventory();//viewMedicationInventory();
+                viewMedicationInventory();//viewMedicationInventory();
                 break;
             case 4:
-                pharmacist.skeletonMedicationInventory();//submitReplenishmentRequest();
+                skeletonMedicationInventory();//submitReplenishmentRequest();
                 break;
             case 5:
                 System.out.println("Logging out...");
@@ -38,5 +39,30 @@ public class PharmacistUI implements UserUI{
             default:
                 System.out.println("Invalid option. Please try again.");
         }
+    }
+    
+    public void viewAppointmentOutcomeRecord() {
+        List<AppointmentOutcome> appointmentOutcomes = pharmacist.getAllAppointmentOutcomes();
+        
+        for (AppointmentOutcome appointmentOutcome : appointmentOutcomes){
+            appointmentOutcome.outcomeRecord();
+        }
+    }
+
+    public void updatePrescriptionStatus(int appointmentId, String medicine) {
+        
+    }
+    
+    public void viewMedicationInventory() {
+        List<Medicine> medicineList = pharmacist.getAllMedicines();
+        for (Medicine medicine : medicineList){
+            System.out.println(String.format("Medicine: %s", medicine.getMedicineName()));
+            System.out.println(medicine.getQuantity() > medicine.getLowQAlert() ? String.format("Quanity: %d", medicine.getQuantity()) : String.format("Quanity: %d (Low Quantity. Please Top Up)", medicine.getQuantity()));
+            System.out.println(String.format("Low Quantity Alert: %d \n", medicine.getLowQAlert()));
+        }
+    }
+
+    public void skeletonMedicationInventory() {
+        System.out.println("Skeleton for Medication Inventory");
     }
 }

@@ -1,3 +1,6 @@
+import java.io.*;
+import java.util.List;
+
 public class Medicine {
     private String medicineName;
     private int quantity;
@@ -23,6 +26,24 @@ public class Medicine {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return medicineName + "|" + quantity + "|" + lowQAlert;
+    }
+
+    public static void updateMedicineFile(List<Medicine> medicines) {
+        String filePath = "Medicine_List.txt";
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            for (Medicine med : medicines) {
+                writer.write(med.toString());
+                writer.newLine();
+            }
+            System.out.println("File updated successfully.");
+        } catch (IOException e) {
+            System.err.println("Error updating the file: " + e.getMessage());
+        }
     }
     
 }

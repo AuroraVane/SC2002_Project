@@ -1,5 +1,3 @@
-
-
 public class AppointmentOutcome {   
     private int appointmentId; 
     private String dateOfAppointment;
@@ -25,7 +23,7 @@ public class AppointmentOutcome {
         this.status = status;
         this.consultationNotes = consultationNotes;
     }
-
+    
     public void outcomeRecord(){
         System.out.println(appointmentId);
         System.out.println(dateOfAppointment);
