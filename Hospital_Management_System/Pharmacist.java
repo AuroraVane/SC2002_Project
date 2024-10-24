@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Pharmacist extends Staff{
     private PharmacistUI pharmacistUI;
 
@@ -11,7 +13,20 @@ public class Pharmacist extends Staff{
         return "Pharmacist";
     } 
     public void displayUI(){
-        pharmacistUI.printMenu();
+        int option = 0;
+        Scanner sc = new Scanner(System.in);
+        do{
+            pharmacistUI.printMenu();
+            System.out.println("Select an option: ");
+            option = sc.nextInt();
+            pharmacistUI.navigateMenu(option);
+        }while(option != 5);
+        sc.close();
     }
     
 }
+
+/*
+P001
+password
+ */

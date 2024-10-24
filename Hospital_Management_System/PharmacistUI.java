@@ -1,5 +1,8 @@
+import java.util.Scanner;
+
 public class PharmacistUI implements UserUI{
     private Pharmacist pharmacist;
+
     public PharmacistUI(Pharmacist pharmacist){
         this.pharmacist = pharmacist;
     }
@@ -11,12 +14,17 @@ public class PharmacistUI implements UserUI{
         System.out.println("5. Log Out");
     }
     public void navigateMenu(int option){
+        Scanner sc = new Scanner(System.in);
         switch(option){
             case 1:
-                skeletonAppointment();//viewAppointmentOutcomeRecord();
+                viewAppointmentOutcomeRecord();
                 break;
             case 2:
-                skeletonPrescription();//updatePrescriptionStatus();
+                System.out.println("Enter Appointment ID: ");
+                int appointmentId = sc.nextInt();
+                System.out.println("Enter Medicine to prescribe: ");
+                String medicine = sc.next();
+                updatePrescriptionStatus(appointmentId, medicine);
                 break;
             case 3:
                 skeletonMedicationInventory();//viewMedicationInventory();
@@ -30,11 +38,18 @@ public class PharmacistUI implements UserUI{
             default:
                 System.out.println("Invalid option. Please try again.");
         }
+        sc.close();
     }
-    public void skeletonAppointment() {
-        System.out.println("Skeleton for Appointment");
+    public void viewAppointmentOutcomeRecord() {
+        AppointmentOutcome ao1 = new AppointmentOutcome(1, "2024-02-01", "Consultation", "Ibuprofen", "NA");
+        AppointmentOutcome ao2 = new AppointmentOutcome(2, "2024-07-05", "X-Ray", "Amoxicillin", "NA");
+        AppointmentOutcome[] dummyAOList = {ao1, ao2};
+        for (int i = 0; i < dummyAOList.length; i++){
+            System.out.println(String.format("Appointment Outcome Record %d:", i+1));
+            dummyAOList[i].outcomeRecord();
+        }
     }
-    public void skeletonPrescription() {
+    public void updatePrescriptionStatus(int appointmentId, String medicine) {
         System.out.println("Skeleton for Prescription");
     }
     public void skeletonMedicationInventory() {
