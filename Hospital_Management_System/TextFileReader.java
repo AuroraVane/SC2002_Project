@@ -102,4 +102,43 @@ public class TextFileReader {
         reader.close();
         return replenishmentRequests;
     }
+
+    public static List<Medicine> loadMedicineList(String filePath) throws IOException {
+        List<Medicine> medicineList = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] details = line.split("\\|"); // Special Character | requires \\
+            String name = details[0];
+            int quantity = Integer.parseInt(details[1]);
+            int lowQAlert = Integer.parseInt(details[2]);
+
+            medicineList.add(new Medicine(name, quantity, lowQAlert));
+        }
+
+        reader.close();
+        return medicineList;
+    }
+
+    public static List<AppointmentOutcome> loadAppointmentOutcomes(String filePath) throws IOException {
+        List<AppointmentOutcome> aoList = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] details = line.split("\\|"); // Special Character | requires \\
+            int id = Integer.parseInt(details[0]);
+            String date = details[1];
+            String service = details[2];
+            String medicine = details[3];
+            boolean status = details[4].equals("false") ? false : true;
+            String notes = details[5];
+
+            aoList.add(new AppointmentOutcome(id, date, service, medicine, status, notes));
+        }
+
+        reader.close();
+        return aoList;
+    }
 }
