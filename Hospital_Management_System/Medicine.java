@@ -42,6 +42,15 @@ public class Medicine {
         return null;
     }
     
+    public static void updateMedicineQuantity(String medicineName){
+        List<Medicine> medicines = getAllMedicines();
+        for (Medicine medicine : medicines){
+            if (medicine.medicineName.equals(medicineName)){
+                medicine.quantity = medicine.quantity -1;
+            }
+        }
+        updateMedicineFile(medicines);
+    }
 
     @Override
     public String toString() {

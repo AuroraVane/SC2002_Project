@@ -25,10 +25,24 @@ public class Pharmacist extends Staff{
         sc.close();
     }
 
-    public void updatePrescriptionStatus(int appointmentId, String medicine) {
-        List<Medicine> medicines = Medicine.getAllMedicines();
+
+    //TODO: Check if medicine quantity is enough, afterwards update AppointmentOutcome status=false-> true, decrease the medicine quantity
+    public void updatePrescriptionStatus(int appointmentId) {
         List<AppointmentOutcome> appointmentOutcomes = AppointmentOutcome.getAllAppointmentOutcomes();
+        AppointmentOutcome record = null;
+        for (AppointmentOutcome appointmentOutcome : appointmentOutcomes){
+            if (appointmentId == appointmentOutcome.getAppointmentId()){
+                record = appointmentOutcome;
+                System.out.println("AppointmentOutcome Record found!");
+                appointmentOutcome.outcomeRecord();
+            }
+        }
+        if (record == null){
+            return;
+        }
+
         AppointmentOutcome.updateAppointmentOutcomeStatus(appointmentId);
+        Medicine.updateMedicineQuantity(record.getMedicine());
     }
     
 }

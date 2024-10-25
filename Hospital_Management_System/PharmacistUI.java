@@ -48,10 +48,7 @@ public class PharmacistUI implements UserUI{
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter Appointment ID: ");
         int appointmentId = sc.nextInt();
-        System.out.println("Enter Medicine to prescribe: ");
-        String medicine = sc.next();
-        pharmacist.updatePrescriptionStatus(appointmentId, medicine);
-        sc.close();
+        pharmacist.updatePrescriptionStatus(appointmentId);
         
     }
     

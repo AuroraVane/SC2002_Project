@@ -44,6 +44,10 @@ public class AppointmentOutcome {
         return appointmentId;
     }
 
+    public String getMedicine() {
+        return medicine;
+    }
+
     public static void updateAppointmentOutcomeStatus(int appointmentId){
         List<AppointmentOutcome> appointmentOutcomes = getAllAppointmentOutcomes();
         for (AppointmentOutcome appointmentOutcome : appointmentOutcomes){
@@ -60,7 +64,7 @@ public class AppointmentOutcome {
     }
 
     public static void updateAppointmentOutcomeFile(List<AppointmentOutcome> appointmentOutcomes) {
-        String filePath = "Medicine_List.txt";
+        String filePath = "AppointmentOutcome_List.txt";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (AppointmentOutcome appointmentOutcome : appointmentOutcomes) {
                 writer.write(appointmentOutcome.toString());
