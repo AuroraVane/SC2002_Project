@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class TextFileWriter {
 
     private static final String FILE_PATH = "Staff_List.txt";  // Path to the staff list file
-    private static final String APPOINTMENT_FILE_PATH = "Appointment.txt";
+    private static final String APPOINTMENT_FILE_PATH = "Appointment_List.txt";
     private static final String OUTCOME_FILE_PATH="AppointmentOutcome_List.txt";
 
     // Method to add a new staff member
