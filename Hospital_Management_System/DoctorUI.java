@@ -115,7 +115,6 @@ public class DoctorUI implements UserUI {
                 AM.FinishAppointment(index, treatment);// recordAppointmentOutcome();
                 break;
             case 8:
-                register.showRegistrationForm(doctor);
                 break;
             case 9:
                 System.out.println("Logging out...");

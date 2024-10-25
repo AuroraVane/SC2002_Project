@@ -1,10 +1,24 @@
+import java.io.IOException;
+
 public class AdministratorUI implements UserUI{
     private Administrator administrator;
-    private Register register;
+
+    private ManageStaffController manageStaffController;
+    private AppointmentController appointmentController;
+    private MedicationInventoryController medicationInventoryController;
+    private ReplenishmentRequestController replenishmentRequestController;
 
     public AdministratorUI(Administrator administrator){
         this.administrator = administrator;
-        this.register = new Register();
+        try {
+            this.manageStaffController = new ManageStaffController("Staff_List.txt");
+            this.appointmentController = new AppointmentController("Appointment_List.txt");
+            this.medicationInventoryController = new MedicationInventoryController("Medicine_List.txt");
+            this.replenishmentRequestController = new ReplenishmentRequestController("Replenishment_List.txt");
+        } catch (IOException e) {
+            System.out.println("Error: Unable to load staff list from file.");
+            e.printStackTrace(); // Optional: To print the stack trace for debugging
+        }
     }
     public void printMenu(){
         System.out.println("1. View and Manage Hospital Staff");
@@ -17,19 +31,18 @@ public class AdministratorUI implements UserUI{
     public void navigateMenu(int option){
         switch(option){
             case 1:
-                skeletonManageStaff();//viewAndManageStaff();
+                manageStaffController.MenuController();
                 break;
             case 2:
-                skeletonAppointment();//viewAppointmentDetails();
+                appointmentController.MenuController();
                 break;
             case 3:
-                skeletonMedicationInventory();//viewAndManageMedicationInventory();
+                medicationInventoryController.MenuController();
                 break;
             case 4:
-                skeletonMedicationInventory();//approveReplenishmentRequests();
+                replenishmentRequestController.MenuController();//approveReplenishmentRequests();
                 break;
             case 5:
-                register.showRegistrationForm(administrator);
                 break;
             case 6:
                 System.out.println("Logging out...");
@@ -37,14 +50,5 @@ public class AdministratorUI implements UserUI{
             default:
                 System.out.println("Invalid option. Please try again.");
         }
-    }
-    public void skeletonManageStaff(){
-        System.out.println("Skeleton for Manage Staff");
-    }
-    public void skeletonAppointment(){
-        System.out.println("Skeleton for Appointment");
-    }
-    public void skeletonMedicationInventory(){
-        System.out.println("Skeleton for Medication Inventory");
     }
 }

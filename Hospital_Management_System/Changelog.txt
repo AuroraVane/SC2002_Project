@@ -1,4 +1,0 @@
-16/10
-Initializing Skeleton
-Converting Data to .txt
-Adding password field to data

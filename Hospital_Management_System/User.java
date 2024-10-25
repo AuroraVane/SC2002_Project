@@ -26,4 +26,5 @@ public abstract class User {
         return gender;
     }
     public void displayUI(){};
+    public void navigateMenu(int option){};
 }

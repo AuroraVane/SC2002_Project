@@ -24,8 +24,21 @@ public class Hospital {
             System.out.println("Role: " + authenticatedUser.getRole());
             System.out.println("Navigating to main menu...\n");
             authenticatedUser.displayUI();
-            String option = scanner.nextLine();
-            //authenticatedUser.navigateMenu(option);
+
+            int option = -1;
+            boolean validInput = false;
+            while(!validInput){
+                System.out.println("\nEnter an option: ");
+                String input = scanner.nextLine();
+
+                try {
+                    option = Integer.parseInt(input);
+                    validInput = true; 
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid input. Please enter a valid integer.");
+                }
+            }
+            authenticatedUser.navigateMenu(option);
         }
         else{
             System.out.println("Invalid ID or password");

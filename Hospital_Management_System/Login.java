@@ -17,7 +17,6 @@ public class Login {
             }
         }
         for (Staff staff : staffList) {
-            System.out.println(staff.getId());
             if (staff.getId().equals(id) && staff.getPassword().equals(password)) {
                 if(staff.getRole().equals("Doctor")){
                     return new Doctor(staff.getId(), staff.getName(), staff.getPassword(), staff.getGender(), staff.getRole(), staff.getAge());

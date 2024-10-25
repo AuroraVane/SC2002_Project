@@ -12,4 +12,7 @@ public class Administrator extends Staff{
     public void displayUI(){
         administratorUI.printMenu();
     }
+    public void navigateMenu(int option){
+        administratorUI.navigateMenu(option);
+    }
 }
