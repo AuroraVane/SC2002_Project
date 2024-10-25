@@ -9,7 +9,7 @@ public class DoctorUI implements UserUI {
     public DoctorUI(Doctor doctor) {
         this.doctor = doctor;
         try {
-            this.medicalRecordUI=new MedicalRecordUI("MedicalRecord.txt", "Patient.txt", "OverseeingPatients.txt", doctor.getId());
+            this.medicalRecordUI=new MedicalRecordUI("MedicalRecord.txt", "Patient_Liat.txt", "OverseeingPatients.txt", doctor.getId());
             this.doctorAppointmentUI=new DoctorAppointmentUI(doctor, "Appointment.txt");
         } catch (IOException e) {
             System.out.println("Error: Unable to load list from file.");
