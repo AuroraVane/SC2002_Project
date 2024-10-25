@@ -48,6 +48,10 @@ public class AppointmentOutcome {
         return medicine;
     }
 
+    public boolean isStatus() {
+        return status;
+    }
+
     public static void updateAppointmentOutcomeStatus(int appointmentId){
         List<AppointmentOutcome> appointmentOutcomes = getAllAppointmentOutcomes();
         for (AppointmentOutcome appointmentOutcome : appointmentOutcomes){

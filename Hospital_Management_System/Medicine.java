@@ -46,7 +46,11 @@ public class Medicine {
         List<Medicine> medicines = getAllMedicines();
         for (Medicine medicine : medicines){
             if (medicine.medicineName.equals(medicineName)){
-                medicine.quantity = medicine.quantity -1;
+                if (medicine.quantity > 0){
+                    medicine.quantity = medicine.quantity -1;
+                }else{
+                    System.out.println("There is not enough medicine!");
+                }
             }
         }
         updateMedicineFile(medicines);

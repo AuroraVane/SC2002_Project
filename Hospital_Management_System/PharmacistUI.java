@@ -26,7 +26,7 @@ public class PharmacistUI implements UserUI{
                 viewMedicationInventory();//viewMedicationInventory();
                 break;
             case 4:
-                skeletonMedicationInventory();//submitReplenishmentRequest();
+                submitReplenishmentRequest();//submitReplenishmentRequest();
                 break;
             case 5:
                 System.out.println("Logging out...");
@@ -61,7 +61,21 @@ public class PharmacistUI implements UserUI{
         }
     }
 
-    public void skeletonMedicationInventory() {
-        System.out.println("Skeleton for Medication Inventory");
+    public void submitReplenishmentRequest() {
+        Scanner sc = new Scanner(System.in);
+        String medicineName = sc.nextLine();
+        List<Medicine> medicineList = Medicine.getAllMedicines();
+        Medicine medicine = null;
+        for (Medicine med : medicineList){
+            if (med.equals(medicineName)) {
+                medicine = med;
+            }
+        }
+
+        if (medicine != null){
+            if(medicine.getQuantity() <= medicine.getLowQAlert()){
+                //Submit a request
+            }
+        }
     }
 }

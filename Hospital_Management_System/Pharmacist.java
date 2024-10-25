@@ -42,7 +42,9 @@ public class Pharmacist extends Staff{
         }
 
         AppointmentOutcome.updateAppointmentOutcomeStatus(appointmentId);
-        Medicine.updateMedicineQuantity(record.getMedicine());
+        if (!record.isStatus()){
+            Medicine.updateMedicineQuantity(record.getMedicine());
+        }
     }
     
 }
