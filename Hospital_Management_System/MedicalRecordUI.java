@@ -5,10 +5,12 @@ import java.util.Scanner;
 public class MedicalRecordUI {
     MedicalRecordController MRController;
     PatientManager patientmanager;
-
-    public MedicalRecordUI(String MRfilepath, String PatientfilePath, String OverseeingPatientsFilePath, String id)throws IOException{
-        MRController=new MedicalRecordController(MRfilepath, PatientfilePath);
-        patientmanager=new PatientManager(id, OverseeingPatientsFilePath, PatientfilePath);
+//String MRfilepath, String PatientfilePath, String OverseeingPatientsFilePath, 
+    public MedicalRecordUI(String id)throws IOException{
+        //MRController=new MedicalRecordController(MRfilepath, PatientfilePath);
+        //patientmanager=new PatientManager(id, OverseeingPatientsFilePath, PatientfilePath);
+        MRController=new MedicalRecordController("MedicalRecord.txt", "Patient.txt");
+        patientmanager=new PatientManager(id, "OverseeingPatients.txt", "Patient.txt");
     }
 
     public void ViewOverseeingPatients(){

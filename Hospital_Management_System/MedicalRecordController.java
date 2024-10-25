@@ -19,7 +19,7 @@ public class MedicalRecordController {
         return MRList;
     }
     
-    public void printAllMedicalRecordOfOverseeing(List<MedicalRecord> MRList) {
+    public void printAllMedicalRecordOfOverseeing(List<MedicalRecord> MRList) throws IOException{
         System.out.println("Overseeing Patients' Medical Records:");
         Patient p;
         for (MedicalRecord x: MRList) {

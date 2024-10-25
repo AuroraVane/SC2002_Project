@@ -1,7 +1,5 @@
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeParseException;
+
 import java.util.Scanner;
 
 
@@ -13,7 +11,7 @@ public class DoctorUI implements UserUI {
     
     String AppointmentFilePath;
 
-    public DoctorUI(Doctor doctor) throws IOException{
+    public DoctorUI(Doctor doctor) {
         this.doctor = doctor;
         medicalRecordUI=new MedicalRecordUI("MedicalRecord.txt", "Patient.txt", "OverseeingPatients.txt", doctor.getId());
         doctorAppointmentUI=new DoctorAppointmentUI(doctor);

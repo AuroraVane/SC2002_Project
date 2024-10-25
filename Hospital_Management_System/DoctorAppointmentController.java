@@ -10,7 +10,7 @@ public class DoctorAppointmentController {
     
     
     public DoctorAppointmentController(String fileName, Doctor doctor) throws IOException {
-        this.DoctorAppointmentList = TextFileReader.loadDoctorAppointments(fileName, doctor.getId());
+        DoctorAppointmentList = TextFileReader.loadDoctorAppointments(fileName, doctor.getId());
         
     }
     public void RemoveAppointment(int appmtID){

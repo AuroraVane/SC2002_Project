@@ -1,1 +1,0 @@
-Appointment UUID|start|end|date|status|doctorId|patientId|treatment type|consultation notes file path 

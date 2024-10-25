@@ -165,7 +165,7 @@ public class TextFileReader{
         return aoList;
     }
     //reads line until none
-    public static void NormalRead(String filePath){
+    public static void NormalRead(String filePath)throws IOException {
         try {
             File myObj = new File(filePath);
             Scanner myReader = new Scanner(myObj);

@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -5,7 +6,8 @@ public class DoctorAppointmentUI extends AppointmentUI{
     private TextFileWriter writer;
     DoctorAppointmentController doctorAppmtController; 
     int index, choice;
-    public DoctorAppointmentUI(Doctor doctor){
+    public DoctorAppointmentUI(Doctor doctor, String appointmentfilepath)throws IOException{
+        doctorAppmtController=new DoctorAppointmentController(appointmentfilepath, doctor);
     }
     
 
