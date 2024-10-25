@@ -1,0 +1,76 @@
+
+Code structure:
+    Slot contains Outcome Record for that slot
+    Medical Record is seperate (tho i considered if Slot with completed outcome record shld be directly converted into medical record, but seems ambiguous)
+    
+    Database basically contains some very basic but useful methods to use on hashtables and lists
+    Database has no attributes
+
+    other databases will inherit from Database class and use its methods
+    child database classes contain methods that manipulate their respective attribute hashtable/lists
+
+    In the case of appointment, theres 3 levels of database, because appointment database class will contain methods that both doctor and patients use,
+    last layer of class defines the methods more clealy towards the respective menus's functionalities for doctor and patient
+
+    Might consider doing the same too for Medical Record database when we combine everyth together later on
+
+Design Assumptions:
+    When a doctor DECLINE an appointment, i will not return it to the availability list, because i assume the doctor cancelled it because
+    he's busy or sth and changed his mind
+
+    Assume doctors can only add on to textfiles and cannot remove or directly edit anyth
+    (tbh shld just open the txt file for them to edit ahh, damn stupid istg one smh)
+
+    we also assume the entire project is autonomous, especailly when people are trying to edit the same file at the same time
+    -we assume no 2 people will be editting simultaneously
+    
+
+Design Considerations:
+    Appointment Outcome: outcome records are recorded as part of Slot class, because when an appointment ends, they automatically have to record the outcome
+
+    I know its not possible for this project, but maintaining data consistency and synchronisation, changes in appointment are edited asap into text file in case some other user 
+    tries to access it right after
+
+    I tried to think in POV of patient/doctors and i think they would benefit more from hashtables organised by date:
+    Patient choose available slot they want by date
+    I also put doctor's confirmed slots by date because of convenience when viewing their scheudles
+    
+    I assume patients dont have as many appointments as the doctor so hashtable isnt as necessary for storing CONFIRMED appointment slots when it comes to patients
+
+
+Other things outside of Doctor:
+    Redundan appointments may build up, maybe could run something whenever we start the code in order to remove any empty appointment slots that have
+    expired beyong todays date
+
+    Also the Email Sender thing i have a problem where im not sure what to do after the doctor decline ur appointment
+    like how is the patient evenm supp to find out they had their appointment rejected
+    1. it seems unrealistic to notify by the code itself becus they wldnt visit the doctor so often
+    so i think either:
+    1.send Email
+    2.send 'SMS'
+    problem is idt it is vanilla java anymore, anyway somebody help pls
+
+    I ended by straying away from my initial class diagram design so that has to be re done too D:
+
+    Chnage password on initial login is a stated REQUIREMNT, MUST ADD 
+
+    Also for view hospital staffs under Admin role, i think should add filter by bloodtype, becaus like its a hospital wut if they need blood then need a specific bloodtype u feel me 
+
+Notes:
+    im lowkey confused how tf to edit textfiles?? idt u can edit like a specific line in a text file easily
+    so imma assume updating medical record does not mean editing but like adding to the text file
+
+    Also im not sure which apporach to take for the list of overseeing patients of the doctor:
+    currently im thinking whether to have it in patient as a attribute/list or
+    create one list of overseeing patients for each doctor
+    probably gonna ask somebody whether 1 patient gets overseen by > 1 doctor?? Idt its common? ive never been to the hospital guys-
+
+    So im leaning towards 1 list for 1 doctor to record this, but im not sure how the doctor is supposed to edit their list of overseeing
+    patients?? Or how do u usally define a doctor overseeing a patient??
+    Isit like after 1 appointment he's my patient now or like he's my patient because he always comes to me to treatment
+    becus if someone goes for consultation only its kinda weird to deem it as their 'overseeing patient' after only just 1 appointment
+    Anyway lmk what u think 
+
+    Precription still needs to be added into outcome record, im not sure what type hh is going for so i left it commented for now
+    
+    For the record, NONE of these codes hv been checked becus i cant run w stupid red 

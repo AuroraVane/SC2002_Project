@@ -1,10 +1,13 @@
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
-public class TextFileReader {
+public class TextFileReader{
     public static List<Patient> loadPatients(String filePath) throws IOException {
         List<Patient> patients = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -46,6 +49,23 @@ public class TextFileReader {
         reader.close();
         return staff;
     }
-
+    public static void NormalRead(String filePath){
+        try {
+            File myObj = new File(filePath);
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                System.out.println(data);
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+    
+    
+    
+    
     //Add Medicine
 }
