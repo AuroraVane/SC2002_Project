@@ -1,21 +1,20 @@
 import java.io.IOException;
 
-import java.util.Scanner;
-
-
 public class DoctorUI implements UserUI {
     private Doctor doctor;
-    private Register register;
-    MedicalRecordUI medicalRecordUI;
-    DoctorAppointmentUI doctorAppointmentUI;
     
-    String AppointmentFilePath;
-
+    private MedicalRecordUI medicalRecordUI;
+    private DoctorAppointmentUI doctorAppointmentUI;
+    
     public DoctorUI(Doctor doctor) {
         this.doctor = doctor;
-        medicalRecordUI=new MedicalRecordUI("MedicalRecord.txt", "Patient.txt", "OverseeingPatients.txt", doctor.getId());
-        doctorAppointmentUI=new DoctorAppointmentUI(doctor);
-        
+        try {
+            this.medicalRecordUI=new MedicalRecordUI("MedicalRecord.txt", "Patient.txt", "OverseeingPatients.txt", doctor.getId());
+            this.doctorAppointmentUI=new DoctorAppointmentUI(doctor, "Appointment.txt");
+        } catch (IOException e) {
+            System.out.println("Error: Unable to load list from file.");
+            e.printStackTrace();
+        }
     }
 
     public void printMenu() {
@@ -29,10 +28,8 @@ public class DoctorUI implements UserUI {
         System.out.println("8. Register New User"); // New option
         System.out.println("9. Log Out");
     }
-
+    @Override
     public void navigateMenu(int option) {
-        Scanner sc=new Scanner(System.in);
-        int index,choice;
         switch (option) {
             case 1:
                 medicalRecordUI.ViewOverseeingPatients();
@@ -61,8 +58,6 @@ public class DoctorUI implements UserUI {
                 // recordAppointmentOutcome();
                 break;
             case 8:
-                break;
-            case 9:
                 System.out.println("Logging out...");
                 break;
             default:

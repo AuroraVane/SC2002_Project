@@ -5,17 +5,20 @@ import java.util.Scanner;
 public class MedicalRecordUI {
     MedicalRecordController MRController;
     PatientManager patientmanager;
-//String MRfilepath, String PatientfilePath, String OverseeingPatientsFilePath, 
-    public MedicalRecordUI(String id)throws IOException{
-        //MRController=new MedicalRecordController(MRfilepath, PatientfilePath);
-        //patientmanager=new PatientManager(id, OverseeingPatientsFilePath, PatientfilePath);
-        MRController=new MedicalRecordController("MedicalRecord.txt", "Patient.txt");
-        patientmanager=new PatientManager(id, "OverseeingPatients.txt", "Patient.txt");
+
+    public MedicalRecordUI(String MRfilepath, String PatientfilePath, String OverseeingPatientsFilePath, String id)throws IOException{
+        MRController=new MedicalRecordController(MRfilepath, PatientfilePath);
+        patientmanager=new PatientManager(id, OverseeingPatientsFilePath, PatientfilePath);
     }
 
     public void ViewOverseeingPatients(){
         List<MedicalRecord> MRList=MRController.getOverseeingPatientsMR(patientmanager.getOverseeingPatientsID());
-        MRController.printAllMedicalRecordOfOverseeing(MRList);
+        try {
+            MRController.printAllMedicalRecordOfOverseeing(MRList);
+        } catch (IOException e) {
+            System.out.println("Error: Unable to load staff list from file.");
+            e.printStackTrace(); // Optional: To print the stack trace for debugging
+        }
     }
 
     public void UpdatePatientMedicalRecords(){
