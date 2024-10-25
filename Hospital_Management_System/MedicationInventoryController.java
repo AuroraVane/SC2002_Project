@@ -61,6 +61,12 @@ public class MedicationInventoryController {
 
         this.writer = new TextFileWriter();
         writer.updateMedicationInventory(name, stock);
+        try{
+            medicationInventoryList = TextFileReader.loadMedicationInventory("Medicine_List.txt");
+        } catch (IOException e) {
+            System.out.println("Error: Unable to load medication inventory list from file.");
+            e.printStackTrace(); // Optional: To print the stack trace for debugging
+        }
     }
     
     public void updateMedicationInventory(String name,String stock){
