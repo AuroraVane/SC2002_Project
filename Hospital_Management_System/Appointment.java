@@ -27,6 +27,17 @@ public class Appointment {
         return status;
     }
 
+    
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    
     @Override
     public String toString() {
         return "Appointment ID: " + appointmentId + ", Patient: " + patientId + 
