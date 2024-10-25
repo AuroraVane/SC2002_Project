@@ -49,7 +49,6 @@ public class PharmacistUI implements UserUI{
         System.out.println("Enter Appointment ID: ");
         int appointmentId = sc.nextInt();
         pharmacist.updatePrescriptionStatus(appointmentId);
-        
     }
     
     public void viewMedicationInventory() {
@@ -62,6 +61,7 @@ public class PharmacistUI implements UserUI{
     }
 
     public void submitReplenishmentRequest() {
+        System.out.println("Select medicine for replenishment");
         Scanner sc = new Scanner(System.in);
         String medicineName = sc.nextLine();
         List<Medicine> medicineList = Medicine.getAllMedicines();

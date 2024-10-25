@@ -28,6 +28,18 @@ public class AppointmentOutcome {
         this.consultationNotes = consultationNotes;
     }
 
+    public int getAppointmentId() {
+        return appointmentId;
+    }
+
+    public String getMedicine() {
+        return medicine;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
     public static List<AppointmentOutcome> getAllAppointmentOutcomes(){
         String filePath = "AppointmentOutcome_List.txt";
         List<AppointmentOutcome> appointmentOutcomes;
@@ -40,17 +52,6 @@ public class AppointmentOutcome {
         return null;
     }
 
-    public int getAppointmentId() {
-        return appointmentId;
-    }
-
-    public String getMedicine() {
-        return medicine;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
 
     public static void updateAppointmentOutcomeStatus(int appointmentId){
         List<AppointmentOutcome> appointmentOutcomes = getAllAppointmentOutcomes();
