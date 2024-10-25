@@ -40,7 +40,7 @@ public class PharmacistUI implements UserUI{
         List<AppointmentOutcome> appointmentOutcomes = AppointmentOutcome.getAllAppointmentOutcomes();
         
         for (AppointmentOutcome appointmentOutcome : appointmentOutcomes){
-            appointmentOutcome.outcomeRecord();
+            appointmentOutcome.printAppointmentOutcome();
         }
     }
 

@@ -80,7 +80,7 @@ public class AppointmentOutcome {
         }
     }
 
-    public void outcomeRecord(){
+    public void printAppointmentOutcome(){
         System.out.println("AppointmentID: " + appointmentId);
         System.out.println("Date of Appointment: " + dateOfAppointment);
         System.out.println("Service provided: " + service);
