@@ -202,9 +202,7 @@ public class TextFileReader{
         return patients;
     }
     public static Patient loadSelectivePatient(String filePath, String patientID) throws IOException {
-        List<Patient> patients = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
-
         String line;
         Patient p=null;
         while ((line = reader.readLine()) != null) {

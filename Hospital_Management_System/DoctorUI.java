@@ -8,14 +8,16 @@ import java.util.Scanner;
 public class DoctorUI implements UserUI {
     private Doctor doctor;
     private Register register;
-    private DoctorAppointmentManager AM;
-    private MedicalRecordManager MRM;
+    MedicalRecordUI medicalRecordUI;
+    DoctorAppointmentUI doctorAppointmentUI;
+    
     String AppointmentFilePath;
 
-    public DoctorUI(Doctor doctor, String AppointmentFilePath) {
+    public DoctorUI(Doctor doctor) throws IOException{
         this.doctor = doctor;
-        AM=new DoctorAppointmentManager(AppointmentFilePath, doctor);
-        MRM=new MedicalRecordManager();
+        medicalRecordUI=new MedicalRecordUI("MedicalRecord.txt", "Patient.txt", "OverseeingPatients.txt", doctor.getId());
+        doctorAppointmentUI=new DoctorAppointmentUI(doctor);
+        
     }
 
     public void printMenu() {
@@ -35,84 +37,30 @@ public class DoctorUI implements UserUI {
         int index,choice;
         switch (option) {
             case 1:
-                MRM.viewOverseeingPatients(doctor.getId());// viewPatientList();
+                medicalRecordUI.ViewOverseeingPatients();
+                // viewPatientList();
                 break;
             case 2:
-                System.out.println("Select which Patient's Medical Record to view");
-                MRM.viewOverseeingPatients(doctor.getId());
-                index=sc.nextInt();
-                Patient p=MRM.getOverseeingPatient(index);
-                System.out.println("Select what you want to edit:");
-                System.out.println("1. Diagnosis");
-                System.out.println("2. Treatment Plans");
-                choice=sc.nextInt();
-                switch(choice){
-                    case 1:MRM.EditMedicalTxt(p.getId(), "DIAGNOSIS");
-                    case 2:MRM.EditMedicalTxt(p.getId(), "TERATMENT_PLANS"); 
-                    default:System.out.println("Set filename for consultation notes");
-                }
-
+                medicalRecordUI.UpdatePatientMedicalRecords();
                 // updatePatientMedicalRecords();
                 break;
             case 3:
-                AM.viewDoctorPersonalSchedule();// viewPersonalSchedule();
+                doctorAppointmentUI.ViewDoctorPersonalSchedule();
                 break;
             case 4:
-                int error=0;
-                while (error==0){
-                    error=0;
-                    System.out.println("Enter date in format YYYY-MM-DD");
-                    String dateStr=sc.nextLine();
-                    System.out.println("Give starting Time in format HH:MM:SS");
-                    String startTimeStr=sc.nextLine();
-                    System.out.println("Give ending Time in format HH:MM:SS");
-                    String endTimeStr=sc.nextLine();
-                    System.out.println("Set filename for consultation notes");
-                    String filepath=sc.nextLine();
-
-                    LocalDate date = null;
-                    LocalTime startTime = null;
-                    LocalTime endTime = null;
-
-                    try {
-                        date = LocalDate.parse(dateStr);
-                        startTime = LocalTime.parse(startTimeStr);
-                        endTime = LocalTime.parse(endTimeStr);
-                    } catch (DateTimeParseException e) {
-                        System.out.println("Invalid date or time format. Please try again.");
-                        error=1;
-                        continue;
-                    }
-                    AM.DoctorSet(date, startTime, endTime, doctor.getId(), filepath);
-                }
+                doctorAppointmentUI.SetAvailability();
                 break;
             case 5:
-                System.out.println("Select which Pending Slot you want to review");
-                AM.ViewPendingList();
-                index=sc.nextInt();
-                System.out.println("Enter 1 to accept and 0 to decline");
-                choice=sc.nextInt();
-                switch(choice){
-                    case 1: AM.DoctorAccept(doctor.getId(), index);
-                    case 2: AM.DoctorDecline(doctor.getId(), index);
-                    default: System.out.println("Error");
-                }
-                
+                doctorAppointmentUI.ManagePendingAppointments();
                 // acceptOrDeclineAppointment();
                 break;
             case 6:
-                AM.viewDoctorUpcoming();// viewUpcomingAppointments();
+                doctorAppointmentUI.ViewUpcomingAppointments();
+                // viewUpcomingAppointments();
                 break;
             case 7:
-                AM.viewConfirmedAppointments();
-                System.out.println("Select which Confirmed Appointment you want to conclude");
-                index=sc.nextInt();
-                System.out.println("Enter treatement type");
-                String treatment=sc.nextLine();
-                System.out.println("Set FileName for Consultation Notes");
-                System.out.println("Write Consultation Notes:");
-                System.out.println("Enter 0 to exit from writing");
-                AM.FinishAppointment(index, treatment);// recordAppointmentOutcome();
+                doctorAppointmentUI.RecordAppointmentOutcome();
+                // recordAppointmentOutcome();
                 break;
             case 8:
                 break;

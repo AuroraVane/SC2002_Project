@@ -1,6 +1,5 @@
-import java.io.IOException;
-import java.util.List;
 import java.io.*;
+import java.util.List;
 
 public class AppointmentOutcome {   
     private int appointmentId; 
@@ -51,6 +50,7 @@ public class AppointmentOutcome {
     public boolean isStatus() {
         return status;
     }
+    
 
     public static void updateAppointmentOutcomeStatus(int appointmentId){
         List<AppointmentOutcome> appointmentOutcomes = getAllAppointmentOutcomes();
@@ -88,6 +88,21 @@ public class AppointmentOutcome {
         System.out.println((status == false) ? "Status: Pending": "Status: Dispensed");
         System.out.println("Consultation Notes: " + consultationNotes);
         System.out.println();
+    }
+    public String getDateOfAppointment() {
+        return dateOfAppointment;
+    }
+
+    public void setDateOfAppointment(String dateOfAppointment) {
+        this.dateOfAppointment = dateOfAppointment;
+    }
+
+    public String getService() {
+        return service;
+    }
+
+    public String getConsultationNotes() {
+        return consultationNotes;
     }
     
 }   

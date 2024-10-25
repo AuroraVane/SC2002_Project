@@ -16,6 +16,15 @@ public class Patient extends User{
     public String getRole() {
         return "Patient";
     }
+    public String getDOB() {
+        return DOB;
+    }
+    public String getBloodtype() {
+        return bloodtype;
+    }
+    public String getContactinfo() {
+        return contactinfo;
+    }
     public void displayUI(){
         this.patientUI.printMenu();
     }
