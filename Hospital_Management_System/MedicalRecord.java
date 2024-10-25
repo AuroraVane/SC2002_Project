@@ -1,11 +1,33 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class MedicalRecord {
-    private Patient patient;
-    // Would need it own textfile to store the data
-    public MedicalRecord(Patient patient){
-        this.patient = patient;
+    private List<String> diagnoses;
+    private List<String> treatments;
+
+    public MedicalRecord() {
+        this.diagnoses = new ArrayList<>();
+        this.treatments = new ArrayList<>();
     }
 
-    public void skeletonMedicalRecord(){
-        System.out.println("Skeleton For Medical Record");
+    public void addDiagnosis(String diagnosis) {
+        diagnoses.add(diagnosis);
+    }
+
+    public void addTreatment(String treatment) {
+        treatments.add(treatment);
+    }
+
+    public List<String> getDiagnoses() {
+        return diagnoses;
+    }
+
+    public List<String> getTreatments() {
+        return treatments;
+    }
+
+    @Override
+    public String toString() {
+        return "Diagnoses: " + diagnoses + "\nTreatments: " + treatments;
     }
 }
