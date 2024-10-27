@@ -57,14 +57,14 @@ public class TextFileReader{
 
         String line;
         while ((line = reader.readLine()) != null) {
-            String[] details = line.split("\\|"); // Special Character | requires \\
-            String patientID = details[0];
-            String staffID = details[1];
-            String status = details[2];
-            String date = details[3];
-            String time = details[4];
-
-            appointments.add(new Appointment(patientID, staffID, status, date, time));
+            String[] details = line.split("\\|");
+            String appointmentID = details[0];
+            String patientID = details[1];
+            String staffID = details[2];
+            String status = details[3];
+            String date = details[4];
+            String time = details[5];
+            appointments.add(new Appointment(Integer.parseInt(appointmentID), patientID, staffID, status, date, time));
         }
 
         reader.close();
@@ -77,13 +77,14 @@ public class TextFileReader{
         String line;
         while ((line = reader.readLine()) != null) {
             String[] details = line.split("\\|"); // Special Character | requires \\
-            if (details[1].equals(doctorid)){
-                String patientID = details[0];
-                String staffID = details[1];
-                String status = details[2];
-                String date = details[3];
-                String time = details[4];
-                appointments.add(new Appointment(patientID, staffID, status, date, time));
+            if (details[2].equals(doctorid)){
+                String appointmentID = details[0];
+                String patientID = details[1];
+                String staffID = details[2];
+                String status = details[3];
+                String date = details[4];
+                String time = details[5];
+                appointments.add(new Appointment(Integer.parseInt(appointmentID), patientID, staffID, status, date, time));
             }
         }
         reader.close();
@@ -231,7 +232,7 @@ public class TextFileReader{
         while ((line = reader.readLine()) != null) {
             String[] details = line.split("\\|"); // Special Character | requires \\
             if (details[0].equals(doctorId)){
-                for  (int i = 1; i < PatientIDs.size(); i++) {
+                for  (int i = 1; i < details.length; i++) {
                     PatientIDs.add(details[i]);
                 }
             }

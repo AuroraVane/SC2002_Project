@@ -43,7 +43,7 @@ public class DoctorUI implements UserUI {
                 doctorAppointmentUI.ViewDoctorPersonalSchedule();
                 break;
             case 4:
-                doctorAppointmentUI.SetAvailability();
+                doctorAppointmentUI.SetAvailability(doctor.getId());
                 break;
             case 5:
                 doctorAppointmentUI.ManagePendingAppointments();

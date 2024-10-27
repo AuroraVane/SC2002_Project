@@ -1,2 +1,2 @@
-P1001|diagmosis_file_path|treatment_plans_file_path
-P1002|diagmosis_file_path|treatment_plans_file_path
+P1001|P1001_diagnosis.txt|P1001_treatment_plans.txt
+P1002|P1002_diagnosis.txt|P1002_treatment_plans.txt

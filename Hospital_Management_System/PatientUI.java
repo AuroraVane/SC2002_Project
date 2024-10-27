@@ -3,9 +3,9 @@ public class PatientUI implements UserUI {
 
     private MedicalRecord medicalRecord;
 
-    public PatientUI(Patient patient,String diagnosis_FILEPATH, String treatment_plans_FILEPATH) {
+    public PatientUI(Patient patient) {
         this.patient = patient;
-        this.medicalRecord = new MedicalRecord(patient, diagnosis_FILEPATH, treatment_plans_FILEPATH);
+        //this.medicalRecord = new MedicalRecord(patient, diagnosis_FILEPATH, treatment_plans_FILEPATH);
     }
 
     public void printMenu() {

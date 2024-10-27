@@ -4,14 +4,14 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class DoctorAppointmentController {
+public class DoctorAppointmentController extends AppointmentUI{
     private List<Appointment> DoctorAppointmentList;
     private TextFileWriter writer;
     
     
     public DoctorAppointmentController(String fileName, Doctor doctor) throws IOException {
-        DoctorAppointmentList = TextFileReader.loadDoctorAppointments(fileName, doctor.getId());
-        
+        this.DoctorAppointmentList = TextFileReader.loadDoctorAppointments(fileName, doctor.getId());
+        writer= new TextFileWriter();
     }
     public void RemoveAppointment(int appmtID){
         int i=0;
@@ -49,7 +49,7 @@ public class DoctorAppointmentController {
         writer.updateAppointment(appmt);
     }
     public void DeclinePendingAppointment(Appointment appmt){
-        appmt.setStatus("CANCELED");
+        appmt.setStatus("CANCELLED");
         writer.updateAppointment(appmt);
     }
     public void ViewDoctorUpcoming(){

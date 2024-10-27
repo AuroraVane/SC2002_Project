@@ -4,7 +4,7 @@ import java.util.List;
 
 public class MedicalRecordController {
     private List<MedicalRecord> MedicalRecordList;
-    private TextFileWriter writer;
+    
 
     public MedicalRecordController(String filepath, String PatientfilePath)throws IOException{
         this.MedicalRecordList=TextFileReader.loadMedicalRecord(filepath, PatientfilePath);
@@ -45,7 +45,7 @@ public class MedicalRecordController {
         return null;
     }
     public void EditFile(String filepath){
-        writer.WriteFile(filepath);
+        
     }
     
 }

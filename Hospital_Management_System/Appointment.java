@@ -14,14 +14,14 @@ public class Appointment {
     public void setAppointmentID(int appointmentID) {
         this.appointmentID = appointmentID;
     }
-    public Appointment(String patientID, String staffID, String status, String date, String time) {
+    public Appointment(int appointmentID, String patientID, String staffID, String status, String date, String time) {
         //TODO Auto-generated constructor stub
         this.patientID = patientID;
         this.staffID = staffID;
         this.status = status;
         this.date = date;
         this.time = time;
-        this.appointmentID=generateID();
+        this.appointmentID=appointmentID;
         //generates random appointment unique ID based on current time stamps
         
     }
