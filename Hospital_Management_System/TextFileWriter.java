@@ -1,5 +1,6 @@
 import java.io.*;
 import java.nio.file.*;
+import java.util.Scanner;
 
 public class TextFileWriter {
 
@@ -265,34 +266,23 @@ public class TextFileWriter {
              BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
 
             String currentLine;
-            boolean firstLine = true; // To manage writing newlines only after the first line is written
-
-            // Loop through the file and write all lines except the one with the matching ID
+            boolean firstLine = true; 
             while ((currentLine = reader.readLine()) != null) {
                 // Skip any empty lines
                 if (currentLine.trim().isEmpty()) {
                     continue;
                 }
-
-                // Extract the ID from the current line
                 String[] appointmentDetails = currentLine.split("\\|");
-
-                // Skip the line that matches the staff ID to be deleted
                 if (appointmentDetails[0].equals(id)) {
                     continue;
                 }
-
-                // For the first valid line, avoid writing a newline beforehand
                 if (!firstLine) {
-                    writer.newLine();  // Add a newline only after the first valid line
+                    writer.newLine();  
                 } else {
-                    firstLine = false;  // Mark that the first line has been written
+                    firstLine = false;  
                 }
-
-                // Write the current valid staff details
                 writer.write(currentLine);
             }
-
             System.out.println("Appointment deleted successfully.");
         } catch (IOException e) {
             System.out.println("Error processing file: " + e.getMessage());
@@ -306,6 +296,7 @@ public class TextFileWriter {
             System.out.println("Could not rename the temp file.");
         }
     }
+
     public void addAppointmentOutcome(int appointmentId, String date, String service, String medicine, boolean status, String consulationNotes) {
         String newAppointment = String.format("%d|%s|%s|%s|%b|%s", appointmentId, date, service, medicine, status, consulationNotes);
 
@@ -319,6 +310,28 @@ public class TextFileWriter {
             System.out.println("Error writing to file: " + e.getMessage());
         }
     }
-
+    public void WriteFile(String FILE_PATH) {
+        try {
+            FileWriter Writer = new FileWriter(FILE_PATH);
+            System.out.println("Enter 0 to exit");
+            @SuppressWarnings("resource")
+            Scanner w=new Scanner(System.in);
+            while (true) {
+                String x=w.nextLine();
+                if (x.equals("0")){
+                    break;
+                }
+                Writer.write(x);
+                
+            }
+            Writer.close();
+            //w.close();
+            //prevent resource leaks
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
 
 }

@@ -7,7 +7,7 @@ public class DoctorAppointmentUI extends AppointmentUI{
     DoctorAppointmentController doctorAppmtController; 
     int index, choice;
     public DoctorAppointmentUI(Doctor doctor, String appointmentfilepath)throws IOException{
-        doctorAppmtController=new DoctorAppointmentController(appointmentfilepath, doctor);
+        this.doctorAppmtController=new DoctorAppointmentController(appointmentfilepath, doctor);
     }
     
 
@@ -22,12 +22,12 @@ public class DoctorAppointmentUI extends AppointmentUI{
     }//3
 
     public void SetAvailability(String doctorID){
+        @SuppressWarnings("resource")
         Scanner sc=new Scanner(System.in);
         System.out.println("Enter date in format YYYYMMDD");
         String dateStr=sc.nextLine();
         System.out.println("Give Time in format HHMM");
         String time=sc.nextLine();
-        sc.close();
         doctorAppmtController.SetAvailableSlot(doctorID, dateStr, time);
     }//4
 
@@ -37,6 +37,7 @@ public class DoctorAppointmentUI extends AppointmentUI{
         if (!appointments.isEmpty()){
             System.out.println("Select which Pending Slot you want to review");
             printAllAppointmentsWithIndex(appointments);
+            @SuppressWarnings("resource")
             Scanner sc=new Scanner(System.in);
             index=sc.nextInt();
             System.out.println("Enter 1 to accept and 0 to decline");
@@ -61,6 +62,7 @@ public class DoctorAppointmentUI extends AppointmentUI{
         if (!appointments.isEmpty()){
             printAllAppointments(appointments);
             System.out.println("Select which Confirmed Appointment you want to conclude");
+            @SuppressWarnings("resource")
             Scanner sc=new Scanner(System.in);
             index=sc.nextInt();
             Appointment appmt= appointments.get(index);
