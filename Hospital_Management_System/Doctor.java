@@ -13,6 +13,7 @@ public class Doctor extends Staff{
     }
     public void displayUI(){
         int option = 0;
+        
         Scanner sc = new Scanner(System.in);
         do{
             doctorUI.printMenu();

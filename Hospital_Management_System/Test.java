@@ -6,5 +6,5 @@ public class Test {
         doctor.displayUI();
         //P003|Annette Birkins|Pharmacist|Female|41|password
         
-    }
+    }//change view upcoming, printing incorrectly****
 }

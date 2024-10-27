@@ -25,8 +25,7 @@ public class DoctorUI implements UserUI {
         System.out.println("5. Accept or Decline Appointment");
         System.out.println("6. View Upcoming Appointments");
         System.out.println("7. Record Appointment Outcome");
-        System.out.println("8. Register New User"); // New option
-        System.out.println("9. Log Out");
+        System.out.println("8. Log Out");
     }
     @Override
     public void navigateMenu(int option) {
@@ -64,7 +63,7 @@ public class DoctorUI implements UserUI {
                 System.out.println("Invalid option. Please try again.");
         }
     }
-
+    /* 
     public void skeletonPatientList() {
         System.out.println("Skeleton for Patient List");
     }
@@ -72,4 +71,5 @@ public class DoctorUI implements UserUI {
     public void skeletonAppointment() {
         System.out.println("Skeleton for Appointment");
     }
+    */
 }
