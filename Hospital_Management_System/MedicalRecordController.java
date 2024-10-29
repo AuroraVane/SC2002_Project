@@ -37,7 +37,7 @@ public class MedicalRecordController {
         }
     }
     public MedicalRecord findPatientMedicalRecord(String patientID){
-        for (MedicalRecord x: MedicalRecordList) {
+        for (MedicalRecord x: this.MedicalRecordList) {
             if (patientID.equals(x.getPatient().getId())){
                 return x;
             }
