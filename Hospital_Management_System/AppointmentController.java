@@ -1,79 +1,81 @@
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.*;
+import java.util.ArrayList;
 
 public class AppointmentController {
-    private List<Appointment> appointments;
-    private List<Doctor> doctors;
+    private ArrayList<Appointment> appointments;
 
-    public AppointmentManagement() {
+    public AppointmentController() {
         this.appointments = new ArrayList<>();
-        this.doctors = new ArrayList<>();
     }
 
-    public void addDoctor(Doctor doctor) {
-        doctors.add(doctor);
+    // View available appointment slots for a specific doctor
+    public void viewAvailableSlots(Doctor doctor) {
+        System.out.println("Available slots for Dr. " + doctor.getName() + ":");
+        // Placeholder logic to display available slots (This can be extended based on implementation)
     }
 
-    public boolean scheduleAppointment(String appointmentId, String patientId, 
-                                       String doctorId, LocalDate date, LocalTime time) {
-        Doctor doctor = findDoctorById(doctorId);
-
-        if (doctor != null && doctor.isSlotAvailable(date, time)) {
-            Appointment appointment = new Appointment(appointmentId, patientId, doctorId, date, time);
-            appointments.add(appointment);
-            doctor.removeSlot(date, time);  // Mark the slot as taken
-            System.out.println("Appointment scheduled successfully.");
-            return true;
-        } else {
-            System.out.println("Selected slot is not available.");
-            return false;
-        }
+    // Schedule a new appointment
+    public void scheduleAppointment(Patient patient, Doctor doctor, String date, String time) {
+        Appointment newAppointment = new Appointment(patient, doctor, date, time);
+        appointments.add(newAppointment);
+        System.out.println("Appointment scheduled successfully with Dr. " + doctor.getName());
     }
 
-    public boolean rescheduleAppointment(String appointmentId, LocalDate newDate, LocalTime newTime) {
+    // Reschedule an existing appointment
+    public void rescheduleAppointment(Appointment appointment, String newDate, String newTime) {
+        System.out.println("Rescheduling appointment...");
+        appointment.setAppointmentDate(newDate);
+        appointment.setAppointmentTime(newTime);
+        appointment.updateStatus("rescheduled");
+        System.out.println("Appointment rescheduled to " + newDate + " at " + newTime);
+    }
+
+    // Cancel an existing appointment
+    public void cancelAppointment(Appointment appointment) {
+        appointment.updateStatus("canceled");
+        System.out.println("Appointment canceled.");
+    }
+
+    // Find an appointment by doctor, date, and time
+    public Appointment findAppointment(Patient patient, Doctor doctor, String date, String time) {
         for (Appointment appointment : appointments) {
-            if (appointment.getAppointmentId().equals(appointmentId)) {
-                Doctor doctor = findDoctorById(appointment.getDoctorId());
-
-                if (doctor != null && doctor.isSlotAvailable(newDate, newTime)) {
-                    doctor.addAvailableSlot(appointment.date, appointment.time);  // Free old slot
-                    appointment.date = newDate;
-                    appointment.time = newTime;
-                    doctor.removeSlot(newDate, newTime);  // Mark new slot as taken
-                    System.out.println("Appointment rescheduled successfully.");
-                    return true;
-                } else {
-                    System.out.println("New slot is not available.");
-                    return false;
-                }
+            if (appointment.getPatient().equals(patient) &&
+                appointment.getDoctor().equals(doctor) &&
+                appointment.getAppointmentDate().equals(date) &&
+                appointment.getAppointmentTime().equals(time)) {
+                return appointment;
             }
         }
-        System.out.println("Appointment not found.");
-        return false;
+        return null; // No appointment found
     }
 
-    public void cancelAppointment(String appointmentId) {
-        Iterator<Appointment> iterator = appointments.iterator();
-
-        while (iterator.hasNext()) {
-            Appointment appointment = iterator.next();
-            if (appointment.getAppointmentId().equals(appointmentId)) {
-                Doctor doctor = findDoctorById(appointment.getDoctorId());
-                doctor.addAvailableSlot(appointment.date, appointment.time);  // Free slot
-                iterator.remove();
-                System.out.println("Appointment canceled successfully.");
-                return;
+    // View all scheduled appointments for a specific patient
+    public void viewScheduledAppointments(Patient patient) {
+        System.out.println("Scheduled Appointments for Patient " + patient.getName() + ":");
+        for (Appointment appointment : appointments) {
+            if (appointment.getPatient().equals(patient) && appointment.getStatus().equals("confirmed")) {
+                appointment.viewAppointmentDetails();
             }
         }
-        System.out.println("Appointment not found.");
     }
 
-    private Doctor findDoctorById(String doctorId) {
-        for (Doctor doctor : doctors) {
-            if (doctor.getDoctorId().equals(doctorId)) return doctor;
+    // View past appointments for a specific patient
+    public void viewPastAppointments(Patient patient) {
+        System.out.println("Past Appointments for Patient " + patient.getName() + ":");
+        for (Appointment appointment : appointments) {
+            if (appointment.getPatient().equals(patient) && appointment.getStatus().equals("completed")) {
+                appointment.viewAppointmentDetails();
+            }
         }
-        return null;
+    }
+
+    // View details of a specific appointment
+    public void viewAppointmentDetails(Appointment appointment) {
+        System.out.println("Displaying appointment details:");
+        appointment.viewAppointmentDetails();
+    }
+
+    // Get the list of appointments (getter for testing purposes)
+    public ArrayList<Appointment> getAppointments() {
+        return appointments;
     }
 }
-
