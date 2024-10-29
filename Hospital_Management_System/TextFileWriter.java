@@ -222,7 +222,7 @@ public class TextFileWriter {
                 String[] appmtDetails = currentLine.split("\\|");
                 if (appmtDetails[0].equals(appmt.getAppointmentID()+"")) {
                     // Write the updated staff details
-                    currentLine = String.format("%d|%s|%s|%s|%s|%s", appmt.getAppointmentID(), appmt.getDate(), appmt.getTime(), appmt.getStatus(), appmt.getPatientID(), appmt.getStaffID());
+                    currentLine = String.format("%d|%s|%s|%s|%s|%s", appmt.getAppointmentID(), appmt.getPatientID(), appmt.getStaffID(), appmt.getStatus(), appmt.getDate(), appmt.getTime());
                 } 
                 if(!firstLine){
                     writer.newLine();
@@ -246,7 +246,7 @@ public class TextFileWriter {
         }
     }
     public void addAppointment(Appointment appmt) {
-        String newAppointment = String.format("%d|%s|%s|%s|%s|%s", appmt.getAppointmentID(), appmt.getDate(), appmt.getTime(), appmt.getStatus(), appmt.getPatientID(), appmt.getStaffID());
+        String newAppointment = String.format("%d|%s|%s|%s|%s|%s", appmt.getAppointmentID(), appmt.getPatientID(), appmt.getStaffID(), appmt.getStatus(), appmt.getDate(), appmt.getTime());
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(APPOINTMENT_FILE_PATH, true))) {
             if (Files.size(Paths.get(FILE_PATH)) > 0) {
