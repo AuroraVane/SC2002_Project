@@ -156,6 +156,19 @@ public class TextFileWriter {
             System.out.println("Could not rename the temp file.");
         }
     }
+
+    public void addReplenishmentRequest(String id,String name,String status,String value){
+        String newReplenishment = String.format("%s|%s|%s|%s", id, name, status, value);
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Replenishment_List.txt", true))) {
+            if (Files.size(Paths.get("Replenishment_List.txt")) > 0) {
+                writer.newLine();  // Add a newline only if the file is not empty
+            } 
+            writer.write(newReplenishment);
+            System.out.println("Replenishment Request added successfully.");
+        } catch (IOException e) {
+            System.out.println("Error writing to file: " + e.getMessage());
+        }
+    }
     public String[] updateReplenishmentRequest(String name){
         File inputFile = new File("Replenishment_List.txt");
         File tempFile = new File("tempReplenishmentList.txt");

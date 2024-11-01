@@ -25,7 +25,7 @@ public class AdministratorUI implements UserUI{
         System.out.println("2. View Appointment Details");
         System.out.println("3. View and Manage Medication Inventory");
         System.out.println("4. Approve Replenishment Requests");
-        System.out.println("5. Register New Staff");
+        System.out.println("5. Change Password");
         System.out.println("6. Log Out");
     }
     public void navigateMenu(int option){
@@ -40,7 +40,7 @@ public class AdministratorUI implements UserUI{
                 medicationInventoryController.MenuController();
                 break;
             case 4:
-                replenishmentRequestController.MenuController();//approveReplenishmentRequests();
+                replenishmentRequestController.MenuController(administrator);//approveReplenishmentRequests();
                 break;
             case 5:
                 break;

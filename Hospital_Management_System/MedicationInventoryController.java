@@ -49,7 +49,7 @@ public class MedicationInventoryController {
         }
     }
     public void viewMedicationInventory(){
-        medicationInventoryUI.printMedicationInventory(medicationInventoryList);
+        medicationInventoryUI.printMedicationInventory();
     }
     public void updateMedicationInventory(){
         @SuppressWarnings("resource")

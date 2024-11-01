@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Administrator extends Staff{
     private AdministratorUI administratorUI;
     public Administrator(String id, String name, String password, String gender, String role, String age) {
@@ -10,9 +12,14 @@ public class Administrator extends Staff{
         return "Administrator";
     }
     public void displayUI(){
-        administratorUI.printMenu();
-    }
-    public void navigateMenu(int option){
-        administratorUI.navigateMenu(option);
+        int option = 0;
+        Scanner sc = new Scanner(System.in);
+        do{
+            administratorUI.printMenu();
+            System.out.println("Select an option: ");
+            option = sc.nextInt();
+            administratorUI.navigateMenu(option);
+        }while(option != 6);
+        sc.close();
     }
 }

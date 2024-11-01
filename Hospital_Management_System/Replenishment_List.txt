@@ -4,3 +4,5 @@
 4|Paracetamol|Pending|200
 5|Paracetamol|Pending|205
 6|Ibuprofen|Pending|207
+7|Ibuprofen|Pending|10
+8|Amoxicillin|Pending|15

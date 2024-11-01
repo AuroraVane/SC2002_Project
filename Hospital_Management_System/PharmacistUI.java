@@ -3,9 +3,20 @@ import java.util.List;
 
 public class PharmacistUI implements UserUI{
     private Pharmacist pharmacist;
+    private AppointmentController appointmentController;
+    private MedicationInventoryController medicationInventoryController;
+    private ReplenishmentRequestController replenishmentRequestController;
 
     public PharmacistUI(Pharmacist pharmacist){
         this.pharmacist = pharmacist;
+        try{
+            this.appointmentController = new AppointmentController("Appointment_List.txt");
+            this.medicationInventoryController = new MedicationInventoryController("Medicine_List.txt");
+            this.replenishmentRequestController = new ReplenishmentRequestController("Replenishment_List.txt");
+        } catch (Exception e){
+            System.out.println("Error: Unable to load appointment list from file.");
+            e.printStackTrace();
+        }
     }
     public void printMenu(){
         System.out.println("1. View Appointment Outcome Record");
@@ -17,16 +28,16 @@ public class PharmacistUI implements UserUI{
     public void navigateMenu(int option){
         switch(option){
             case 1:
-                viewAppointmentOutcomeRecord();
+                appointmentController.viewAppointmentOutcomeRecord();
                 break;
             case 2:
                 updatePrescriptionStatus();
                 break;
             case 3:
-                viewMedicationInventory();//viewMedicationInventory();
+                medicationInventoryController.viewMedicationInventory();
                 break;
             case 4:
-                submitReplenishmentRequest();//submitReplenishmentRequest();
+                replenishmentRequestController.MenuController(pharmacist);
                 break;
             case 5:
                 System.out.println("Logging out...");
@@ -35,34 +46,19 @@ public class PharmacistUI implements UserUI{
                 System.out.println("Invalid option. Please try again.");
         }
     }
-    
-    public void viewAppointmentOutcomeRecord() {
-        List<AppointmentOutcome> appointmentOutcomes = AppointmentOutcome.getAllAppointmentOutcomes();
-        
-        for (AppointmentOutcome appointmentOutcome : appointmentOutcomes){
-            appointmentOutcome.printAppointmentOutcome();
-        }
-    }
 
-    public void updatePrescriptionStatus() {
-        Scanner sc = new Scanner(System.in);
+    public void updatePrescriptionStatus() { //Rain Check
+        @SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
         System.out.println("Enter Appointment ID: ");
         int appointmentId = sc.nextInt();
         pharmacist.updatePrescriptionStatus(appointmentId);
     }
-    
-    public void viewMedicationInventory() {
-        List<Medicine> medicineList = Medicine.getAllMedicines();
-        for (Medicine medicine : medicineList){
-            System.out.println(String.format("Medicine: %s", medicine.getMedicineName()));
-            System.out.println(medicine.getQuantity() > medicine.getLowQAlert() ? String.format("Quanity: %d", medicine.getQuantity()) : String.format("Quanity: %d (Low Quantity. Please Top Up)", medicine.getQuantity()));
-            System.out.println(String.format("Low Quantity Alert: %d \n", medicine.getLowQAlert()));
-        }
-    }
 
     public void submitReplenishmentRequest() {
         System.out.println("Select medicine for replenishment");
-        Scanner sc = new Scanner(System.in);
+        @SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
         String medicineName = sc.nextLine();
         List<Medicine> medicineList = Medicine.getAllMedicines();
         Medicine medicine = null;

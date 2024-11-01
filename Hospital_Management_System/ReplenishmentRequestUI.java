@@ -2,9 +2,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ReplenishmentRequestUI {
-    public void printMainMenu() {
+    public void printMainMenu(Staff staff) {
+
         System.out.println("\n1. View Replenishment Requests");
-        System.out.println("2. Approve Replenishment Requests");
+        if(staff instanceof Administrator){
+            System.out.println("2. Approve Replenishment Requests");
+        }
+        else if(staff instanceof Pharmacist){
+            System.out.println("2. Submit Replenishment Requests");
+        }
         System.out.println("3. Back");
     }
     public void printReplenishmentRequests(List<ReplenishmentRequest> replenishmentRequestList) {
@@ -21,4 +27,21 @@ public class ReplenishmentRequestUI {
         String input = scanner.nextLine();
         return input;
     }
+
+    public Medicine submitReplenishmentRequests() {
+        System.out.println("Select medicine for replenishment");
+        @SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+        String medicineName = sc.nextLine();
+        List<Medicine> medicineList = Medicine.getAllMedicines();
+        Medicine medicine = null;
+        for (Medicine med : medicineList){
+            if (med.getMedicineName().equals(medicineName)) {
+                medicine = med;
+            }
+        }
+        return medicine;
+    }
+
 }
+    

@@ -15,4 +15,11 @@ public class AppointmentController {
         appointmentUI.printAllAppointments(appointmentList);
     }
 
+    public void viewAppointmentOutcomeRecord() {
+        List<AppointmentOutcome> appointmentOutcomes = AppointmentOutcome.getAllAppointmentOutcomes();
+        
+        for (AppointmentOutcome appointmentOutcome : appointmentOutcomes){
+            appointmentOutcome.printAppointmentOutcome();
+        }
+    }
 }
