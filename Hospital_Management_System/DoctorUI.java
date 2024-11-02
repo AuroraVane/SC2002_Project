@@ -1,8 +1,21 @@
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
+import java.util.Scanner;
+
 public class DoctorUI implements UserUI {
     private Doctor doctor;
-
+    private MedicalRecordController medicalRecordController;
+    
     public DoctorUI(Doctor doctor) {
         this.doctor = doctor;
+        try {
+            this.medicalRecordController = new MedicalRecordController(doctor.getId(),"./TextFiles/MedicalRecord.txt");
+        } catch (IOException e) {
+            System.out.println("Error loading medical records.");
+            e.printStackTrace();
+        }
     }
 
     public void printMenu() {
@@ -20,10 +33,10 @@ public class DoctorUI implements UserUI {
     public void navigateMenu(int option) {
         switch (option) {
             case 1:
-                skeletonPatientList(); // viewPatientList();
+                medicalRecordController.viewPatientList();
                 break;
             case 2:
-                skeletonPatientList();// updatePatientMedicalRecords();
+                medicalRecordController.UpdatePersonalMedicalRecord();
                 break;
             case 3:
                 skeletonAppointment();// viewPersonalSchedule();

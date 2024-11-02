@@ -213,4 +213,18 @@ public class TextFileWriter {
         }
         return new String[]{medicinename, quantity};
     }
+    public void updatePersonalMedicalRecord(String id, String patientID, String name, String dob, String gender, String bloodtype, String email,String diagnosis, String treatment){
+        String newRecord = String.format("%s|%s|%s|%s|%s|%s|%s|%s|%s", id, patientID, name,dob,gender,bloodtype,email,diagnosis,treatment);
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("./TextFiles/MedicalRecord.txt", true))) {
+            if (Files.size(Paths.get("./TextFiles/MedicalRecord.txt")) > 0) {
+                writer.newLine();  // Add a newline only if the file is not empty
+            } 
+            writer.write(newRecord);
+            System.out.println("Medical Record updated successfully.");
+        } catch (IOException e) {
+            System.out.println("Error writing to file: " + e.getMessage());
+        }
+
+    }
 }

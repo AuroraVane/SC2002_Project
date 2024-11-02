@@ -141,4 +141,46 @@ public class TextFileReader {
         reader.close();
         return aoList;
     }
+
+    public static List<MedicalRecord> loadMedicalRecords(String filePath) throws IOException {
+        List<MedicalRecord> medicalRecords = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] details = line.split("\\|"); // Special Character | requires \\
+            String appointmentID = details[0];
+            String patientID = details[1];
+            String name = details[2];
+            String DOB = details[3];
+            String gender = details[4];
+            String bloodtype = details[5];
+            String contact = details[6];
+            String diagnosis = details[7];
+            String treatment = details[8];
+
+            medicalRecords.add(new MedicalRecord(appointmentID,patientID,name, DOB,gender,bloodtype,contact,diagnosis,treatment));
+        }
+
+        reader.close();
+        return medicalRecords;
+    }
+
+    public static List<String> loadOverseeingPatients(String docID, String filePath) throws IOException {
+        List<String> patients = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] details = line.split("\\|"); // Special Character | requires \\
+            String docid = details[0];
+            String patientID = details[1];
+
+            if (docid.equals(docID)) {
+                patients.add(patientID);
+            }
+        }
+        reader.close();
+        return patients;
+    }
 }

@@ -5,7 +5,6 @@ public class PatientUI implements UserUI {
 
     public PatientUI(Patient patient) {
         this.patient = patient;
-        this.medicalRecord = new MedicalRecord(patient);
     }
 
     public void printMenu() {

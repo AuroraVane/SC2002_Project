@@ -12,4 +12,7 @@ public class Doctor extends Staff{
     public void displayUI(){
         doctorUI.printMenu();
     }
+    public void navigateMenu(int option){
+        doctorUI.navigateMenu(option);
+    }
 }
