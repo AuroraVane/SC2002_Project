@@ -13,7 +13,7 @@ public class ReplenishmentRequestController {
         this.replenishmentRequestList = TextFileReader.loadReplenishmentRequest(fileName);
         this.nextID = replenishmentRequestList.size() + 1;
         this.replenishmentRequestUI = new ReplenishmentRequestUI();
-        this.medicationInventoryController = new MedicationInventoryController("Medicine_List.txt");
+        this.medicationInventoryController = new MedicationInventoryController("./TextFiles/Medicine_List.txt");
     }
 
     public void MenuController(Staff staff) {
@@ -80,7 +80,7 @@ public class ReplenishmentRequestController {
         String[] output = writer.updateReplenishmentRequest(input);
         medicationInventoryController.updateMedicationInventory(output[0],output[1]);
         try{
-            this.replenishmentRequestList = TextFileReader.loadReplenishmentRequest("Replenishment_List.txt");
+            this.replenishmentRequestList = TextFileReader.loadReplenishmentRequest("./TextFiles/Replenishment_List.txt");
         }catch(IOException e){
             System.out.println("Error: Unable to load replenishment request list from file.");
             e.printStackTrace(); // Optional: To print the stack trace for debugging
@@ -93,7 +93,7 @@ public class ReplenishmentRequestController {
             this.writer = new TextFileWriter(); 
             writer.addReplenishmentRequest(String.valueOf(this.nextID),medicine.getMedicineName(), "Pending", String.valueOf(medicine.getLowQAlert()));
             try{
-                this.replenishmentRequestList = TextFileReader.loadReplenishmentRequest("Replenishment_List.txt");
+                this.replenishmentRequestList = TextFileReader.loadReplenishmentRequest("./TextFiles/Replenishment_List.txt");
                 nextID++;
             }catch(IOException e){
                 System.out.println("Error: Unable to load replenishment request list from file.");

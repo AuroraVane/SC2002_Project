@@ -1,7 +1,7 @@
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Comparator;
 
 public class ManageStaffController {
     private List<Staff> staffList;
@@ -99,7 +99,7 @@ public class ManageStaffController {
         this.writer = new TextFileWriter();
         writer.addStaff(id, staffDetails[0], staffDetails[1], staffDetails[2], Integer.parseInt(staffDetails[3]), "password");
         try{
-            staffList = TextFileReader.loadStaff("Staff_List.txt");
+            staffList = TextFileReader.loadStaff("./TextFiles/Staff_List.txt");
         }catch(IOException e){
             System.out.println("Error: Unable to reset staff list from file.");
             e.printStackTrace();
@@ -112,7 +112,7 @@ public class ManageStaffController {
         this.writer = new TextFileWriter();
         writer.deleteStaff(id);
         try{
-            staffList = TextFileReader.loadStaff("Staff_List.txt");
+            staffList = TextFileReader.loadStaff("./TextFiles/Staff_List.txt");
         }catch(IOException e){
             System.out.println("Error: Unable to reset staff list from file.");
             e.printStackTrace();
@@ -125,7 +125,7 @@ public class ManageStaffController {
         this.writer = new TextFileWriter();
         writer.updateStaff(id, staffDetails[0], staffDetails[1], staffDetails[2], Integer.parseInt(staffDetails[3]), "password");
         try{
-            staffList = TextFileReader.loadStaff("Staff_List.txt");
+            staffList = TextFileReader.loadStaff("./TextFiles/Staff_List.txt");
         }catch(IOException e){
             System.out.println("Error: Unable to reset staff list from file.");
             e.printStackTrace();

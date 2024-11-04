@@ -1,5 +1,5 @@
-import java.util.Scanner;
 import java.util.List;
+import java.util.Scanner;
 
 public class PharmacistUI implements UserUI{
     private Pharmacist pharmacist;
@@ -10,9 +10,9 @@ public class PharmacistUI implements UserUI{
     public PharmacistUI(Pharmacist pharmacist){
         this.pharmacist = pharmacist;
         try{
-            this.appointmentController = new AppointmentController("Appointment_List.txt");
-            this.medicationInventoryController = new MedicationInventoryController("Medicine_List.txt");
-            this.replenishmentRequestController = new ReplenishmentRequestController("Replenishment_List.txt");
+            this.appointmentController = new AppointmentController("./TextFiles/Appointment_List.txt");
+            this.medicationInventoryController = new MedicationInventoryController("./TextFiles/Medicine_List.txt");
+            this.replenishmentRequestController = new ReplenishmentRequestController("./TextFiles/Replenishment_List.txt");
         } catch (Exception e){
             System.out.println("Error: Unable to load appointment list from file.");
             e.printStackTrace();

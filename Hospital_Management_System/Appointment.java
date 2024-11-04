@@ -1,18 +1,42 @@
+import java.time.Instant;
 public class Appointment {
     private String patientID;
     private String staffID;
     private String status;
     private String date;
     private String time;
+    private int appointmentID;
 
 
-    public Appointment(String patientID, String staffID, String status, String date, String time) {
+    public int getAppointmentID() {
+        return appointmentID;
+    }
+    public void setAppointmentID(int appointmentID) {
+        this.appointmentID = appointmentID;
+    }
+    public Appointment(int appointmentID, String patientID, String staffID, String status, String date, String time) {
         //TODO Auto-generated constructor stub
         this.patientID = patientID;
         this.staffID = staffID;
         this.status = status;
         this.date = date;
         this.time = time;
+        this.appointmentID=appointmentID;
+        //generates random appointment unique ID based on current time stamps
+        
+    }
+    public Appointment(String staffID, String status, String date, String time) {
+        this.patientID = "NA";
+        this.staffID = staffID;
+        this.status = status;
+        this.date = date;
+        this.time = time;
+        this.appointmentID=generateID();
+        //generates random appointment unique ID based on current time stamps
+        
+    }
+    public static int generateID() {
+        return (int) (Instant.now().toEpochMilli() % Integer.MAX_VALUE);
     }
     public String getPatientID() {
         return patientID;

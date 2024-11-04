@@ -30,7 +30,7 @@ public class Medicine {
 
     public static List<Medicine> getAllMedicines(){
         
-        String filePath = "Medicine_List.txt";
+        String filePath = "./TextFiles/Medicine_List.txt";
         List<Medicine> medicineList;
         try {
              medicineList = TextFileReader.loadMedicineList(filePath);
@@ -62,7 +62,7 @@ public class Medicine {
     }
 
     public static void updateMedicineFile(List<Medicine> medicines) {
-        String filePath = "Medicine_List.txt";
+        String filePath = "./TextFiles/Medicine_List.txt";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (Medicine med : medicines) {
                 writer.write(med.toString());

@@ -1,6 +1,5 @@
-import java.io.IOException;
-import java.util.List;
 import java.io.*;
+import java.util.List;
 
 public class AppointmentOutcome {   
     private int appointmentId; 
@@ -41,7 +40,7 @@ public class AppointmentOutcome {
     }
 
     public static List<AppointmentOutcome> getAllAppointmentOutcomes(){
-        String filePath = "AppointmentOutcome_List.txt";
+        String filePath = "./TextFiles/AppointmentOutcome_List.txt";
         List<AppointmentOutcome> appointmentOutcomes;
         try {
             appointmentOutcomes = TextFileReader.loadAppointmentOutcomes(filePath);
@@ -69,7 +68,7 @@ public class AppointmentOutcome {
     }
 
     public static void updateAppointmentOutcomeFile(List<AppointmentOutcome> appointmentOutcomes) {
-        String filePath = "AppointmentOutcome_List.txt";
+        String filePath = "./TextFiles/AppointmentOutcome_List.txt";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (AppointmentOutcome appointmentOutcome : appointmentOutcomes) {
                 writer.write(appointmentOutcome.toString());

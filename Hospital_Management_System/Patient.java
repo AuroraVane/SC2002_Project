@@ -25,7 +25,7 @@ public class Patient extends User{
 
     public static List<Patient> getAllPatients(){
         
-        String filePath = "Patient_List.txt";
+        String filePath = "./TextFiles/Patient_List.txt";
         List<Patient> patientList;
         try {
              patientList = TextFileReader.loadPatients(filePath);

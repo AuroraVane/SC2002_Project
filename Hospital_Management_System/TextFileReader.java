@@ -1,8 +1,11 @@
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class TextFileReader {
     public static List<Patient> loadPatients(String filePath) throws IOException {
@@ -54,14 +57,14 @@ public class TextFileReader {
 
         String line;
         while ((line = reader.readLine()) != null) {
-            String[] details = line.split("\\|"); // Special Character | requires \\
-            String patientID = details[0];
-            String staffID = details[1];
-            String status = details[2];
-            String date = details[3];
-            String time = details[4];
-
-            appointments.add(new Appointment(patientID, staffID, status, date, time));
+            String[] details = line.split("\\|");
+            String appointmentID = details[0];
+            String patientID = details[1];
+            String staffID = details[2];
+            String status = details[3];
+            String date = details[4];
+            String time = details[5];
+            appointments.add(new Appointment(Integer.parseInt(appointmentID), patientID, staffID, status, date, time));
         }
 
         reader.close();
@@ -142,45 +145,115 @@ public class TextFileReader {
         return aoList;
     }
 
-    public static List<MedicalRecord> loadMedicalRecords(String filePath) throws IOException {
-        List<MedicalRecord> medicalRecords = new ArrayList<>();
+    public static List<MedicalRecord> loadMedicalRecord(String filePath, String PatientfilePath)throws IOException{
+        List<MedicalRecord> MRList=new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
-
         String line;
         while ((line = reader.readLine()) != null) {
             String[] details = line.split("\\|"); // Special Character | requires \\
-            String appointmentID = details[0];
-            String patientID = details[1];
-            String name = details[2];
-            String DOB = details[3];
-            String gender = details[4];
-            String bloodtype = details[5];
-            String contact = details[6];
-            String diagnosis = details[7];
-            String treatment = details[8];
-
-            medicalRecords.add(new MedicalRecord(appointmentID,patientID,name, DOB,gender,bloodtype,contact,diagnosis,treatment));
+            String id = details[0];
+            String diagnosis_FILEPATH = details[1];
+            String treatment_plans_FILEPATH = details[2];
+            MedicalRecord mr=new MedicalRecord(loadSelectivePatient(PatientfilePath, id), diagnosis_FILEPATH, treatment_plans_FILEPATH);
+            MRList.add(mr);
         }
-
         reader.close();
-        return medicalRecords;
+        
+        return MRList;
     }
 
-    public static List<String> loadOverseeingPatients(String docID, String filePath) throws IOException {
-        List<String> patients = new ArrayList<>();
+    public static Patient loadSelectivePatient(String filePath, String patientID) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+        String line;
+        Patient p=null;
+        while ((line = reader.readLine()) != null) {
+            String[] details = line.split("\\|"); // Special Character | requires \\
+            if (patientID.equals(details[0])){
+                String id = details[0];
+                String name = details[1];
+                String DOB = details[2];
+                String gender = details[3];
+                String bloodtype = details[4];
+                String contactinfo = details[5];
+                String password = details[6];
+
+                p=new Patient(id, name, password, gender, DOB, bloodtype, contactinfo);
+            }   
+        }
+        reader.close();
+        return p;
+    }
+
+    public static List<String> loadOverseeingPatients(String doctorId, String filePath)throws IOException{
+        List<String> PatientIDs=new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
 
         String line;
         while ((line = reader.readLine()) != null) {
             String[] details = line.split("\\|"); // Special Character | requires \\
-            String docid = details[0];
-            String patientID = details[1];
-
-            if (docid.equals(docID)) {
-                patients.add(patientID);
+            if (details[0].equals(doctorId)){
+                for  (int i = 1; i < details.length; i++) {
+                    PatientIDs.add(details[i]);
+                }
             }
         }
         reader.close();
+        return PatientIDs;
+    }
+    public static List<Patient> loadSelectivePatients(String filePath, List<String> patientIDs) throws IOException {
+        List<Patient> patients = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] details = line.split("\\|"); // Special Character | requires \\
+            if (patientIDs.contains(details[0])){
+                String id = details[0];
+                String name = details[1];
+                String DOB = details[2];
+                String gender = details[3];
+                String bloodtype = details[4];
+                String contactinfo = details[5];
+                String password = details[6];
+
+                patients.add(new Patient(id, name, password, gender, DOB, bloodtype, contactinfo));
+            }   
+        }
+        reader.close();
         return patients;
+    }
+    public static void NormalRead(String filePath)throws IOException {
+        try {
+            File myObj = new File(filePath);
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                System.out.println(data);
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+    public static List<Appointment> loadDoctorAppointments(String filePath, String doctorid) throws IOException {
+        List<Appointment> appointments = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] details = line.split("\\|"); // Special Character | requires \\
+            if (details[2].equals(doctorid)){
+                String appointmentID = details[0];
+                String patientID = details[1];
+                String staffID = details[2];
+                String status = details[3];
+                String date = details[4];
+                String time = details[5];
+                appointments.add(new Appointment(Integer.parseInt(appointmentID), patientID, staffID, status, date, time));
+            }
+        }
+        reader.close();
+        return appointments;
     }
 }

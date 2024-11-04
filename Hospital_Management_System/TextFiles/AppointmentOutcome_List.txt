@@ -1,0 +1,3 @@
+1|2024-02-01|Consultation|Ibuprofen|false|NA
+2|2024-07-05|X-Ray|Amoxicillin|false|NA
+1656734241|20241212|Consultation|Paracetamol|true|take 2 a day every 6 hours

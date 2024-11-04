@@ -1,10 +1,10 @@
-import java.util.Scanner;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Hospital {
     public static void main(String[] args) throws IOException{
-        String patientFilePath = "Patient_List.txt";
-        String stafffilePath = "Staff_List.txt";
+        String patientFilePath = "./TextFiles/Patient_List.txt";
+        String stafffilePath = "./TextFiles/Staff_List.txt";
         Login login = new Login(patientFilePath, stafffilePath);
         System.err.println("Welcome to the XYZ Hospital");
         @SuppressWarnings("resource") //Ignore warning for scanner VSCode things

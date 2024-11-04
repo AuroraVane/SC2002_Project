@@ -1,9 +1,12 @@
 import java.io.*;
 import java.nio.file.*;
+import java.util.Scanner;
 
 public class TextFileWriter {
 
-    private static final String FILE_PATH = "Staff_List.txt";  // Path to the staff list file
+    private static final String FILE_PATH = "./TextFiles/Staff_List.txt";  // Path to the staff list file
+    private static final String APPOINTMENT_FILE_PATH = "./TextFiles/Appointment_List.txt";
+    private static final String OUTCOME_FILE_PATH="./TextFiles/AppointmentOutcome_List.txt";
 
     // Method to add a new staff member
     public void addStaff(String id, String name, String role, String gender, int age, String password) {
@@ -213,18 +216,135 @@ public class TextFileWriter {
         }
         return new String[]{medicinename, quantity};
     }
-    public void updatePersonalMedicalRecord(String id, String patientID, String name, String dob, String gender, String bloodtype, String email,String diagnosis, String treatment){
-        String newRecord = String.format("%s|%s|%s|%s|%s|%s|%s|%s|%s", id, patientID, name,dob,gender,bloodtype,email,diagnosis,treatment);
+    
+    public void updateAppointment(Appointment appmt) {
+        File inputFile = new File(APPOINTMENT_FILE_PATH);
+        File tempFile = new File("tempAppointment.txt");
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("./TextFiles/MedicalRecord.txt", true))) {
-            if (Files.size(Paths.get("./TextFiles/MedicalRecord.txt")) > 0) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+
+            String currentLine;
+            Boolean firstLine = true;
+            // Loop through the file and update the line with the matching ID
+            while ((currentLine = reader.readLine()) != null) {
+                if (currentLine.trim().isEmpty()) {
+                    continue;
+                }
+                String[] appmtDetails = currentLine.split("\\|");
+                if (appmtDetails[0].equals(appmt.getAppointmentID()+"")) {
+                    // Write the updated staff details
+                    currentLine = String.format("%d|%s|%s|%s|%s|%s", appmt.getAppointmentID(), appmt.getPatientID(), appmt.getStaffID(), appmt.getStatus(), appmt.getDate(), appmt.getTime());
+                } 
+                if(!firstLine){
+                    writer.newLine();
+                } else {
+                    firstLine = false;
+                }
+                    // Write the original staff details
+                writer.write(currentLine);
+            }
+            System.out.println("Appointment updated successfully.");
+        } catch (IOException e) {
+            System.out.println("Error processing file: " + e.getMessage());
+        }
+
+        // Replace the original file with the updated file
+        if (!inputFile.delete()) {
+            System.out.println("Could not delete the original file.");
+        }
+        if (!tempFile.renameTo(inputFile)) {
+            System.out.println("Could not rename the temp file.");
+        }
+    }
+    public void addAppointment(Appointment appmt) {
+        String newAppointment = String.format("%d|%s|%s|%s|%s|%s", appmt.getAppointmentID(), appmt.getPatientID(), appmt.getStaffID(), appmt.getStatus(), appmt.getDate(), appmt.getTime());
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(APPOINTMENT_FILE_PATH, true))) {
+            if (Files.size(Paths.get(FILE_PATH)) > 0) {
                 writer.newLine();  // Add a newline only if the file is not empty
             } 
-            writer.write(newRecord);
-            System.out.println("Medical Record updated successfully.");
+            writer.write(newAppointment);
+            System.out.println("Appointment added successfully.");
         } catch (IOException e) {
             System.out.println("Error writing to file: " + e.getMessage());
         }
-
     }
+    public void deleteAppointment(String id) {
+        File inputFile = new File(APPOINTMENT_FILE_PATH);
+        File tempFile = new File("tempAppointmentList.txt");
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+
+            String currentLine;
+            boolean firstLine = true; 
+            while ((currentLine = reader.readLine()) != null) {
+                // Skip any empty lines
+                if (currentLine.trim().isEmpty()) {
+                    continue;
+                }
+                String[] appointmentDetails = currentLine.split("\\|");
+                if (appointmentDetails[0].equals(id)) {
+                    continue;
+                }
+                if (!firstLine) {
+                    writer.newLine();  
+                } else {
+                    firstLine = false;  
+                }
+                writer.write(currentLine);
+            }
+            System.out.println("Appointment deleted successfully.");
+        } catch (IOException e) {
+            System.out.println("Error processing file: " + e.getMessage());
+        }
+
+        // Replace the original file with the updated file
+        if (!inputFile.delete()) {
+            System.out.println("Could not delete the original file.");
+        }
+        if (!tempFile.renameTo(inputFile)) {
+            System.out.println("Could not rename the temp file.");
+        }
+    }
+
+    public void addAppointmentOutcome(int appointmentId, String date, String service, String medicine, boolean status, String consulationNotes) {
+        String newAppointment = String.format("%d|%s|%s|%s|%b|%s", appointmentId, date, service, medicine, status, consulationNotes);
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(OUTCOME_FILE_PATH, true))) {
+            if (Files.size(Paths.get(FILE_PATH)) > 0) {
+                writer.newLine();  // Add a newline only if the file is not empty
+            } 
+            writer.write(newAppointment);
+            System.out.println("Appointment Outcome added successfully.");
+        } catch (IOException e) {
+            System.out.println("Error writing to file: " + e.getMessage());
+        }
+    }
+    public void WriteFile(String FILE_PATH) {
+        try {
+            FileWriter Writer = new FileWriter(FILE_PATH);
+            System.out.println("Enter 0 to exit");
+            @SuppressWarnings("resource")
+            Scanner w=new Scanner(System.in);
+            while (true) {
+                String x=w.nextLine();
+                if (x.equals("0")){
+                    break;
+                }
+                Writer.write(x+"\n");
+                
+            }
+            Writer.close();
+            //w.close();
+            //prevent resource leaks
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
 }
+
