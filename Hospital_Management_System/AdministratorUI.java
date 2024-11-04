@@ -11,10 +11,10 @@ public class AdministratorUI implements UserUI{
     public AdministratorUI(Administrator administrator){
         this.administrator = administrator;
         try {
-            this.manageStaffController = new ManageStaffController("Staff_List.txt");
-            this.appointmentController = new AppointmentController("Appointment_List.txt");
-            this.medicationInventoryController = new MedicationInventoryController("Medicine_List.txt");
-            this.replenishmentRequestController = new ReplenishmentRequestController("Replenishment_List.txt");
+            this.manageStaffController = new ManageStaffController("./TextFiles/Staff_List.txt");
+            this.appointmentController = new AppointmentController("./TextFiles/Appointment_List.txt");
+            this.medicationInventoryController = new MedicationInventoryController("./TextFiles/Medicine_List.txt");
+            this.replenishmentRequestController = new ReplenishmentRequestController("./TextFiles/Replenishment_List.txt");
         } catch (IOException e) {
             System.out.println("Error: Unable to load staff list from file.");
             e.printStackTrace(); // Optional: To print the stack trace for debugging

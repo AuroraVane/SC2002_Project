@@ -1,3 +1,5 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
@@ -79,6 +81,32 @@ public class MedicationInventoryController {
         this.writer = new TextFileWriter();
         if(newstock != -1){
             writer.updateMedicationInventory(name, String.valueOf(newstock));
+        }
+    }
+    public static void updateMedicineQuantity(String medicineName){
+        List<Medicine> medicines = Medicine.getAllMedicines();
+        for (Medicine medicine : medicines){
+            if (medicine.getMedicineName().equals(medicineName)){
+                if (medicine.getQuantity() > 0){
+                    medicine.setQuantity(medicine.getQuantity() -1);
+                }else{
+                    System.out.println("There is not enough medicine!");
+                }
+            }
+        }
+        updateMedicineFile(medicines);
+    }
+
+    public static void updateMedicineFile(List<Medicine> medicines) {
+        String filePath = "./TextFiles/Medicine_List.txt";
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            for (Medicine med : medicines) {
+                writer.write(med.getMedicineName() + "|" + med.getQuantity() + "|" + med.getLowQAlert());
+                writer.newLine();
+            }
+            System.out.println("File updated successfully.");
+        } catch (IOException e) {
+            System.err.println("Error updating the file: " + e.getMessage());
         }
     }
 }

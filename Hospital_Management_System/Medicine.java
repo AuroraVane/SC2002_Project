@@ -42,36 +42,4 @@ public class Medicine {
         return null;
     }
     
-    public static void updateMedicineQuantity(String medicineName){
-        List<Medicine> medicines = getAllMedicines();
-        for (Medicine medicine : medicines){
-            if (medicine.medicineName.equals(medicineName)){
-                if (medicine.quantity > 0){
-                    medicine.quantity = medicine.quantity -1;
-                }else{
-                    System.out.println("There is not enough medicine!");
-                }
-            }
-        }
-        updateMedicineFile(medicines);
-    }
-
-    @Override
-    public String toString() {
-        return medicineName + "|" + quantity + "|" + lowQAlert;
-    }
-
-    public static void updateMedicineFile(List<Medicine> medicines) {
-        String filePath = "./TextFiles/Medicine_List.txt";
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            for (Medicine med : medicines) {
-                writer.write(med.toString());
-                writer.newLine();
-            }
-            System.out.println("File updated successfully.");
-        } catch (IOException e) {
-            System.err.println("Error updating the file: " + e.getMessage());
-        }
-    }
-    
 }

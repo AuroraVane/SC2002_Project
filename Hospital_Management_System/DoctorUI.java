@@ -63,13 +63,4 @@ public class DoctorUI implements UserUI {
                 System.out.println("Invalid option. Please try again.");
         }
     }
-    /* 
-    public void skeletonPatientList() {
-        System.out.println("Skeleton for Patient List");
-    }
-
-    public void skeletonAppointment() {
-        System.out.println("Skeleton for Appointment");
-    }
-    */
 }

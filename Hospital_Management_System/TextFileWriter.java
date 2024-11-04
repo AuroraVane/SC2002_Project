@@ -117,7 +117,7 @@ public class TextFileWriter {
     }
 
     public void updateMedicationInventory(String name,String stock){
-        File inputFile = new File("Medicine_List.txt");
+        File inputFile = new File("./TextFiles/Medicine_List.txt");
         File tempFile = new File("tempMedicineList.txt");
 
         try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
@@ -162,8 +162,8 @@ public class TextFileWriter {
 
     public void addReplenishmentRequest(String id,String name,String status,String value){
         String newReplenishment = String.format("%s|%s|%s|%s", id, name, status, value);
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Replenishment_List.txt", true))) {
-            if (Files.size(Paths.get("Replenishment_List.txt")) > 0) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("./TextFiles/Replenishment_List.txt", true))) {
+            if (Files.size(Paths.get("./TextFiles/Replenishment_List.txt")) > 0) {
                 writer.newLine();  // Add a newline only if the file is not empty
             } 
             writer.write(newReplenishment);
@@ -173,7 +173,7 @@ public class TextFileWriter {
         }
     }
     public String[] updateReplenishmentRequest(String name){
-        File inputFile = new File("Replenishment_List.txt");
+        File inputFile = new File("./TextFiles/Replenishment_List.txt");
         File tempFile = new File("tempReplenishmentList.txt");
         String medicinename = " ";
         String quantity = " ";
