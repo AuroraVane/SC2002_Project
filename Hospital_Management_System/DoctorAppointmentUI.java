@@ -59,7 +59,7 @@ public class DoctorAppointmentUI extends AppointmentUI{
         }
     }//5
     public void RecordAppointmentOutcome(){
-        List<Appointment> appointments=doctorAppmtController.GetStatusAppointments("COMPLETED");
+        List<Appointment> appointments=doctorAppmtController.GetStatusAppointments("CONFIRMED");
         if (!appointments.isEmpty()){
             printAllAppointmentsWithIndex(appointments);
             System.out.println("Select which Confirmed Appointment you want to conclude");

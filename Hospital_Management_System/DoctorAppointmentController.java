@@ -68,7 +68,7 @@ public class DoctorAppointmentController extends AppointmentUI{
         }
     }
     public void ResolveAppointment(Appointment appmt){
-        appmt.setStatus("RESOLVED");
+        appmt.setStatus("COMPLETED");
         writer.updateAppointment(appmt);
     }
     
