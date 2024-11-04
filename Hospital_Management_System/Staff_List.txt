@@ -1,8 +1,0 @@
-D001|John Smith|Doctor|Male|45|password
-D002|Emily Clarke|Doctor|Female|38|password
-P001|Mark Lee|Pharmacist|Male|29|password
-A001|Sarah Lee|Administrator|Female|40|password
-P003|Annette Birkins|Pharmacist|Female|41|password
-A003|Albert Wesker|Administrator|Male|5|password
-A004|William Birkins|Administrator|Male|32|password
-A002|Alex Wesker|Administrator|Female|34|password

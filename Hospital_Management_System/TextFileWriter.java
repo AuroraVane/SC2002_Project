@@ -323,8 +323,7 @@ public class TextFileWriter {
         }
     }
     public void WriteFile(String FILE_PATH) {
-        try {
-            FileWriter Writer = new FileWriter(FILE_PATH);
+        try (BufferedWriter Writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) { 
             System.out.println("Enter 0 to exit");
             @SuppressWarnings("resource")
             Scanner w=new Scanner(System.in);
@@ -333,16 +332,13 @@ public class TextFileWriter {
                 if (x.equals("0")){
                     break;
                 }
-                Writer.write(x+"\n");
-                
+                Writer.write(x);
+                Writer.newLine();  
             }
             Writer.close();
-            //w.close();
-            //prevent resource leaks
-            System.out.println("Successfully wrote to the file.");
+            System.out.println("Written to file successfully.");
         } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+            System.out.println("Error writing to file: " + e.getMessage());
         }
     }
 
