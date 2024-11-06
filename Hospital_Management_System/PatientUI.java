@@ -45,7 +45,7 @@ public class PatientUI implements UserUI {
                 Appointment.viewScheduledAppointments(patient.getId());
                 break;
             case 8:
-                skeletonAppointment();// viewAppointmentOutcomeRecords();
+                AppointmentOutcome.viewAppointmentOutcomeRecords(patient.getId());
                 break;
             case 9:
                 System.out.println("Logging out...");
