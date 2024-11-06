@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class TextFileReader {
+
     public static List<Patient> loadPatients(String filePath) throws IOException {
         List<Patient> patients = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -160,6 +161,30 @@ public class TextFileReader {
         reader.close();
         
         return MRList;
+    }
+
+    public static List<String> loadDiagnosis(String diagnosisFilePath) throws IOException{
+        List<String> diagnoses=new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader(diagnosisFilePath));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            diagnoses.add(line);
+        }
+        reader.close();
+        
+        return diagnoses;
+    }
+
+    public static String loadTreatmentPlan(String treatmentFilePath) throws IOException{
+        String treatment= "";
+        BufferedReader reader = new BufferedReader(new FileReader(treatmentFilePath));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            treatment += " " + line;
+        }
+        reader.close();
+        
+        return treatment;
     }
 
     public static Patient loadSelectivePatient(String filePath, String patientID) throws IOException {

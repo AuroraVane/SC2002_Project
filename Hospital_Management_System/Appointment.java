@@ -1,4 +1,6 @@
+import java.io.IOException;
 import java.time.Instant;
+import java.util.List;
 public class Appointment {
     private String patientID;
     private String staffID;
@@ -6,6 +8,7 @@ public class Appointment {
     private String date;
     private String time;
     private int appointmentID;
+    private static final String APPOINTMENT_FILE_PATH = "./TextFiles/Appointment_List.txt";
 
 
     public int getAppointmentID() {
@@ -67,6 +70,37 @@ public class Appointment {
     }
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public static void scheduleAppointment(String patientID, int appointmentID) {
+        List<Appointment> appointments;
+        try {
+            appointments = TextFileReader.loadAppointments(APPOINTMENT_FILE_PATH);
+        } catch (IOException e) {
+            System.out.println("Error loading appointments: " + e.getMessage());
+            return;
+        }
+
+        // Find the appointment with the given appointmentID
+        Appointment appointmentToBook = null;
+        for (Appointment appointment : appointments) {
+            if (appointment.getAppointmentID() == appointmentID && appointment.getPatientID().equals("NA")) {
+                appointmentToBook = appointment;
+                break;
+            }
+        }
+
+        if (appointmentToBook != null) {
+            // Update the appointment details with patientID and set status to "PENDING"
+            appointmentToBook.setPatientID(patientID);
+            appointmentToBook.setStatus("PENDING");
+
+            // Update the appointment in the file
+            TextFileWriter.updateAppointment(appointmentToBook);
+            System.out.println("Appointment scheduled successfully for patient " + patientID);
+        } else {
+            System.out.println("Appointment not available or already booked.");
+        }
     }
 
 }
