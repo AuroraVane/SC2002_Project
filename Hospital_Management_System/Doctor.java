@@ -16,10 +16,10 @@ public class Doctor extends Staff{
         
         Scanner sc = new Scanner(System.in);
         do{
-            doctorUI.printMenu();
+            this.doctorUI.printMenu();
             System.out.println("Select an option: ");
             option = sc.nextInt();
-            doctorUI.navigateMenu(option);
+            this.doctorUI.navigateMenu(option);
         }while(option != 8);
         sc.close();
     }

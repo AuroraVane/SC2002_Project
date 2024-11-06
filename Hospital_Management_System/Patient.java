@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 public class Patient extends User{
     private String DOB;
@@ -20,7 +21,16 @@ public class Patient extends User{
         return "Patient";
     }
     public void displayUI(){
-        this.patientUI.printMenu();
+        int option = 0;
+        
+        Scanner sc = new Scanner(System.in);
+        do{
+            this.patientUI.printMenu();
+            System.out.println("Select an option: ");
+            option = sc.nextInt();
+            this.patientUI.navigateMenu(option);
+        }while(option != 8);
+        sc.close();
     }
 
     public static List<Patient> getAllPatients(){
@@ -45,4 +55,8 @@ public class Patient extends User{
     public String getContactinfo() {
         return contactinfo;
     }
+    public void setContactinfo(String contactinfo) {
+        this.contactinfo = contactinfo;
+    }
+    
 }

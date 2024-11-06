@@ -1,10 +1,21 @@
+import java.io.IOException;
+
 public class PatientUI implements UserUI {
     private Patient patient;
 
-    private MedicalRecord medicalRecord;
+    //private MedicalRecord medicalRecord;
+    private PatientNonMedicalRecordUI nonmedicalrecordUI;
+    private PatientMedicalRecordUI medicalrecordUI;
 
     public PatientUI(Patient patient) {
         this.patient = patient;
+        try {
+            this.medicalrecordUI = new PatientMedicalRecordUI("./TextFiles/MedicalRecord.txt", "./TextFiles/Patient_List.txt", patient.getId()); 
+        } catch (IOException e) {
+            System.out.println("Error: Unable to load list from file.");
+            e.printStackTrace();
+        }
+        this.nonmedicalrecordUI = new PatientNonMedicalRecordUI(patient); 
     }
 
     public void printMenu() {
@@ -22,10 +33,10 @@ public class PatientUI implements UserUI {
     public void navigateMenu(int option) {
         switch (option) {
             case 1:
-                medicalRecord.skeletonMedicalRecord(); // viewMedicalRecord();
+                medicalrecordUI.viewMedicalRecord(patient); // viewMedicalRecord();
                 break;
             case 2:
-                medicalRecord.skeletonMedicalRecord(); // updatePersonalInformation();
+                nonmedicalrecordUI.updateContactInfo(); // updatePersonalInformation();
                 break;
             case 3:
                 skeletonAppointment();// viewAvailableAppointmentSlots();
