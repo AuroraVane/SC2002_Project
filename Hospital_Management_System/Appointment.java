@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.time.Instant;
 import java.util.List;
+import java.util.Scanner;
 public class Appointment {
     private String patientID;
     private String staffID;
@@ -100,6 +101,87 @@ public class Appointment {
             System.out.println("Appointment scheduled successfully for patient " + patientID);
         } else {
             System.out.println("Appointment not available or already booked.");
+        }
+    }
+
+    public static void viewAvailableAppointmentSlots(){
+        List<Appointment> appointments;
+        try {
+            appointments = TextFileReader.loadAppointments(APPOINTMENT_FILE_PATH);
+            Patient.showAvailableAppointments(appointments);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public static void rescheduleAppointment(String patientID) {
+        try {
+            List<Appointment> appointments = TextFileReader.loadAppointments(APPOINTMENT_FILE_PATH);
+            boolean foundAppointments = false;
+
+            System.out.println("Your Pending and Confirmed Appointments:");
+            System.out.println("Appointment ID | Doctor ID | Date       | Time");
+
+            // Display the patient's PENDING and CONFIRMED appointments
+            for (Appointment appointment : appointments) {
+                if (appointment.getPatientID().equals(patientID) &&
+                    (appointment.getStatus().equals("PENDING") || appointment.getStatus().equals("CONFIRMED"))) {
+                    
+                    System.out.printf("%-14s | %-9s | %s | %s%n",
+                                      appointment.getAppointmentID(),
+                                      appointment.getStaffID(),
+                                      appointment.getDate(),
+                                      appointment.getTime());
+                    foundAppointments = true;
+                }
+            }
+
+            if (!foundAppointments) {
+                System.out.println("No PENDING or CONFIRMED appointments found for patient " + patientID);
+                return;
+            }
+
+            // Prompt the user to select an appointment to reschedule
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Enter the Appointment ID you wish to reschedule: ");
+            int appointmentIDToReschedule = Integer.parseInt(scanner.nextLine());
+
+            // Check if the entered appointment ID is valid
+            Appointment appointmentToReschedule = null;
+            for (Appointment appointment : appointments) {
+                if (appointment.getAppointmentID() == appointmentIDToReschedule &&
+                    appointment.getPatientID().equals(patientID) &&
+                    (appointment.getStatus().equals("PENDING") || appointment.getStatus().equals("CONFIRMED"))) {
+                    appointmentToReschedule = appointment;
+                    break;
+                }
+            }
+
+            if (appointmentToReschedule == null) {
+                System.out.println("Invalid Appointment ID or appointment does not belong to patient " + patientID);
+                return;
+            }
+
+            // Display available slots
+            viewAvailableAppointmentSlots();
+
+            // Prompt the user to select a new appointment slot
+            System.out.print("Enter the new Appointment ID for rescheduling: ");
+            int newAppointmentID = Integer.parseInt(scanner.nextLine());
+
+            // Update the existing appointment to mark it as "RESCHEDULED" (optional, if you want to track this)
+            appointmentToReschedule.setPatientID("NA");
+            appointmentToReschedule.setStatus("EMPTY");
+            TextFileWriter.updateAppointment(appointmentToReschedule);
+
+            // Schedule the new appointment with "PENDING" status for the patient
+            scheduleAppointment(patientID, newAppointmentID);
+
+            System.out.println("Appointment rescheduled successfully for patient " + patientID);
+
+        } catch (IOException e) {
+            System.out.println("Error processing file: " + e.getMessage());
         }
     }
 

@@ -30,13 +30,13 @@ public class PatientUI implements UserUI {
                 updateContactInfo();
                 break;
             case 3:
-                viewAvailableAppointmentSlots();
+                Appointment.viewAvailableAppointmentSlots();
                 break;
             case 4:
                 scheduleAppointment();// scheduleAppointment();
                 break;
             case 5:
-                skeletonAppointment();// rescheduleAppointment();
+                Appointment.rescheduleAppointment(patient.getId());// rescheduleAppointment();
                 break;
             case 6:
                 skeletonAppointment();// cancelAppointment();
@@ -61,18 +61,6 @@ public class PatientUI implements UserUI {
         String newContactInfo = sc.nextLine();
         TextFileWriter.updatePatientEmail(patient.getId(), newContactInfo);
         patient.setContactInfo(newContactInfo);
-    }
-
-    public void viewAvailableAppointmentSlots() {
-        List<Appointment> appointments;
-        try {
-            appointments = TextFileReader.loadAppointments("./TextFiles/Appointment_List.txt");
-            Patient.showAvailableAppointments(appointments);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        
     }
 
     public void scheduleAppointment() {
