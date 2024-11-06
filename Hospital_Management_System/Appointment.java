@@ -185,4 +185,64 @@ public class Appointment {
         }
     }
 
+    public static void cancelAppointment(String patientID) {
+        try {
+            List<Appointment> appointments = TextFileReader.loadAppointments(APPOINTMENT_FILE_PATH);
+            boolean foundAppointments = false;
+
+            System.out.println("Your Pending and Confirmed Appointments:");
+            System.out.println("Appointment ID | Doctor ID | Date       | Time");
+
+            // Display the patient's PENDING and CONFIRMED appointments
+            for (Appointment appointment : appointments) {
+                if (appointment.getPatientID().equals(patientID) &&
+                    (appointment.getStatus().equals("PENDING") || appointment.getStatus().equals("CONFIRMED"))) {
+                    
+                    System.out.printf("%-14s | %-9s | %s | %s%n",
+                                      appointment.getAppointmentID(),
+                                      appointment.getStaffID(),
+                                      appointment.getDate(),
+                                      appointment.getTime());
+                    foundAppointments = true;
+                }
+            }
+
+            if (!foundAppointments) {
+                System.out.println("No PENDING or CONFIRMED appointments found for patient " + patientID);
+                return;
+            }
+
+            // Prompt the user to select an appointment to cancel
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Enter the Appointment ID you wish to cancel: ");
+            int appointmentIDToCancel = Integer.parseInt(scanner.nextLine());
+
+            // Check if the entered appointment ID is valid
+            Appointment appointmentToCancel = null;
+            for (Appointment appointment : appointments) {
+                if (appointment.getAppointmentID() == appointmentIDToCancel &&
+                    appointment.getPatientID().equals(patientID) &&
+                    (appointment.getStatus().equals("PENDING") || appointment.getStatus().equals("CONFIRMED"))) {
+                    appointmentToCancel = appointment;
+                    break;
+                }
+            }
+
+            if (appointmentToCancel == null) {
+                System.out.println("Invalid Appointment ID or appointment does not belong to patient " + patientID);
+                return;
+            }
+
+            // Update the appointment details to cancel it
+            appointmentToCancel.setPatientID("NA");
+            appointmentToCancel.setStatus("EMPTY");
+            TextFileWriter.updateAppointment(appointmentToCancel);
+
+            System.out.println("Appointment canceled successfully for patient " + patientID);
+
+        } catch (IOException e) {
+            System.out.println("Error processing file: " + e.getMessage());
+        }
+    }
+
 }
