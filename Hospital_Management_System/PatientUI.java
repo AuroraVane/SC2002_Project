@@ -33,7 +33,7 @@ public class PatientUI implements UserUI {
     public void navigateMenu(int option) {
         switch (option) {
             case 1:
-                medicalrecordUI.viewMedicalRecord(patient); // viewMedicalRecord();
+                medicalrecordUI.viewMedicalRecord(); // viewMedicalRecord();
                 break;
             case 2:
                 nonmedicalrecordUI.updateContactInfo(); // updatePersonalInformation();

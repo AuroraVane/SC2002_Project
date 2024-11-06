@@ -18,27 +18,31 @@ public class MedicalRecordController {
         }
         return MRList;
     }
+    public void singleprint_medicalrecord(MedicalRecord x) throws IOException{
+        Patient p;
+        p=x.getPatient();
+        System.out.println("Patient ID: "+ p.getId());
+        System.out.println("Name: "+p.getName());
+        System.out.println("Gender: "+p.getGender());
+        System.out.println("Date of Birth: "+p.getDOB());
+        System.out.println("Contact information: "+p.getContactinfo());
+        System.out.println("Blood Type: "+p.getBloodtype()+"\n");
+        System.out.println("Diagnosis History:");
+        TextFileReader.NormalRead("./TextFiles/"+x.getDiagnosis_FILEPATH());
+        System.out.println("\n");
+        System.out.println("Treatment Plans History:");
+        TextFileReader.NormalRead("./TextFiles/"+x.getTreatment_plans_FILEPATH());
+        System.out.println("\n");
+
+    }
     
     public void printAllMedicalRecordOfOverseeing(List<MedicalRecord> MRList) throws IOException{
         System.out.println("Overseeing Patients' Medical Records:");
-        Patient p;
         for (MedicalRecord x: MRList) {
-            p=x.getPatient();
-            System.out.println("Patient ID: "+ p.getId());
-            System.out.println("Name: "+p.getName());
-            System.out.println("Gender: "+p.getGender());
-            System.out.println("Date of Birth: "+p.getDOB());
-            System.out.println("Contact information: "+p.getContactinfo());
-            System.out.println("Blood Type: "+p.getBloodtype()+"\n");
-            System.out.println("Diagnosis History:");
-            TextFileReader.NormalRead("./TextFiles/"+x.getDiagnosis_FILEPATH());
-            System.out.println("\n");
-            System.out.println("Treatment Plans History:");
-            TextFileReader.NormalRead("./TextFiles/"+x.getTreatment_plans_FILEPATH());
-            System.out.println("\n");
-              
+            singleprint_medicalrecord(x);
         }
     }
+    
     public MedicalRecord findPatientMedicalRecord(String patientID){
         for (MedicalRecord x: this.MedicalRecordList) {
             if (patientID.equals(x.getPatient().getId())){
