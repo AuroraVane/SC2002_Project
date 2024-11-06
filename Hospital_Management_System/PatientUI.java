@@ -33,16 +33,16 @@ public class PatientUI implements UserUI {
                 Appointment.viewAvailableAppointmentSlots();
                 break;
             case 4:
-                scheduleAppointment();// scheduleAppointment();
+                scheduleAppointment();
                 break;
             case 5:
-                Appointment.rescheduleAppointment(patient.getId());// rescheduleAppointment();
+                Appointment.rescheduleAppointment(patient.getId());
                 break;
             case 6:
-                Appointment.cancelAppointment(patient.getId());// cancelAppointment();
+                Appointment.cancelAppointment(patient.getId());
                 break;
             case 7:
-                skeletonAppointment();// viewScheduledAppointments();
+                Appointment.viewScheduledAppointments(patient.getId());
                 break;
             case 8:
                 skeletonAppointment();// viewAppointmentOutcomeRecords();

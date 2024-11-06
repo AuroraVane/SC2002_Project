@@ -117,28 +117,7 @@ public class Appointment {
 
     public static void rescheduleAppointment(String patientID) {
         try {
-            List<Appointment> appointments = TextFileReader.loadAppointments(APPOINTMENT_FILE_PATH);
-            boolean foundAppointments = false;
-
-            System.out.println("Your Pending and Confirmed Appointments:");
-            System.out.println("Appointment ID | Doctor ID | Date       | Time");
-
-            // Display the patient's PENDING and CONFIRMED appointments
-            for (Appointment appointment : appointments) {
-                if (appointment.getPatientID().equals(patientID) &&
-                    (appointment.getStatus().equals("PENDING") || appointment.getStatus().equals("CONFIRMED"))) {
-                    
-                    System.out.printf("%-14s | %-9s | %s | %s%n",
-                                      appointment.getAppointmentID(),
-                                      appointment.getStaffID(),
-                                      appointment.getDate(),
-                                      appointment.getTime());
-                    foundAppointments = true;
-                }
-            }
-
-            if (!foundAppointments) {
-                System.out.println("No PENDING or CONFIRMED appointments found for patient " + patientID);
+            if (!viewScheduledAppointments(patientID)) {
                 return;
             }
 
@@ -149,6 +128,7 @@ public class Appointment {
 
             // Check if the entered appointment ID is valid
             Appointment appointmentToReschedule = null;
+            List<Appointment> appointments = TextFileReader.loadAppointments(APPOINTMENT_FILE_PATH);
             for (Appointment appointment : appointments) {
                 if (appointment.getAppointmentID() == appointmentIDToReschedule &&
                     appointment.getPatientID().equals(patientID) &&
@@ -187,28 +167,7 @@ public class Appointment {
 
     public static void cancelAppointment(String patientID) {
         try {
-            List<Appointment> appointments = TextFileReader.loadAppointments(APPOINTMENT_FILE_PATH);
-            boolean foundAppointments = false;
-
-            System.out.println("Your Pending and Confirmed Appointments:");
-            System.out.println("Appointment ID | Doctor ID | Date       | Time");
-
-            // Display the patient's PENDING and CONFIRMED appointments
-            for (Appointment appointment : appointments) {
-                if (appointment.getPatientID().equals(patientID) &&
-                    (appointment.getStatus().equals("PENDING") || appointment.getStatus().equals("CONFIRMED"))) {
-                    
-                    System.out.printf("%-14s | %-9s | %s | %s%n",
-                                      appointment.getAppointmentID(),
-                                      appointment.getStaffID(),
-                                      appointment.getDate(),
-                                      appointment.getTime());
-                    foundAppointments = true;
-                }
-            }
-
-            if (!foundAppointments) {
-                System.out.println("No PENDING or CONFIRMED appointments found for patient " + patientID);
+            if (!viewScheduledAppointments(patientID)) {
                 return;
             }
 
@@ -218,6 +177,7 @@ public class Appointment {
             int appointmentIDToCancel = Integer.parseInt(scanner.nextLine());
 
             // Check if the entered appointment ID is valid
+            List<Appointment> appointments = TextFileReader.loadAppointments(APPOINTMENT_FILE_PATH);
             Appointment appointmentToCancel = null;
             for (Appointment appointment : appointments) {
                 if (appointment.getAppointmentID() == appointmentIDToCancel &&
@@ -243,6 +203,40 @@ public class Appointment {
         } catch (IOException e) {
             System.out.println("Error processing file: " + e.getMessage());
         }
+    }
+
+    public static boolean viewScheduledAppointments(String patientID){
+        List<Appointment> appointments;
+        boolean foundAppointments = false;
+        try {
+            appointments = TextFileReader.loadAppointments(APPOINTMENT_FILE_PATH);
+    
+            System.out.println("Your Pending and Confirmed Appointments:");
+            System.out.println("Appointment ID | Doctor ID | Date       | Time");
+    
+            for (Appointment appointment : appointments) {
+                if (appointment.getPatientID().equals(patientID) &&
+                    (appointment.getStatus().equals("PENDING") || appointment.getStatus().equals("CONFIRMED"))) {
+                    
+                    System.out.printf("%-14s | %-9s | %s | %s%n",
+                                      appointment.getAppointmentID(),
+                                      appointment.getStaffID(),
+                                      appointment.getDate(),
+                                      appointment.getTime());
+                    foundAppointments = true;
+                }
+            }
+    
+            if (!foundAppointments) {
+                System.out.println("No PENDING or CONFIRMED appointments found for patient " + patientID);
+            }
+    
+            
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return foundAppointments;
     }
 
 }
