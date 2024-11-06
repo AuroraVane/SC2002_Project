@@ -4,9 +4,14 @@ import java.util.Scanner;
 
 public class PatientUI implements UserUI {
     private Patient patient;
-
+    private AppointmentController appointmentcontroller;
     public PatientUI(Patient patient) {
         this.patient = patient;
+        try{
+            this.appointmentcontroller = new AppointmentController("./TextFiles/Appointment_List.txt");
+        } catch (IOException e) {
+            System.out.println("Error loading appointment list.");
+        }
     }
 
     public void printMenu() {
@@ -30,7 +35,7 @@ public class PatientUI implements UserUI {
                 updateContactInfo();
                 break;
             case 3:
-                Appointment.viewAvailableAppointmentSlots();
+                appointmentcontroller.viewAvailableAppointmentSlots();
                 break;
             case 4:
                 scheduleAppointment();
