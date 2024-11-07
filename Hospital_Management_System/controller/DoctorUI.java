@@ -5,7 +5,7 @@ import boundary.DoctorAppointmentUI;
 import boundary.MedicalRecordUI;
 import entity.Doctor;
 
-public class DoctorUI implements UserUI {
+public class DoctorUI extends StaffUI {
     private Doctor doctor;
     
     private MedicalRecordUI medicalRecordUI;
@@ -21,7 +21,10 @@ public class DoctorUI implements UserUI {
             e.printStackTrace();
         }
     }
-
+    public void changePassword(){
+        System.out.println("Enter new password: ");
+        // Code to change password
+    }
     public void printMenu() {
         System.out.println("1. View Patient Medical Records");
         System.out.println("2. Update Patient Medical Records");
@@ -30,7 +33,8 @@ public class DoctorUI implements UserUI {
         System.out.println("5. Accept or Decline Appointment");
         System.out.println("6. View Upcoming Appointments");
         System.out.println("7. Record Appointment Outcome");
-        System.out.println("8. Log Out");
+        System.out.println("8. Change Password");
+        System.out.println("9. Log Out");
     }
     @Override
     public void navigateMenu(int option) {
@@ -62,6 +66,9 @@ public class DoctorUI implements UserUI {
                 // recordAppointmentOutcome();
                 break;
             case 8:
+                changePassword(doctor);
+                break;
+            case 9:
                 System.out.println("Logging out...");
                 break;
             default:

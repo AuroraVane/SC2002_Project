@@ -17,7 +17,7 @@ public class Hospital {
         String password = scanner.nextLine();
 
         User authenticatedUser = login.authenticate(id, password);
-
+        
         if (authenticatedUser != null) {
             System.out.println("\nWelcome " + authenticatedUser.getName());
             System.out.println("Role: " + authenticatedUser.getRole());

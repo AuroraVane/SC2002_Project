@@ -32,7 +32,7 @@ public class Patient extends User{
             System.out.println("Select an option: ");
             option = sc.nextInt();
             patientUI.navigateMenu(option);
-        }while(option != 9);
+        }while(option != 0);
         sc.close();
     }
 

@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.util.List;
 
 import entity.Appointment;
-import controller.AppointmentOutcome;
 import boundary.AppointmentUI;
 import utils.TextFileReader;
 

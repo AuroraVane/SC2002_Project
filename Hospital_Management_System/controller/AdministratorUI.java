@@ -2,9 +2,8 @@ package controller;
 import java.io.IOException;
 
 import entity.Administrator;
-import controller.ReplenishmentRequestController;
 
-public class AdministratorUI implements UserUI{
+public class AdministratorUI extends StaffUI{
     private Administrator administrator;
 
     private ManageStaffController manageStaffController;
@@ -47,6 +46,7 @@ public class AdministratorUI implements UserUI{
                 replenishmentRequestController.MenuController(administrator);//approveReplenishmentRequests();
                 break;
             case 5:
+                changePassword(administrator);
                 break;
             case 6:
                 System.out.println("Logging out...");

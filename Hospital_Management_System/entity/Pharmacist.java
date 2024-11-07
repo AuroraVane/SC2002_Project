@@ -26,8 +26,7 @@ public class Pharmacist extends Staff{
             System.out.println("Select an option: ");
             option = sc.nextInt();
             pharmacistUI.navigateMenu(option);
-        }while(option != 5);
-        sc.close();
+        }while(option != 6);
     }
 
 

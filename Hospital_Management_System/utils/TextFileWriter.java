@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import entity.Appointment;
+import entity.Patient;
+import entity.Staff;
 
 public class TextFileWriter {
 
@@ -14,6 +16,7 @@ public class TextFileWriter {
     private static final String OUTCOME_FILE_PATH="./TextFiles/AppointmentOutcome_List.txt";
     private static final String PATIENT_FILE_PATH = "./TextFiles/Patient_List.txt";
     private static final String OVERSEEING_PATIENTS_FILE_PATH = "./TextFiles/OverseeingPatients.txt";
+
 
     // Method to add a new staff member
     public void addStaff(String id, String name, String role, String gender, int age, String password) {
@@ -422,6 +425,67 @@ public class TextFileWriter {
             System.out.println("Could not rename the temp file.");
         }
     }
+    public static boolean changePassword(Patient patient, String newPassword) {
+        List<String> fileContent = new ArrayList<>();
 
+        try {
+            // Read all lines into a list
+            fileContent = Files.readAllLines(Paths.get(PATIENT_FILE_PATH));
+
+            // Loop through each line to find the patient
+            for (int i = 0; i < fileContent.size(); i++) {
+                String line = fileContent.get(i);
+                String[] parts = line.split("\\|");
+
+                // Check if the ID matches
+                if (parts[0].equals(patient.getId())) {
+                    // Update the email field
+                    parts[6] = newPassword;
+                    // Join the parts back into a line
+                    fileContent.set(i, String.join("|", parts));
+                    break;
+                }
+            }
+
+            // Write updated content back to the file
+            Files.write(Paths.get(PATIENT_FILE_PATH), fileContent);
+
+        } catch (IOException e) {
+            System.out.println("An error occurred while updating the email: " + e.getMessage());
+            return false;
+        }
+        return true;
+    }
+    public static boolean changePassword(Staff staff, String newPassword){
+        List<String> fileContent = new ArrayList<>();
+
+        try {
+            // Read all lines into a list
+            fileContent = Files.readAllLines(Paths.get(FILE_PATH));
+
+            // Loop through each line to find the patient
+            for (int i = 0; i < fileContent.size(); i++) {
+                String line = fileContent.get(i);
+                String[] parts = line.split("\\|");
+
+                // Check if the ID matches
+                if (parts[0].equals(staff.getId())) {
+                    // Update the email field
+                    parts[5] = newPassword;
+                    // Join the parts back into a line
+                    fileContent.set(i, String.join("|", parts));
+                    break;
+                }
+            }
+
+            // Write updated content back to the file
+            Files.write(Paths.get(FILE_PATH), fileContent);
+
+        } catch (IOException e) {
+            System.out.println("An error occurred while updating the email: " + e.getMessage());
+            return false;
+        }
+        return true;
+    }
 }
 

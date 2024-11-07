@@ -23,6 +23,5 @@ public class Administrator extends Staff{
             option = sc.nextInt();
             administratorUI.navigateMenu(option);
         }while(option != 6);
-        sc.close();
     }
 }

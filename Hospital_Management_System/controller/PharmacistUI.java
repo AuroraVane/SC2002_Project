@@ -5,7 +5,7 @@ import java.util.Scanner;
 import entity.Medicine;
 import entity.Pharmacist;
 
-public class PharmacistUI implements UserUI{
+public class PharmacistUI extends StaffUI{
     private Pharmacist pharmacist;
     private AppointmentController appointmentController;
     private MedicationInventoryController medicationInventoryController;
@@ -27,7 +27,12 @@ public class PharmacistUI implements UserUI{
         System.out.println("2. Update Prescription Status");
         System.out.println("3. View Medication Inventory");
         System.out.println("4. Submit Replenishment Request");
-        System.out.println("5. Log Out");
+        System.out.println("5. Change Password");
+        System.out.println("6. Log Out");
+    }
+    public void changePassword(){
+        System.out.println("Enter new password: ");
+        // Code to change password
     }
     public void navigateMenu(int option){
         switch(option){
@@ -44,6 +49,9 @@ public class PharmacistUI implements UserUI{
                 replenishmentRequestController.MenuController(pharmacist);
                 break;
             case 5:
+                changePassword(pharmacist);
+                break;
+            case 6:
                 System.out.println("Logging out...");
                 break;
             default:
