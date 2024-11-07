@@ -41,6 +41,7 @@ public class PatientAppointmentController{
 
         if (appointmentToBook != null) {
             // Update the appointment details with patientID and set status to "PENDING"
+            TextFileWriter.updateOverseeingPatient(appointmentToBook.getStaffID(), patientID);
             appointmentToBook.setPatientID(patientID);
             appointmentToBook.setStatus("PENDING");
 
@@ -50,6 +51,7 @@ public class PatientAppointmentController{
         } else {
             System.out.println("Appointment not available or already booked.");
         }
+        
     }
 
     

@@ -10,6 +10,7 @@ public class TextFileWriter {
     private static final String APPOINTMENT_FILE_PATH = "./TextFiles/Appointment_List.txt";
     private static final String OUTCOME_FILE_PATH="./TextFiles/AppointmentOutcome_List.txt";
     private static final String PATIENT_FILE_PATH = "./TextFiles/Patient_List.txt";
+    private static final String OVERSEEING_PATIENTS_FILE_PATH = "./TextFiles/OverseeingPatients.txt";
 
     // Method to add a new staff member
     public void addStaff(String id, String name, String role, String gender, int age, String password) {
@@ -372,6 +373,50 @@ public class TextFileWriter {
 
         } catch (IOException e) {
             System.out.println("An error occurred while updating the email: " + e.getMessage());
+        }
+    }
+    public static void updateOverseeingPatient(String doctorID, String newpatientID) {
+        File inputFile = new File(OVERSEEING_PATIENTS_FILE_PATH);
+        File tempFile = new File("tempfile.txt");
+        
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+
+            String currentLine;
+            Boolean firstLine = true;
+            
+            // Loop through the file and update the line with the matching ID
+            while ((currentLine = reader.readLine()) != null) {
+                if (currentLine.trim().isEmpty()) {
+                    continue;
+                }
+                String[] Details = currentLine.split("\\|");
+                
+                if (Details[0].equals(doctorID)) {
+                    // Write the updated staff details
+                    
+                    currentLine+="|"+newpatientID;
+                } 
+                if(!firstLine){
+                    writer.newLine();
+                } else {
+                    firstLine = false;
+                }
+                    // Write the original staff details
+                writer.write(currentLine);
+            }
+            System.out.println("updated successfully.");
+        } catch (IOException e) {
+            System.out.println("Error processing file: " + e.getMessage());
+        }
+
+        // Replace the original file with the updated file
+        if (!inputFile.delete()) {
+            System.out.println("Could not delete the original file.");
+        }
+        if (!tempFile.renameTo(inputFile)) {
+            System.out.println("Could not rename the temp file.");
         }
     }
 

@@ -6,11 +6,13 @@ public class MedicalRecordUI {
     private MedicalRecordController MRController;
     private PatientManager patientmanager;
     private TextFileWriter writer;
+    private String id;
 
     public MedicalRecordUI(String MRfilepath, String PatientfilePath, String OverseeingPatientsFilePath, String id)throws IOException{
-        MRController=new MedicalRecordController(MRfilepath, PatientfilePath);
-        patientmanager=new PatientManager(id, OverseeingPatientsFilePath, PatientfilePath);
-        writer=new TextFileWriter();
+        this.MRController=new MedicalRecordController(MRfilepath, PatientfilePath);
+        this.patientmanager=new PatientManager(id, OverseeingPatientsFilePath, PatientfilePath);
+        this.writer=new TextFileWriter();
+        this.id=id;
     }
 
     public void ViewOverseeingPatients(){
@@ -55,9 +57,5 @@ public class MedicalRecordUI {
         }
         
     }//2
-
-    
-    
-    
 
 }

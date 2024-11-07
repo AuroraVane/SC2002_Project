@@ -34,7 +34,7 @@ public class PatientUI implements UserUI {
     public void navigateMenu(int option) {
         switch (option) {
             case 1:
-                medicalrecordUI.viewMedicalRecord(patient);
+                medicalrecordUI.viewMedicalRecord(this.patient);
                 break;
             case 2:
                 nonmedicalrecordUI.updateContactInfo();
@@ -43,19 +43,19 @@ public class PatientUI implements UserUI {
                 patientappointmentUI.viewAvailableAppointmentSlots();
                 break;
             case 4:
-                patientappointmentUI.scheduleAppointment(patient);
+                patientappointmentUI.scheduleAppointment(this.patient);
                 break;
             case 5:
-                patientappointmentUI.rescheduleAppointment(patient.getId());
+                patientappointmentUI.rescheduleAppointment(this.patient.getId());
                 break;
             case 6:
-                patientappointmentUI.cancelAppointment(patient.getId());
+                patientappointmentUI.cancelAppointment(this.patient.getId());
                 break;
             case 7:
-                patientappointmentUI.viewScheduledAppointments(patient.getId());
+                patientappointmentUI.viewScheduledAppointments(this.patient.getId());
                 break;
             case 8:
-                patientappointmentUI.viewAppointmentOutcomeRecords(patient.getId());
+                patientappointmentUI.viewAppointmentOutcomeRecords(this.patient.getId());
                 break;
             case 9:
                 System.out.println("Logging out...");
