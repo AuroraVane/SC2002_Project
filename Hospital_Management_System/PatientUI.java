@@ -1,17 +1,22 @@
 import java.io.IOException;
-import java.util.List;
-import java.util.Scanner;
 
 public class PatientUI implements UserUI {
     private Patient patient;
-    private AppointmentController appointmentcontroller;
+    private PatientMedicalRecordUI medicalrecordUI;
+    private PatientAppointmentUI patientappointmentUI;
+    private PatientNonMedicalRecordUI nonmedicalrecordUI;
+
     public PatientUI(Patient patient) {
         this.patient = patient;
-        try{
-            this.appointmentcontroller = new AppointmentController("./TextFiles/Appointment_List.txt");
+        try {
+            this.medicalrecordUI = new PatientMedicalRecordUI("./TextFiles/MedicalRecord.txt", "./TextFiles/Patient_List.txt", patient.getId()); 
         } catch (IOException e) {
-            System.out.println("Error loading appointment list.");
+            System.out.println("Error: Unable to load list from file.");
+            e.printStackTrace();
         }
+        this.patientappointmentUI = new PatientAppointmentUI(); 
+        this.nonmedicalrecordUI = new PatientNonMedicalRecordUI(patient); 
+        
     }
 
     public void printMenu() {
@@ -29,28 +34,28 @@ public class PatientUI implements UserUI {
     public void navigateMenu(int option) {
         switch (option) {
             case 1:
-                MedicalRecord.viewMedicalRecord(patient);
+                medicalrecordUI.viewMedicalRecord(patient);
                 break;
             case 2:
-                updateContactInfo();
+                nonmedicalrecordUI.updateContactInfo();
                 break;
             case 3:
-                appointmentcontroller.viewAvailableAppointmentSlots();
+                patientappointmentUI.viewAvailableAppointmentSlots();
                 break;
             case 4:
-                scheduleAppointment();
+                patientappointmentUI.scheduleAppointment(patient);
                 break;
             case 5:
-                Appointment.rescheduleAppointment(patient.getId());
+                patientappointmentUI.rescheduleAppointment(patient.getId());
                 break;
             case 6:
-                Appointment.cancelAppointment(patient.getId());
+                patientappointmentUI.cancelAppointment(patient.getId());
                 break;
             case 7:
-                Appointment.viewScheduledAppointments(patient.getId());
+                patientappointmentUI.viewScheduledAppointments(patient.getId());
                 break;
             case 8:
-                AppointmentOutcome.viewAppointmentOutcomeRecords(patient.getId());
+                patientappointmentUI.viewAppointmentOutcomeRecords(patient.getId());
                 break;
             case 9:
                 System.out.println("Logging out...");
@@ -60,20 +65,7 @@ public class PatientUI implements UserUI {
         }
     }
 
-    public void updateContactInfo(){
-        System.out.println("Enter new contact information:");
-        Scanner sc = new Scanner(System.in);
-        String newContactInfo = sc.nextLine();
-        TextFileWriter.updatePatientEmail(patient.getId(), newContactInfo);
-        patient.setContactInfo(newContactInfo);
-    }
-
-    public void scheduleAppointment() {
-        System.out.println("Enter the appointment ID you would like to schedule your appointment:");
-        Scanner sc = new Scanner(System.in);
-        int appointmentId = sc.nextInt();
-        Appointment.scheduleAppointment(patient.getId(), appointmentId);
-    }
+    
     
     public void skeletonAppointment() {
         System.out.println("Skeleton for Appointment");

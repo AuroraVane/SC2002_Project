@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class DoctorAppointmentController extends AppointmentUI{
+public class DoctorAppointmentController{
     private List<Appointment> DoctorAppointmentList;
     private TextFileWriter writer;
     
@@ -24,7 +24,6 @@ public class DoctorAppointmentController extends AppointmentUI{
         }
     }
     
-    
     public List<Appointment> GetStatusAppointments(String status){
         List<Appointment> appointments = new ArrayList<>();
         for (Appointment appmt:this.DoctorAppointmentList){
@@ -35,9 +34,6 @@ public class DoctorAppointmentController extends AppointmentUI{
         return appointments;
     }
 
-
-
-
     public void SetAvailableSlot(String doctorID, String date, String time){
         Appointment appmt=new Appointment(doctorID, "EMPTY", date, time);
         writer.addAppointment(appmt);
@@ -46,11 +42,11 @@ public class DoctorAppointmentController extends AppointmentUI{
 
     public void AcceptPendingAppointment(Appointment appmt){
         appmt.setStatus("CONFIRMED");
-        writer.updateAppointment(appmt);
+        TextFileWriter.updateAppointment(appmt);
     }
     public void DeclinePendingAppointment(Appointment appmt){
         appmt.setStatus("CANCELLED");
-        writer.updateAppointment(appmt);
+        TextFileWriter.updateAppointment(appmt);
     }
     public void ViewDoctorUpcoming(){
         List<Appointment> appointments=GetStatusAppointments("CONFIRMED");
@@ -69,7 +65,7 @@ public class DoctorAppointmentController extends AppointmentUI{
     }
     public void ResolveAppointment(Appointment appmt){
         appmt.setStatus("COMPLETED");
-        writer.updateAppointment(appmt);
+        TextFileWriter.updateAppointment(appmt);
     }
     
     

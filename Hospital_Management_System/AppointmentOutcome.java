@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AppointmentOutcome {   
@@ -103,50 +102,8 @@ public class AppointmentOutcome {
         System.out.println();
     }
 
-    public static void viewAppointmentOutcomeRecords(String patientID) {
-        List<Appointment> completedAppointments;
-        try {
-            // Load appointments and filter only completed ones for the patient
-            completedAppointments = TextFileReader.loadAppointments("./TextFiles/Appointment_List.txt");
-            completedAppointments = filterCompletedAppointments(completedAppointments, patientID);
+    
 
-            if (completedAppointments.isEmpty()) {
-                System.out.println("No completed appointments found for patient " + patientID);
-                return;
-            }
-
-            List<AppointmentOutcome> outcomes = TextFileReader.loadAppointmentOutcomes("./TextFiles/AppointmentOutcome_List.txt");
-            System.out.println("Past Appointment Outcomes:");
-            System.out.println("Appointment ID | Date       | Type         | Medication       | Status    | Consultation Notes");
-
-            for (Appointment completed : completedAppointments) {
-                for (AppointmentOutcome outcome : outcomes) {
-                    if (outcome.getAppointmentId() == completed.getAppointmentID()) {
-                        System.out.printf("%-14d | %-10s | %-12s | %-16s | %-9s | %s%n",
-                                          outcome.getAppointmentId(),
-                                          outcome.getDateOfAppointment(),
-                                          outcome.getService(),
-                                          outcome.getMedicine(),
-                                          outcome.isStatus() ? "Dispensed" : "Pending",
-                                          outcome.getConsultationNotes());
-                    }
-                }
-            }
-        } catch (IOException e) {
-            System.out.println("Error processing files: " + e.getMessage());
-        }
-    }
-
-    private static List<Appointment> filterCompletedAppointments(List<Appointment> appointments, String patientID) {
-        List<Appointment> completedAppointments = new ArrayList<>();
-
-        for (Appointment appointment : appointments) {
-            if (appointment.getPatientID().equals(patientID) && appointment.getStatus().equals("COMPLETED")) {
-                completedAppointments.add(appointment);
-            }
-        }
-
-        return completedAppointments;
-    }
+    
     
 }   

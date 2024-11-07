@@ -3,8 +3,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MedicalRecordUI {
-    MedicalRecordController MRController;
-    PatientManager patientmanager;
+    private MedicalRecordController MRController;
+    private PatientManager patientmanager;
     private TextFileWriter writer;
 
     public MedicalRecordUI(String MRfilepath, String PatientfilePath, String OverseeingPatientsFilePath, String id)throws IOException{
@@ -55,6 +55,8 @@ public class MedicalRecordUI {
         }
         
     }//2
+
+    
     
     
 
