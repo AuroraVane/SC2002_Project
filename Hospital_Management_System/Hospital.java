@@ -1,6 +1,8 @@
 import java.io.IOException;
 import java.util.Scanner;
 
+import entity.User;
+
 public class Hospital {
     public static void main(String[] args) throws IOException{
         String patientFilePath = "./TextFiles/Patient_List.txt";
