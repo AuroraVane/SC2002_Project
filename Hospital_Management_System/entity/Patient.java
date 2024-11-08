@@ -49,6 +49,11 @@ public class Patient extends User{
         return null;
     }
 
+    public static int getPatientCount(){
+        List<Patient> patientList = getAllPatients();
+        return patientList.size();
+    }
+
     public String getDOB() {
         return DOB;
     }

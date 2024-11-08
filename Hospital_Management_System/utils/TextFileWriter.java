@@ -33,6 +33,20 @@ public class TextFileWriter {
         }
     }
 
+    public static void addPatient(String id, String name, String dob, String gender, String bloodtype, String email) {
+        String newPatient = String.format("%s|%s|%s|%s|%s|%s|%s", id, name, dob, gender, bloodtype, email,"password");
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(PATIENT_FILE_PATH, true))) {
+            if (Files.size(Paths.get(PATIENT_FILE_PATH)) > 0) {
+                writer.newLine();  // Add a newline only if the file is not empty
+            } 
+            writer.write(newPatient);
+            System.out.println("Staff member added successfully.");
+        } catch (IOException e) {
+            System.out.println("Error writing to file: " + e.getMessage());
+        }
+    }
+
     // Method to delete a staff member by ID
     public void deleteStaff(String id) {
         File inputFile = new File(FILE_PATH);

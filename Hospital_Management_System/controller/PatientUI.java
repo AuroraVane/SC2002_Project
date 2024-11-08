@@ -105,4 +105,24 @@ public class PatientUI implements UserUI {
             System.out.println("Error: Unable to change password.");
         }
     }
+
+    public static void createPatient(){
+        System.out.println("Registering a new patient...");
+        @SuppressWarnings("resource")
+        Scanner sc = new Scanner(System.in);
+        String id = "P100" + String.valueOf(Patient.getPatientCount()+1);
+        System.out.println("Enter your Name: ");
+        String name = sc.nextLine();
+        System.out.println("Enter your Date Of Birth: ");
+        String dob = sc.nextLine();
+        System.out.println("Enter your gender: ");
+        String gender = sc.nextLine();
+        System.out.println("Enter your blood type: ");
+        String bloodtype = sc.nextLine();
+        System.out.println("Enter your contact information (email): ");
+        String contactinfo = sc.nextLine();
+        TextFileWriter.addPatient(id,name,dob,gender,bloodtype,contactinfo);
+        System.out.println("Patient registered successfully.");
+        System.out.println("Your ID is: " + id);
+    }
 }
