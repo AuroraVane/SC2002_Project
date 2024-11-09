@@ -1,7 +1,6 @@
 package boundary;
-import java.util.List;
-
 import entity.Appointment;
+import java.util.List;
 
 public class AppointmentUI {
     public void printMainMenu() {
