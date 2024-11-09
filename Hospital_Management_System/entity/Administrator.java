@@ -16,12 +16,13 @@ public class Administrator extends Staff{
     }
     public void displayUI(){
         int option = 0;
+        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
-        do{
+        while(option != 6){
             administratorUI.printMenu();
             System.out.println("Select an option: ");
             option = sc.nextInt();
             administratorUI.navigateMenu(option);
-        }while(option != 6);
+        }
     }
 }

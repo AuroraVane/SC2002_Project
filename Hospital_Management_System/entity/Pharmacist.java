@@ -20,17 +20,17 @@ public class Pharmacist extends Staff{
     } 
     public void displayUI(){
         int option = 0;
+        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
-        do{
+        while(option != 6){
             pharmacistUI.printMenu();
             System.out.println("Select an option: ");
             option = sc.nextInt();
             pharmacistUI.navigateMenu(option);
-        }while(option != 6);
+        }
     }
 
 
-    //TODO: Check if medicine quantity is enough, afterwards update AppointmentOutcome status=false-> true, decrease the medicine quantity
     public void updatePrescriptionStatus(int appointmentId) {
         List<AppointmentOutcome> appointmentOutcomes = AppointmentOutcome.getAllAppointmentOutcomes();
         AppointmentOutcome record = null;

@@ -21,10 +21,6 @@ public class DoctorUI extends StaffUI {
             e.printStackTrace();
         }
     }
-    public void changePassword(){
-        System.out.println("Enter new password: ");
-        // Code to change password
-    }
     public void printMenu() {
         System.out.println("1. View Patient Medical Records");
         System.out.println("2. Update Patient Medical Records");

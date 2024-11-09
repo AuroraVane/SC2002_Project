@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 
 import entity.Appointment;
 import entity.Patient;
@@ -20,6 +19,7 @@ public class TextFileWriter {
     private static final String OUTCOME_FILE_PATH="./TextFiles/AppointmentOutcome_List.txt";
     private static final String PATIENT_FILE_PATH = "./TextFiles/Patient_List.txt";
     private static final String OVERSEEING_PATIENTS_FILE_PATH = "./TextFiles/OverseeingPatients.txt";
+    private static final String RESET_PASSWORD_FILE_PATH = "./TextFiles/ResetPassword.txt";
 
     public static String hashPassword(String password) {
         try {
@@ -518,6 +518,9 @@ public class TextFileWriter {
             return false;
         }
         return true;
+    }
+    public static void sendResetPassword(String id){
+
     }
 }
 

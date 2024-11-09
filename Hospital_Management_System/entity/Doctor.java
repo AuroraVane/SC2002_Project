@@ -16,12 +16,13 @@ public class Doctor extends Staff{
     }
     public void displayUI(){
         int option = 0;
+        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
-        do{
+        while(option != 9){
             doctorUI.printMenu();
             System.out.println("Select an option: ");
             option = sc.nextInt();
             doctorUI.navigateMenu(option);
-        }while(option != 9);
+        }
     }
 }

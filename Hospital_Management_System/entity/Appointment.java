@@ -18,7 +18,6 @@ public class Appointment {
         this.appointmentID = appointmentID;
     }
     public Appointment(int appointmentID, String patientID, String staffID, String status, String date, String time) {
-        //TODO Auto-generated constructor stub
         this.patientID = patientID;
         this.staffID = staffID;
         this.status = status;

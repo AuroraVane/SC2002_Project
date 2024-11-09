@@ -26,14 +26,14 @@ public class Patient extends User{
     }
     public void displayUI(){
         int option = 0;
+        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
-        do{
+        while(option != 0){
             patientUI.printMenu();
             System.out.println("Select an option: ");
             option = sc.nextInt();
             patientUI.navigateMenu(option);
-        }while(option != 0);
-        sc.close();
+        }
     }
 
     public static List<Patient> getAllPatients(){

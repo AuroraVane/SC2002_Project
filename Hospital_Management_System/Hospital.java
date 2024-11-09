@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 import controller.PatientUI;
 import entity.User;
-import utils.TextFileWriter;
 
 public class Hospital {
     public static void main(String[] args) throws IOException {
@@ -59,7 +58,7 @@ public class Hospital {
                     PatientUI.createPatient();
                     break;
                 case 3:
-                    System.out.println("PlaceHolder");
+                    Login.forgetPassword();
                     break;
                 case 4:
                     System.out.println("Exiting...");

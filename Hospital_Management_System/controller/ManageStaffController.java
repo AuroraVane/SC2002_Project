@@ -1,4 +1,5 @@
 package controller;
+
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
@@ -10,9 +11,10 @@ import utils.TextFileReader;
 import utils.TextFileWriter;
 
 public class ManageStaffController {
-    private List<Staff> staffList;
+    private static List<Staff> staffList;
     private ManageStaff manageStaff;
     private TextFileWriter writer;
+
     public ManageStaffController(String fileName) throws IOException {
         staffList = TextFileReader.loadStaff(fileName);
         this.manageStaff = new ManageStaff();
@@ -20,7 +22,7 @@ public class ManageStaffController {
 
     public void MenuController() {
         int option = -1;
-        while(option != 5) {
+        while (option != 5) {
             @SuppressWarnings("resource")
             Scanner scanner = new Scanner(System.in);
             manageStaff.printMainMenu();
@@ -80,19 +82,19 @@ public class ManageStaffController {
         switch (choice) {
             case 1:
                 staffList.sort(Comparator.comparing(Staff::getName));
-                manageStaff.printViewStaff(staffList,1);
+                manageStaff.printViewStaff(staffList, 1);
                 break;
             case 2:
                 staffList.sort(Comparator.comparing(Staff::getRole));
-                manageStaff.printViewStaff(staffList,2);
+                manageStaff.printViewStaff(staffList, 2);
                 break;
             case 3:
                 staffList.sort(Comparator.comparing(Staff::getGender));
-                manageStaff.printViewStaff(staffList,3);
+                manageStaff.printViewStaff(staffList, 3);
                 break;
             case 4:
                 staffList.sort(Comparator.comparing(Staff::getAge));
-                manageStaff.printViewStaff(staffList,4);
+                manageStaff.printViewStaff(staffList, 4);
                 break;
             default:
                 System.out.println("Invalid option. Please try again.");
@@ -104,9 +106,9 @@ public class ManageStaffController {
         String[] staffDetails = manageStaff.getStaffDetails();
         this.writer = new TextFileWriter();
         writer.addStaff(id, staffDetails[0], staffDetails[1], staffDetails[2], Integer.parseInt(staffDetails[3]));
-        try{
+        try {
             staffList = TextFileReader.loadStaff("./TextFiles/Staff_List.txt");
-        }catch(IOException e){
+        } catch (IOException e) {
             System.out.println("Error: Unable to reset staff list from file.");
             e.printStackTrace();
         }
@@ -117,9 +119,9 @@ public class ManageStaffController {
         String id = manageStaff.getStaffId();
         this.writer = new TextFileWriter();
         writer.deleteStaff(id);
-        try{
+        try {
             staffList = TextFileReader.loadStaff("./TextFiles/Staff_List.txt");
-        }catch(IOException e){
+        } catch (IOException e) {
             System.out.println("Error: Unable to reset staff list from file.");
             e.printStackTrace();
         }
@@ -129,12 +131,34 @@ public class ManageStaffController {
         String id = manageStaff.getStaffId();
         String[] staffDetails = manageStaff.getStaffDetails();
         this.writer = new TextFileWriter();
-        writer.updateStaff(id, staffDetails[0], staffDetails[1], staffDetails[2], Integer.parseInt(staffDetails[3]), "password");
-        try{
+        writer.updateStaff(id, staffDetails[0], staffDetails[1], staffDetails[2], Integer.parseInt(staffDetails[3]),
+                "password");
+        try {
             staffList = TextFileReader.loadStaff("./TextFiles/Staff_List.txt");
-        }catch(IOException e){
+        } catch (IOException e) {
             System.out.println("Error: Unable to reset staff list from file.");
             e.printStackTrace();
         }
+    }
+
+    public static void loadStaffList() {
+        try {
+            staffList = TextFileReader.loadStaff("./TextFiles/Staff_List.txt");
+        } catch (IOException e) {
+            System.out.println("Error: Unable to reset staff list from file.");
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean checkStaffIDExist(String id) {
+        // Check if staff ID exists
+        loadStaffList();
+        for (Staff staff : staffList) {
+            if (staff.getId().equals(id)) {
+                System.out.println("\nStaff ID exists");
+                return true;
+            }  
+        }
+        return false;
     }
 }

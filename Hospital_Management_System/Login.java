@@ -1,8 +1,8 @@
 import java.io.IOException;
 import java.util.List;
 
-import org.w3c.dom.Text;
-
+import controller.ManageStaffController;
+import controller.PatientManager;
 import entity.Administrator;
 import entity.Doctor;
 import entity.Patient;
@@ -11,6 +11,8 @@ import entity.Staff;
 import entity.User;
 import utils.TextFileReader;
 import utils.TextFileWriter;
+
+import java.util.Scanner;
 
 public class Login {
     private List<Patient> patientList;
@@ -44,5 +46,33 @@ public class Login {
         
         System.out.println("Invalid ID or password");
         return null;
+    }
+    public static void forgetPassword() {
+        System.out.println("Forget Password");
+        System.out.println("Enter your ID: ");
+        @SuppressWarnings("resource")
+        Scanner sc = new Scanner(System.in);
+        String id = sc.nextLine();
+        switch(id.length()){
+            case 4:
+                if(ManageStaffController.checkStaffIDExist(id) == true){
+                    TextFileWriter.sendResetPassword(id);
+                }
+                else{
+                    System.out.println("Invalid ID");
+                }
+                break;
+            case 5:
+                if(PatientManager.checkPatientIDExist(id) == true){
+                    TextFileWriter.sendResetPassword(id);
+                }
+                else{
+                    System.out.println("Invalid ID");
+                };
+                break;
+            default:
+                System.out.println("Invalid ID");
+                break;
+        }
     }
 }
