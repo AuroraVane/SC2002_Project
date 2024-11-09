@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+
 import entity.Appointment;
 import entity.Patient;
 import entity.Staff;
@@ -17,10 +21,24 @@ public class TextFileWriter {
     private static final String PATIENT_FILE_PATH = "./TextFiles/Patient_List.txt";
     private static final String OVERSEEING_PATIENTS_FILE_PATH = "./TextFiles/OverseeingPatients.txt";
 
+    public static String hashPassword(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hash = md.digest(password.getBytes());
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hash) {
+                hexString.append(String.format("%02x", b));
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            System.out.println("Error hashing password: " + e.getMessage());
+            return null;
+        }
+    }
 
     // Method to add a new staff member
-    public void addStaff(String id, String name, String role, String gender, int age, String password) {
-        String newStaff = String.format("%s|%s|%s|%s|%d|%s", id, name, role, gender, age, password);
+    public void addStaff(String id, String name, String role, String gender, int age) {
+        String newStaff = String.format("%s|%s|%s|%s|%d|%s", id, name, role, gender, age, hashPassword("password"));
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
             if (Files.size(Paths.get(FILE_PATH)) > 0) {
@@ -34,7 +52,7 @@ public class TextFileWriter {
     }
 
     public static void addPatient(String id, String name, String dob, String gender, String bloodtype, String email) {
-        String newPatient = String.format("%s|%s|%s|%s|%s|%s|%s", id, name, dob, gender, bloodtype, email,"password");
+        String newPatient = String.format("%s|%s|%s|%s|%s|%s|%s", id, name, dob, gender, bloodtype, email,hashPassword("password"));
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(PATIENT_FILE_PATH, true))) {
             if (Files.size(Paths.get(PATIENT_FILE_PATH)) > 0) {

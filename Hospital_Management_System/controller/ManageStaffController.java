@@ -103,7 +103,7 @@ public class ManageStaffController {
         String id = manageStaff.getStaffId();
         String[] staffDetails = manageStaff.getStaffDetails();
         this.writer = new TextFileWriter();
-        writer.addStaff(id, staffDetails[0], staffDetails[1], staffDetails[2], Integer.parseInt(staffDetails[3]), "password");
+        writer.addStaff(id, staffDetails[0], staffDetails[1], staffDetails[2], Integer.parseInt(staffDetails[3]));
         try{
             staffList = TextFileReader.loadStaff("./TextFiles/Staff_List.txt");
         }catch(IOException e){

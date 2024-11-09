@@ -17,7 +17,8 @@ public class Hospital {
             Scanner scanner = new Scanner(System.in);
             System.out.println("1. Login");
             System.out.println("2. Register as a new patient");
-            System.out.println("3. Exit");
+            System.out.println("3. Forget Password");
+            System.out.println("4. Exit");
             System.out.println("Enter an option: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -58,6 +59,9 @@ public class Hospital {
                     PatientUI.createPatient();
                     break;
                 case 3:
+                    System.out.println("PlaceHolder");
+                    break;
+                case 4:
                     System.out.println("Exiting...");
                     isRunning = false;
                     break;
