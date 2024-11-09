@@ -1,8 +1,7 @@
 package controller;
+import entity.Patient;
 import java.io.IOException;
 import java.util.List;
-
-import entity.Patient;
 import utils.TextFileReader;
 
 public class PatientManager {
@@ -17,7 +16,7 @@ public class PatientManager {
     }
 
     public void printAlloverseeingPatients() {
-        int i=0;
+        int i=1;
         System.out.println("Overseeing Patients:");
         for (Patient patient : this.OverseeingPatients) {
             System.out.println(i+". "+patient.getName());

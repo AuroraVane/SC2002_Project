@@ -1,11 +1,10 @@
 package boundary;
-import java.io.IOException;
-import java.util.List;
-import java.util.Scanner;
-
 import controller.MedicalRecordController;
 import controller.PatientManager;
 import entity.Patient;
+import java.io.IOException;
+import java.util.List;
+import java.util.Scanner;
 import utils.TextFileWriter;
 
 public class MedicalRecordUI {
@@ -32,34 +31,42 @@ public class MedicalRecordUI {
     }
     
     public void UpdatePatientMedicalRecords(){
-        System.out.println("Select which Patient's Medical Record to view");
-        patientmanager.printAlloverseeingPatients();
-        @SuppressWarnings("resource")
-        Scanner sc=new Scanner(System.in);
-        int index=sc.nextInt();
-        Patient p=patientmanager.getPatientByIndex(index);
-        MedicalRecord m=MRController.findPatientMedicalRecord(p.getId());
-        if (m==null){
-            System.out.println("Error. Could not find Patients medical record in database.");
-            return;
-        }
 
-        //still gotta add prescription?? im not sure what class isit at
-        System.out.println("Select what you want to edit:");
-        System.out.println("1. Diagnosis");
-        System.out.println("2. Treatment Plans");
-        int choice=sc.nextInt();
-        
-        switch(choice){
-            case 1: 
-                writer.WriteFile("./TextFiles/"+m.getDiagnosis_FILEPATH());
-                break;
-            case 2: 
-                writer.WriteFile("./TextFiles/"+m.getTreatment_plans_FILEPATH());
-                break;
-            default:
-                System.out.println("Error, File could not be found.");
-                break;
+        while(true){
+            System.out.println("Select which Patient's Medical Record to view \nEnter 0 to go back");
+            patientmanager.printAlloverseeingPatients();
+            @SuppressWarnings("resource")
+            Scanner sc=new Scanner(System.in);
+            int index=sc.nextInt()-1;
+            if (index==-1){
+                return;
+            }
+            Patient p=patientmanager.getPatientByIndex(index);
+            MedicalRecord m=MRController.findPatientMedicalRecord(p.getId());
+            if (m==null){
+                System.out.println("Error. Could not find Patients medical record in database.");
+                return;
+            }
+
+            //still gotta add prescription?? im not sure what class isit at
+            System.out.println("Select what you want to edit:");
+            System.out.println("1. Diagnosis");
+            System.out.println("2. Treatment Plans");
+            System.out.println("3. Back");
+            int choice=sc.nextInt();
+            
+            switch(choice){
+                case 1: 
+                    writer.WriteFile("./TextFiles/"+m.getDiagnosis_FILEPATH());
+                    break;
+                case 2: 
+                    writer.WriteFile("./TextFiles/"+m.getTreatment_plans_FILEPATH());
+                    break;
+                case 3: break;
+                default:
+                    System.out.println("Error, File could not be found.");
+                    break;
+            }
         }
         
     }//2
