@@ -18,7 +18,7 @@ public class Administrator extends Staff{
         int option = 0;
         @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
-        while(option != 6){
+        while(option != 7){
             administratorUI.printMenu();
             System.out.println("Select an option: ");
             option = sc.nextInt();

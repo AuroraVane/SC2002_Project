@@ -483,7 +483,7 @@ public class TextFileWriter {
                 // Check if the ID matches
                 if (parts[0].equals(patient.getId())) {
                     // Update the email field
-                    parts[6] = newPassword;
+                    parts[6] = hashPassword(newPassword);
                     // Join the parts back into a line
                     fileContent.set(i, String.join("|", parts));
                     break;
@@ -494,7 +494,7 @@ public class TextFileWriter {
             Files.write(Paths.get(PATIENT_FILE_PATH), fileContent);
 
         } catch (IOException e) {
-            System.out.println("An error occurred while updating the email: " + e.getMessage());
+            System.out.println("An error occurred while updating the password: " + e.getMessage());
             return false;
         }
         return true;
@@ -515,7 +515,7 @@ public class TextFileWriter {
                 // Check if the ID matches
                 if (parts[0].equals(staff.getId())) {
                     // Update the email field
-                    parts[5] = newPassword;
+                    parts[5] = hashPassword(newPassword);
                     // Join the parts back into a line
                     fileContent.set(i, String.join("|", parts));
                     break;
@@ -526,7 +526,7 @@ public class TextFileWriter {
             Files.write(Paths.get(FILE_PATH), fileContent);
 
         } catch (IOException e) {
-            System.out.println("An error occurred while updating the email: " + e.getMessage());
+            System.out.println("An error occurred while updating the password: " + e.getMessage());
             return false;
         }
         return true;
@@ -543,5 +543,84 @@ public class TextFileWriter {
         } catch (IOException e) {
             System.out.println("Error writing to file: " + e.getMessage());
         }
+    }
+
+    public static boolean completeResetPassword(String id) {
+        List<String> fileContent = new ArrayList<>();
+        try {
+            // Read all lines into a list
+            if (id.length() == 4) {
+                fileContent = Files.readAllLines(Paths.get(FILE_PATH));
+                for (int i = 0; i < fileContent.size(); i++) {
+                    String line = fileContent.get(i);
+                    String[] parts = line.split("\\|");
+
+                    // Check if the ID matches
+                    if (parts[0].equals(id)) {
+                        // Update the email field
+                        parts[5] = hashPassword("password");
+                        // Join the parts back into a line
+                        fileContent.set(i, String.join("|", parts));
+                        break;
+                    }
+                }
+                Files.write(Paths.get(FILE_PATH), fileContent);
+            } else {
+                fileContent = Files.readAllLines(Paths.get(PATIENT_FILE_PATH));
+                for (int i = 0; i < fileContent.size(); i++) {
+                    String line = fileContent.get(i);
+                    String[] parts = line.split("\\|");
+
+                    // Check if the ID matches
+                    if (parts[0].equals(id)) {
+                        // Update the email field
+                        parts[6] = hashPassword("password");
+                        // Join the parts back into a line
+                        fileContent.set(i, String.join("|", parts));
+                        break;
+                    }
+                }
+                Files.write(Paths.get(PATIENT_FILE_PATH), fileContent);
+            }
+            File inputFile = new File(RESET_PASSWORD_FILE_PATH);
+            File tempFile = new File("tempResetList.txt");
+
+            try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+                    BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+
+                String currentLine;
+                boolean firstLine = true;
+                while ((currentLine = reader.readLine()) != null) {
+                    // Skip any empty lines
+                    if (currentLine.trim().isEmpty()) {
+                        continue;
+                    }
+                    String[] staffDetails = currentLine.split("\\|");
+
+                    if (staffDetails[0].equals(id)) {
+                        continue;
+                    }
+                    if (!firstLine) {
+                        writer.newLine();
+                    } else {
+                        firstLine = false;
+                    }
+                    writer.write(currentLine);
+                }
+            } catch (IOException e) {
+                System.out.println("Error processing file: " + e.getMessage());
+            }
+            if (!inputFile.delete()) {
+                System.out.println("Could not delete the original file.");
+            }
+            if (!tempFile.renameTo(inputFile)) {
+                System.out.println("Could not rename the temp file.");
+            }
+
+        } catch (IOException e) {
+            System.out.println("An error occurred while updating the password: " + e.getMessage());
+            return false;
+        }
+        return true;
     }
 }

@@ -24,6 +24,12 @@ public class Login {
     }
 
     public User authenticate(String id, String password){
+        try{
+            patientList = TextFileReader.loadPatients("./TextFiles/Patient_List.txt");
+            staffList = TextFileReader.loadStaff("./TextFiles/Staff_List.txt");
+        } catch (IOException e){
+            e.printStackTrace();
+        }
         String passwordHash = TextFileWriter.hashPassword(password);
         for (Patient patient : patientList) {
             if (patient.getId().equals(id) && patient.getPassword().equals(passwordHash)) {
@@ -79,5 +85,21 @@ public class Login {
     }
     public static void approvePasswordResetRequests(){
         resetPasswordRequests = TextFileReader.loadResetPasswordRequests();
+        System.out.println(resetPasswordRequests);
+        for(String id : resetPasswordRequests){
+            System.out.println("Approve password reset request for " + id + "? (Y/N)");
+            @SuppressWarnings("resource")
+            Scanner sc = new Scanner(System.in);
+            String choice = sc.nextLine();
+            if(choice.equals("Y")){
+                Boolean success = TextFileWriter.completeResetPassword(id);
+                if(success){
+                    System.out.println("Password changed successfully.");
+                }
+                else{
+                    System.out.println("Error: Unable to change password.");
+                }
+            }
+        }
     }
 }
