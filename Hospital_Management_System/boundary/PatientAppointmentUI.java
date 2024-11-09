@@ -155,7 +155,7 @@ public class PatientAppointmentUI extends AppointmentUI{
             appointments = TextFileReader.loadAppointments(APPOINTMENT_FILE_PATH);
     
             System.out.println("Your Pending and Confirmed Appointments:");
-            System.out.println("Appointment ID | Doctor ID | Date       | Time");
+            System.out.println("Appointment ID | Doctor | Date       | Time");
     
             for (Appointment appointment : appointments) {
                 if (appointment.getPatientID().equals(patientID) &&
@@ -207,13 +207,7 @@ public class PatientAppointmentUI extends AppointmentUI{
             for (Appointment completed : completedAppointments) {
                 for (AppointmentOutcome outcome : outcomes) {
                     if (outcome.getAppointmentId() == completed.getAppointmentID()) {
-                        System.out.printf("%-14d | %-10s | %-12s | %-16s | %-9s | %s%n",
-                                          outcome.getAppointmentId(),
-                                          outcome.getDateOfAppointment(),
-                                          outcome.getService(),
-                                          outcome.getMedicine(),
-                                          outcome.isStatus() ? "Dispensed" : "Pending",
-                                          outcome.getConsultationNotes());
+                        outcome.printAppointmentOutcome();
                     }
                 }
             }

@@ -1,9 +1,7 @@
 package controller;
 import java.io.*;
 import java.util.List;
-
 import utils.TextFileReader;
-import controller.AppointmentOutcome;
 
 public class AppointmentOutcome {   
     private int appointmentId; 
@@ -97,13 +95,13 @@ public class AppointmentOutcome {
     }
 
     public void printAppointmentOutcome(){
-        System.out.println("AppointmentID: " + appointmentId);
-        System.out.println("Date of Appointment: " + dateOfAppointment);
-        System.out.println("Service provided: " + service);
-        System.out.println("Medicine Required: " + medicine);
-        System.out.println((status == false) ? "Status: Pending": "Status: Dispensed");
-        System.out.println("Consultation Notes: " + consultationNotes);
-        System.out.println();
+        System.out.printf("%-14d | %-10s | %-12s | %-16s | %-9s | %s%n",
+                                          appointmentId,
+                                          dateOfAppointment,
+                                          service,
+                                          medicine,
+                                          status ? "Dispensed" : "Pending",
+                                          consultationNotes);
     }
 
     
