@@ -1,8 +1,7 @@
+package controller;
 import java.io.IOException;
 import java.util.List;
 
-import controller.ManageStaffController;
-import controller.PatientManager;
 import entity.Administrator;
 import entity.Doctor;
 import entity.Patient;
@@ -17,6 +16,7 @@ import java.util.Scanner;
 public class Login {
     private List<Patient> patientList;
     private List<Staff> staffList;
+    private static List<String> resetPasswordRequests;
 
     public Login(String patientFilePath, String staffFilePath) throws IOException{
         patientList = TextFileReader.loadPatients(patientFilePath);
@@ -76,5 +76,8 @@ public class Login {
                 System.out.println("Invalid ID");
                 break;
         }
+    }
+    public static void approvePasswordResetRequests(){
+        resetPasswordRequests = TextFileReader.loadResetPasswordRequests();
     }
 }

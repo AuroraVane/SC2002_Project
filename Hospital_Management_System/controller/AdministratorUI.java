@@ -28,8 +28,9 @@ public class AdministratorUI extends StaffUI{
         System.out.println("2. View Appointment Details");
         System.out.println("3. View and Manage Medication Inventory");
         System.out.println("4. Approve Replenishment Requests");
-        System.out.println("5. Change Password");
-        System.out.println("6. Log Out");
+        System.out.println("5. Approve Password Reset Requests");
+        System.out.println("6. Change Password");
+        System.out.println("7. Log Out");
     }
     public void navigateMenu(int option){
         switch(option){
@@ -43,12 +44,15 @@ public class AdministratorUI extends StaffUI{
                 medicationInventoryController.MenuController();
                 break;
             case 4:
-                replenishmentRequestController.MenuController(administrator);//approveReplenishmentRequests();
+                replenishmentRequestController.MenuController(administrator);
                 break;
             case 5:
-                changePassword(administrator);
+                Login.approvePasswordResetRequests();
                 break;
             case 6:
+                changePassword(administrator);
+                break;
+            case 7:
                 System.out.println("Logging out...");
                 break;
             default:

@@ -291,4 +291,15 @@ public class TextFileReader {
         reader.close();
         return appointments;
     }
+
+    public static List<String> loadResetPasswordRequests(){
+        List<String> resetPasswordRequests = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader("./TextFiles/ResetPassword.txt"))) {
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return resetPasswordRequests;
+    }
+
 }

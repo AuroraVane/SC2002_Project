@@ -25,7 +25,7 @@ public class Patient extends User{
         return "Patient";
     }
     public void displayUI(){
-        int option = 0;
+        int option = -1;
         @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
         while(option != 0){
