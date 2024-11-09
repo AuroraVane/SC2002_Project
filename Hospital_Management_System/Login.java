@@ -57,6 +57,7 @@ public class Login {
             case 4:
                 if(ManageStaffController.checkStaffIDExist(id) == true){
                     TextFileWriter.sendResetPassword(id);
+                    System.out.println("Reset password request has been submitted");
                 }
                 else{
                     System.out.println("Invalid ID");
@@ -65,6 +66,7 @@ public class Login {
             case 5:
                 if(PatientManager.checkPatientIDExist(id) == true){
                     TextFileWriter.sendResetPassword(id);
+                    System.out.println("Reset password request has been submitted");
                 }
                 else{
                     System.out.println("Invalid ID");

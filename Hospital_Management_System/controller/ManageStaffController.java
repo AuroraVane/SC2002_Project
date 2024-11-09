@@ -155,7 +155,6 @@ public class ManageStaffController {
         loadStaffList();
         for (Staff staff : staffList) {
             if (staff.getId().equals(id)) {
-                System.out.println("\nStaff ID exists");
                 return true;
             }  
         }

@@ -11,7 +11,7 @@ public class Hospital {
         Boolean isRunning = true;
         Login login = new Login(patientFilePath, stafffilePath);
         while (isRunning) {
-            System.err.println("Welcome to the XYZ Hospital");
+            System.err.println("\nWelcome to the XYZ Hospital");
             @SuppressWarnings("resource") // Ignore warning for scanner VSCode things
             Scanner scanner = new Scanner(System.in);
             System.out.println("1. Login");
@@ -35,21 +35,6 @@ public class Hospital {
                         System.out.println("Role: " + authenticatedUser.getRole());
                         System.out.println("Navigating to main menu...\n");
                         authenticatedUser.displayUI();
-
-                        int option = -1;
-                        boolean validInput = false;
-                        while (!validInput) {
-                            System.out.println("\nEnter an option: ");
-                            String input = scanner.nextLine();
-
-                            try {
-                                option = Integer.parseInt(input);
-                                validInput = true;
-                            } catch (NumberFormatException e) {
-                                System.out.println("Invalid input. Please enter a valid integer.");
-                            }
-                        }
-                        authenticatedUser.navigateMenu(option);
                     } else {
                         System.out.println("Invalid ID or password");
                     }

@@ -1,4 +1,5 @@
 package utils;
+
 import java.io.*;
 import java.nio.file.*;
 import java.util.ArrayList;
@@ -14,9 +15,9 @@ import entity.Staff;
 
 public class TextFileWriter {
 
-    private static final String FILE_PATH = "./TextFiles/Staff_List.txt";  // Path to the staff list file
+    private static final String FILE_PATH = "./TextFiles/Staff_List.txt"; // Path to the staff list file
     private static final String APPOINTMENT_FILE_PATH = "./TextFiles/Appointment_List.txt";
-    private static final String OUTCOME_FILE_PATH="./TextFiles/AppointmentOutcome_List.txt";
+    private static final String OUTCOME_FILE_PATH = "./TextFiles/AppointmentOutcome_List.txt";
     private static final String PATIENT_FILE_PATH = "./TextFiles/Patient_List.txt";
     private static final String OVERSEEING_PATIENTS_FILE_PATH = "./TextFiles/OverseeingPatients.txt";
     private static final String RESET_PASSWORD_FILE_PATH = "./TextFiles/ResetPassword.txt";
@@ -42,8 +43,8 @@ public class TextFileWriter {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
             if (Files.size(Paths.get(FILE_PATH)) > 0) {
-                writer.newLine();  // Add a newline only if the file is not empty
-            } 
+                writer.newLine(); // Add a newline only if the file is not empty
+            }
             writer.write(newStaff);
             System.out.println("Staff member added successfully.");
         } catch (IOException e) {
@@ -52,12 +53,13 @@ public class TextFileWriter {
     }
 
     public static void addPatient(String id, String name, String dob, String gender, String bloodtype, String email) {
-        String newPatient = String.format("%s|%s|%s|%s|%s|%s|%s", id, name, dob, gender, bloodtype, email,hashPassword("password"));
+        String newPatient = String.format("%s|%s|%s|%s|%s|%s|%s", id, name, dob, gender, bloodtype, email,
+                hashPassword("password"));
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(PATIENT_FILE_PATH, true))) {
             if (Files.size(Paths.get(PATIENT_FILE_PATH)) > 0) {
-                writer.newLine();  // Add a newline only if the file is not empty
-            } 
+                writer.newLine(); // Add a newline only if the file is not empty
+            }
             writer.write(newPatient);
             System.out.println("Staff member added successfully.");
         } catch (IOException e) {
@@ -71,7 +73,7 @@ public class TextFileWriter {
         File tempFile = new File("tempStaffList.txt");
 
         try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
 
             String currentLine;
             boolean firstLine = true; // To manage writing newlines only after the first line is written
@@ -93,9 +95,9 @@ public class TextFileWriter {
 
                 // For the first valid line, avoid writing a newline beforehand
                 if (!firstLine) {
-                    writer.newLine();  // Add a newline only after the first valid line
+                    writer.newLine(); // Add a newline only after the first valid line
                 } else {
-                    firstLine = false;  // Mark that the first line has been written
+                    firstLine = false; // Mark that the first line has been written
                 }
 
                 // Write the current valid staff details
@@ -122,7 +124,7 @@ public class TextFileWriter {
         File tempFile = new File("tempStaffList.txt");
 
         try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
 
             String currentLine;
             Boolean firstLine = true;
@@ -135,13 +137,13 @@ public class TextFileWriter {
                 if (staffDetails[0].equals(id)) {
                     // Write the updated staff details
                     currentLine = String.format("%s|%s|%s|%s|%d|%s", id, name, role, gender, age, password);
-                } 
-                if(!firstLine){
+                }
+                if (!firstLine) {
                     writer.newLine();
                 } else {
                     firstLine = false;
                 }
-                    // Write the original staff details
+                // Write the original staff details
                 writer.write(currentLine);
             }
             System.out.println("Staff member updated successfully.");
@@ -158,12 +160,12 @@ public class TextFileWriter {
         }
     }
 
-    public void updateMedicationInventory(String name,String stock){
+    public void updateMedicationInventory(String name, String stock) {
         File inputFile = new File("./TextFiles/Medicine_List.txt");
         File tempFile = new File("tempMedicineList.txt");
 
         try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
 
             String currentLine;
             boolean firstLine = true;
@@ -178,8 +180,8 @@ public class TextFileWriter {
                 String[] staffDetails = currentLine.split("\\|");
                 if (staffDetails[0].equals(name)) {
                     // Write the updated staff details
-                    currentLine = String.format("%s|%s|%s", name, stock,staffDetails[2]);
-                } 
+                    currentLine = String.format("%s|%s|%s", name, stock, staffDetails[2]);
+                }
                 if (!firstLine) {
                     writer.newLine();
                 } else {
@@ -202,25 +204,26 @@ public class TextFileWriter {
         }
     }
 
-    public void addReplenishmentRequest(String id,String name,String status,String value){
+    public void addReplenishmentRequest(String id, String name, String status, String value) {
         String newReplenishment = String.format("%s|%s|%s|%s", id, name, status, value);
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("./TextFiles/Replenishment_List.txt", true))) {
             if (Files.size(Paths.get("./TextFiles/Replenishment_List.txt")) > 0) {
-                writer.newLine();  // Add a newline only if the file is not empty
-            } 
+                writer.newLine(); // Add a newline only if the file is not empty
+            }
             writer.write(newReplenishment);
             System.out.println("Replenishment Request added successfully.");
         } catch (IOException e) {
             System.out.println("Error writing to file: " + e.getMessage());
         }
     }
-    public String[] updateReplenishmentRequest(String name){
+
+    public String[] updateReplenishmentRequest(String name) {
         File inputFile = new File("./TextFiles/Replenishment_List.txt");
         File tempFile = new File("tempReplenishmentList.txt");
         String medicinename = " ";
         String quantity = " ";
         try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
 
             String currentLine;
             boolean firstLine = true;
@@ -233,10 +236,10 @@ public class TextFileWriter {
                 String[] staffDetails = currentLine.split("\\|");
                 if (staffDetails[0].equals(name)) {
                     // Write the updated staff details
-                    currentLine = String.format("%s|%s|%s|%s", name, staffDetails[1],"Approved",staffDetails[3]);
+                    currentLine = String.format("%s|%s|%s|%s", name, staffDetails[1], "Approved", staffDetails[3]);
                     medicinename = staffDetails[1];
                     quantity = staffDetails[3];
-                } 
+                }
                 if (!firstLine) {
                     writer.newLine();
                 } else {
@@ -256,15 +259,15 @@ public class TextFileWriter {
         if (!tempFile.renameTo(inputFile)) {
             System.out.println("Could not rename the temp file.");
         }
-        return new String[]{medicinename, quantity};
+        return new String[] { medicinename, quantity };
     }
-    
+
     public static void updateAppointment(Appointment appmt) {
         File inputFile = new File(APPOINTMENT_FILE_PATH);
         File tempFile = new File("tempAppointment.txt");
 
         try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
 
             String currentLine;
             Boolean firstLine = true;
@@ -274,16 +277,17 @@ public class TextFileWriter {
                     continue;
                 }
                 String[] appmtDetails = currentLine.split("\\|");
-                if (appmtDetails[0].equals(appmt.getAppointmentID()+"")) {
+                if (appmtDetails[0].equals(appmt.getAppointmentID() + "")) {
                     // Write the updated staff details
-                    currentLine = String.format("%d|%s|%s|%s|%s|%s", appmt.getAppointmentID(), appmt.getPatientID(), appmt.getStaffID(), appmt.getStatus(), appmt.getDate(), appmt.getTime());
-                } 
-                if(!firstLine){
+                    currentLine = String.format("%d|%s|%s|%s|%s|%s", appmt.getAppointmentID(), appmt.getPatientID(),
+                            appmt.getStaffID(), appmt.getStatus(), appmt.getDate(), appmt.getTime());
+                }
+                if (!firstLine) {
                     writer.newLine();
                 } else {
                     firstLine = false;
                 }
-                    // Write the original staff details
+                // Write the original staff details
                 writer.write(currentLine);
             }
             System.out.println("Appointment updated successfully.");
@@ -299,28 +303,31 @@ public class TextFileWriter {
             System.out.println("Could not rename the temp file.");
         }
     }
+
     public void addAppointment(Appointment appmt) {
-        String newAppointment = String.format("%d|%s|%s|%s|%s|%s", appmt.getAppointmentID(), appmt.getPatientID(), appmt.getStaffID(), appmt.getStatus(), appmt.getDate(), appmt.getTime());
+        String newAppointment = String.format("%d|%s|%s|%s|%s|%s", appmt.getAppointmentID(), appmt.getPatientID(),
+                appmt.getStaffID(), appmt.getStatus(), appmt.getDate(), appmt.getTime());
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(APPOINTMENT_FILE_PATH, true))) {
             if (Files.size(Paths.get(FILE_PATH)) > 0) {
-                writer.newLine();  // Add a newline only if the file is not empty
-            } 
+                writer.newLine(); // Add a newline only if the file is not empty
+            }
             writer.write(newAppointment);
             System.out.println("Appointment added successfully.");
         } catch (IOException e) {
             System.out.println("Error writing to file: " + e.getMessage());
         }
     }
+
     public void deleteAppointment(String id) {
         File inputFile = new File(APPOINTMENT_FILE_PATH);
         File tempFile = new File("tempAppointmentList.txt");
 
         try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
 
             String currentLine;
-            boolean firstLine = true; 
+            boolean firstLine = true;
             while ((currentLine = reader.readLine()) != null) {
                 // Skip any empty lines
                 if (currentLine.trim().isEmpty()) {
@@ -331,9 +338,9 @@ public class TextFileWriter {
                     continue;
                 }
                 if (!firstLine) {
-                    writer.newLine();  
+                    writer.newLine();
                 } else {
-                    firstLine = false;  
+                    firstLine = false;
                 }
                 writer.write(currentLine);
             }
@@ -351,31 +358,34 @@ public class TextFileWriter {
         }
     }
 
-    public void addAppointmentOutcome(int appointmentId, String date, String service, String medicine, boolean status, String consulationNotes) {
-        String newAppointment = String.format("%d|%s|%s|%s|%b|%s", appointmentId, date, service, medicine, status, consulationNotes);
+    public void addAppointmentOutcome(int appointmentId, String date, String service, String medicine, boolean status,
+            String consulationNotes) {
+        String newAppointment = String.format("%d|%s|%s|%s|%b|%s", appointmentId, date, service, medicine, status,
+                consulationNotes);
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(OUTCOME_FILE_PATH, true))) {
             if (Files.size(Paths.get(FILE_PATH)) > 0) {
-                writer.newLine();  // Add a newline only if the file is not empty
-            } 
+                writer.newLine(); // Add a newline only if the file is not empty
+            }
             writer.write(newAppointment);
             System.out.println("Appointment Outcome added successfully.");
         } catch (IOException e) {
             System.out.println("Error writing to file: " + e.getMessage());
         }
     }
+
     public void WriteFile(String FILE_PATH) {
-        try (BufferedWriter Writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) { 
+        try (BufferedWriter Writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
             System.out.println("Enter 0 to exit");
             @SuppressWarnings("resource")
-            Scanner w=new Scanner(System.in);
+            Scanner w = new Scanner(System.in);
             while (true) {
-                String x=w.nextLine();
-                if (x.equals("0")){
+                String x = w.nextLine();
+                if (x.equals("0")) {
                     break;
                 }
                 Writer.write(x);
-                Writer.newLine();  
+                Writer.newLine();
             }
             Writer.close();
             System.out.println("Written to file successfully.");
@@ -413,35 +423,35 @@ public class TextFileWriter {
             System.out.println("An error occurred while updating the email: " + e.getMessage());
         }
     }
+
     public static void updateOverseeingPatient(String doctorID, String newpatientID) {
         File inputFile = new File(OVERSEEING_PATIENTS_FILE_PATH);
         File tempFile = new File("tempfile.txt");
-        
 
         try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
 
             String currentLine;
             Boolean firstLine = true;
-            
+
             // Loop through the file and update the line with the matching ID
             while ((currentLine = reader.readLine()) != null) {
                 if (currentLine.trim().isEmpty()) {
                     continue;
                 }
                 String[] Details = currentLine.split("\\|");
-                
+
                 if (Details[0].equals(doctorID)) {
                     // Write the updated staff details
-                    
-                    currentLine+="|"+newpatientID;
-                } 
-                if(!firstLine){
+
+                    currentLine += "|" + newpatientID;
+                }
+                if (!firstLine) {
                     writer.newLine();
                 } else {
                     firstLine = false;
                 }
-                    // Write the original staff details
+                // Write the original staff details
                 writer.write(currentLine);
             }
             System.out.println("updated successfully.");
@@ -457,6 +467,7 @@ public class TextFileWriter {
             System.out.println("Could not rename the temp file.");
         }
     }
+
     public static boolean changePassword(Patient patient, String newPassword) {
         List<String> fileContent = new ArrayList<>();
 
@@ -488,7 +499,8 @@ public class TextFileWriter {
         }
         return true;
     }
-    public static boolean changePassword(Staff staff, String newPassword){
+
+    public static boolean changePassword(Staff staff, String newPassword) {
         List<String> fileContent = new ArrayList<>();
 
         try {
@@ -519,8 +531,17 @@ public class TextFileWriter {
         }
         return true;
     }
-    public static void sendResetPassword(String id){
 
+    public static void sendResetPassword(String id) {
+        String newResetRequest = String.format("%s", id);
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(RESET_PASSWORD_FILE_PATH, true))) {
+            if (Files.size(Paths.get(RESET_PASSWORD_FILE_PATH)) > 0) {
+                writer.newLine(); // Add a newline only if the file is not empty
+            }
+            writer.write(newResetRequest);
+        } catch (IOException e) {
+            System.out.println("Error writing to file: " + e.getMessage());
+        }
     }
 }
-
