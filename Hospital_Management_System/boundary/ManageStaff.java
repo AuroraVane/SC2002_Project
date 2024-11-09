@@ -45,15 +45,41 @@ public class ManageStaff {
         System.out.println("Enter staff name: ");
         String name = scanner.nextLine();
 
-        System.out.println("Enter staff role: ");
-        String role = scanner.nextLine();
-
-        System.out.println("Enter staff gender: ");
-        String gender = scanner.nextLine();
+        String role = "";
+        while(!role.equals("Doctor") || !role.equals("Pharmacist") || !role.equals("Administrator")){
+            System.out.println("Enter staff role (Doctor/Pharmacist/Administrator): ");
+            role = scanner.nextLine();
+            if(role.equals("Doctor") || role.equals("Pharmacist") || role.equals("Administrator")){
+                break;
+            }
+            else{
+                System.out.println("Invalid role. Please try again.");
+            }
+        }
+        String gender = "";
+        while(!gender.equals("Male") || !gender.equals("Female") || gender.equals("Others") || gender.equals("Prefer not to say") || gender.equals("Transformer")){
+            System.out.println("Enter staff gender");
+            gender = scanner.nextLine();
+            if(gender.equals("Male") || gender.equals("Female") || gender.equals("Others") || gender.equals("Prefer not to say") || gender.equals("Transformer")){
+                break;
+            }
+            else{
+                System.out.println("Invalid Gender (Male/Female/Others/Prefer not to say). Please try again.");
+            }
+        }
 
         System.out.println("Enter staff age: ");
-        int age = Integer.parseInt(scanner.nextLine());
-
+        int age = -1;
+        while(age < 0 || age > 150){
+            try {
+                age = Integer.parseInt(scanner.nextLine());
+                if(age < 0 || age > 150){
+                    System.out.println("Invalid age. Please try again.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number between 0 and 150.");
+            }
+        }
 
         // Returning details as a String array (converting age to a String)
         return new String[] {name, role, gender, String.valueOf(age)};
