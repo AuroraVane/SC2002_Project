@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
@@ -102,8 +104,18 @@ public class ManageStaffController {
     }
 
     public void addStaff() {
-        String id = manageStaff.getStaffId();
         String[] staffDetails = manageStaff.getStaffDetails();
+        String id = "";
+        if(staffDetails[1].equals("Doctor")){
+            id = "D00" + String.valueOf(getStaffCount().get(0) + 1);
+            System.out.println(id);
+        } else if(staffDetails[1].equals("Pharmacist")){
+            id = "P00" + String.valueOf(getStaffCount().get(1) + 1);
+            System.out.println(id);
+        } else if(staffDetails[1].equals("Administrator")){
+            id = "A00" + String.valueOf(getStaffCount().get(2) + 1);
+            System.out.println(id);
+        }
         this.writer = new TextFileWriter();
         writer.addStaff(id, staffDetails[0], staffDetails[1], staffDetails[2], Integer.parseInt(staffDetails[3]));
         try {
@@ -159,5 +171,18 @@ public class ManageStaffController {
             }  
         }
         return false;
+    }
+    public static List<Integer> getStaffCount(){
+        List<Integer> count = new ArrayList<>(Arrays.asList(0, 0, 0)); 
+        for (Staff staff : staffList) {
+            if (staff.getRole().equals("Doctor")) {
+                count.set(0, count.get(0) + 1);
+            } else if (staff.getRole().equals("Pharmacist")) {
+                count.set(1, count.get(1) + 1);
+            } else if (staff.getRole().equals("Administrator")) {
+                count.set(2, count.get(2) + 1);
+            }
+        }
+        return count;
     }
 }
