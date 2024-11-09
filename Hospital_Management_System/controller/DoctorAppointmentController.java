@@ -1,12 +1,11 @@
 package controller;
+import entity.Appointment;
+import entity.Doctor;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-import entity.Appointment;
-import entity.Doctor;
 import utils.TextFileReader;
 import utils.TextFileWriter;
 
@@ -54,20 +53,23 @@ public class DoctorAppointmentController{
         appmt.setStatus("CANCELLED");
         TextFileWriter.updateAppointment(appmt);
     }
-    public void ViewDoctorUpcoming(){
+    public List<Appointment> GetDoctorUpcoming(){
         List<Appointment> appointments=GetStatusAppointments("CONFIRMED");
         if (!appointments.isEmpty()){
             Collections.sort(appointments, Comparator.comparing(Appointment::getDate));
         }else{
             System.out.println("You have no upcoming appointments.");
-            return;
+            return null;
         }
+        int s=appointments.size();
+        int i=0;
         String firstdate=appointments.get(0).getDate();
-        for (Appointment appmt: appointments){
-            if (appmt.getDate().equals(firstdate)){
-                System.out.println(appmt.getDate()+ " "+appmt.getTime());
-            }
+        for (int j=0;j<s;j++){
+            if (!appointments.get(j).getDate().equals(firstdate)){
+                appointments.remove(i);
+            }else i++;
         }
+        return appointments;
     }
     public void ResolveAppointment(Appointment appmt){
         appmt.setStatus("COMPLETED");

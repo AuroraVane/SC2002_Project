@@ -1,18 +1,17 @@
 package controller;
+import boundary.AdminAppointmentUI;
+import entity.Appointment;
 import java.io.IOException;
 import java.util.List;
-
-import entity.Appointment;
-import boundary.AppointmentUI;
 import utils.TextFileReader;
 
-public class AppointmentController {
+public class AdminAppointmentController{
     private List<Appointment> appointmentList;
-    private AppointmentUI appointmentUI;
+    private AdminAppointmentUI appointmentUI;
 
-    public AppointmentController(String fileName) throws IOException {
+    public AdminAppointmentController(String fileName) throws IOException {
         appointmentList = TextFileReader.loadAppointments(fileName);
-        this.appointmentUI = new AppointmentUI();
+        this.appointmentUI = new AdminAppointmentUI();
     }
 
     public void MenuController() {

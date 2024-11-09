@@ -1,13 +1,12 @@
 package controller;
-import java.io.IOException;
-
 import entity.Administrator;
+import java.io.IOException;
 
 public class AdministratorUI extends StaffUI{
     private Administrator administrator;
 
     private ManageStaffController manageStaffController;
-    private AppointmentController appointmentController;
+    private AdminAppointmentController appointmentController;
     private MedicationInventoryController medicationInventoryController;
     private ReplenishmentRequestController replenishmentRequestController;
 
@@ -15,7 +14,7 @@ public class AdministratorUI extends StaffUI{
         this.administrator = administrator;
         try {
             this.manageStaffController = new ManageStaffController("./TextFiles/Staff_List.txt");
-            this.appointmentController = new AppointmentController("./TextFiles/Appointment_List.txt");
+            this.appointmentController = new AdminAppointmentController("./TextFiles/Appointment_List.txt");
             this.medicationInventoryController = new MedicationInventoryController("./TextFiles/Medicine_List.txt");
             this.replenishmentRequestController = new ReplenishmentRequestController("./TextFiles/Replenishment_List.txt");
         } catch (IOException e) {

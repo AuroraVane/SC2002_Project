@@ -1,11 +1,11 @@
 package boundary;
-import java.io.IOException;
-import java.util.List;
-import java.util.Scanner;
-
 import controller.DoctorAppointmentController;
 import entity.Appointment;
 import entity.Doctor;
+import java.io.IOException;
+import java.util.List;
+import java.util.Scanner;
+import utils.TextFileReader;
 import utils.TextFileWriter;
 
 public class DoctorAppointmentUI extends AppointmentUI{
@@ -15,6 +15,16 @@ public class DoctorAppointmentUI extends AppointmentUI{
     public DoctorAppointmentUI(Doctor doctor, String appointmentfilepath)throws IOException{
         this.writer=new TextFileWriter();
         this.doctorAppmtController=new DoctorAppointmentController(appointmentfilepath, doctor);
+    }
+    @Override
+    public void printAllAppointments(List<Appointment> appointmentList){
+        for (Appointment appointment : appointmentList) {
+            System.out.printf("%-14s | %-9s | %s | %s%n",
+                            appointment.getAppointmentID(),
+                            TextFileReader.findUserName(appointment.getPatientID(), "Patient"),
+                            appointment.getDate(),
+                            appointment.getTime());
+        }
     }
     
 
@@ -98,7 +108,10 @@ public class DoctorAppointmentUI extends AppointmentUI{
 
 
     public void ViewUpcomingAppointments(){
-        doctorAppmtController.ViewDoctorUpcoming();
+        List<Appointment> list=doctorAppmtController.GetDoctorUpcoming();
+        if (list!=null){
+            printAllAppointments(list);
+        }
     }//6
     
 }

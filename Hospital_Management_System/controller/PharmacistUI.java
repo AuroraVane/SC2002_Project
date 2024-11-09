@@ -1,20 +1,19 @@
 package controller;
+import entity.Medicine;
+import entity.Pharmacist;
 import java.util.List;
 import java.util.Scanner;
 
-import entity.Medicine;
-import entity.Pharmacist;
-
 public class PharmacistUI extends StaffUI{
     private Pharmacist pharmacist;
-    private AppointmentController appointmentController;
+    private AdminAppointmentController appointmentController;
     private MedicationInventoryController medicationInventoryController;
     private ReplenishmentRequestController replenishmentRequestController;
 
     public PharmacistUI(Pharmacist pharmacist){
         this.pharmacist = pharmacist;
         try{
-            this.appointmentController = new AppointmentController("./TextFiles/Appointment_List.txt");
+            this.appointmentController = new AdminAppointmentController("./TextFiles/Appointment_List.txt");
             this.medicationInventoryController = new MedicationInventoryController("./TextFiles/Medicine_List.txt");
             this.replenishmentRequestController = new ReplenishmentRequestController("./TextFiles/Replenishment_List.txt");
         } catch (Exception e){

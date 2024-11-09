@@ -1,4 +1,12 @@
 package utils;
+import boundary.MedicalRecord;
+import controller.AppointmentOutcome;
+import entity.Appointment;
+import entity.MedicationInventory;
+import entity.Medicine;
+import entity.Patient;
+import entity.ReplenishmentRequest;
+import entity.Staff;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,15 +15,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import boundary.MedicalRecord;
-import entity.Appointment;
-import controller.AppointmentOutcome;
-import entity.MedicationInventory;
-import entity.Medicine;
-import entity.Patient;
-import entity.ReplenishmentRequest;
-import entity.Staff;
 
 public class TextFileReader {
 
@@ -307,5 +306,29 @@ public class TextFileReader {
         }
         return resetPasswordRequests;
     }
+    public static String findUserName(String id, String type) {
+        String filename;
+        if (type.equals("Doctor")){
+            filename="./TextFiles/Staff_List.txt";
+        }else{
+            filename="./TextFiles/Patient_List.txt";
+        }
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename)))
+        {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] details = line.split("\\|"); // Special Character | requires \\
+                if (id.equals(details[0])){
+                    reader.close();
+                    return details[1];
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        return null;
+    }
+    
 
 }

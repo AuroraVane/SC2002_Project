@@ -1,21 +1,34 @@
 package boundary;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 import controller.AppointmentOutcome;
 import controller.PatientAppointmentController;
 import entity.Appointment;
 import entity.Patient;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 import utils.TextFileReader;
 import utils.TextFileWriter;
 
-public class PatientAppointmentUI{
+public class PatientAppointmentUI extends AppointmentUI{
     private PatientAppointmentController appointmentcontroller;
     private static final String APPOINTMENT_FILE_PATH = "./TextFiles/Appointment_List.txt";
     public PatientAppointmentUI() {
         this.appointmentcontroller = new PatientAppointmentController(); 
+    }
+
+    public void printAppointment(Appointment appointment){
+        System.out.printf("%-14s | %-9s | %s | %s%n",
+                        appointment.getAppointmentID(),
+                        TextFileReader.findUserName(appointment.getStaffID(), "Doctor"),
+                        appointment.getDate(),
+                        appointment.getTime());
+    }
+    @Override
+    public void printAllAppointments(List<Appointment> appointmentList){
+        for (Appointment appointment : appointmentList) {
+            printAppointment(appointment);
+        }
     }
 
     public void scheduleAppointment(Patient patient) {
@@ -125,11 +138,7 @@ public class PatientAppointmentUI{
             for (Appointment appointment : appointments) {
                 // Check if the appointment has no patient assigned (patientID is "NA")
                 if (appointment.getPatientID().equals("NA")) {
-                    System.out.printf("%-14s | %-9s | %s | %s%n",
-                                    appointment.getAppointmentID(),
-                                    appointment.getStaffID(),
-                                    appointment.getDate(),
-                                    appointment.getTime());
+                    printAppointment(appointment);
                 }
             }
         } catch (IOException e) {
@@ -152,11 +161,7 @@ public class PatientAppointmentUI{
                 if (appointment.getPatientID().equals(patientID) &&
                     (appointment.getStatus().equals("PENDING") || appointment.getStatus().equals("CONFIRMED"))) {
                     
-                    System.out.printf("%-14s | %-9s | %s | %s%n",
-                                      appointment.getAppointmentID(),
-                                      appointment.getStaffID(),
-                                      appointment.getDate(),
-                                      appointment.getTime());
+                    printAppointment(appointment);
                     foundAppointments = true;
                 }
             }
