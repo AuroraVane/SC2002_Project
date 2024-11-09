@@ -1,7 +1,7 @@
 package utils;
 import boundary.MedicalRecord;
-import controller.AppointmentOutcome;
 import entity.Appointment;
+import entity.AppointmentOutcome;
 import entity.MedicationInventory;
 import entity.Medicine;
 import entity.Patient;
@@ -329,6 +329,5 @@ public class TextFileReader {
         
         return null;
     }
-    
 
 }

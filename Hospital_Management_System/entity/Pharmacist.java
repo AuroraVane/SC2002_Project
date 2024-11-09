@@ -1,10 +1,9 @@
 package entity;
-import java.util.List;
-import java.util.Scanner;
-
-import controller.AppointmentOutcome;
+import controller.AppointmentOutcomeController;
 import controller.MedicationInventoryController;
 import controller.PharmacistUI;
+import java.util.List;
+import java.util.Scanner;
 
 public class Pharmacist extends Staff{
     private PharmacistUI pharmacistUI;
@@ -32,7 +31,7 @@ public class Pharmacist extends Staff{
 
 
     public void updatePrescriptionStatus(int appointmentId) {
-        List<AppointmentOutcome> appointmentOutcomes = AppointmentOutcome.getAllAppointmentOutcomes();
+        List<AppointmentOutcome> appointmentOutcomes = AppointmentOutcomeController.getAllAppointmentOutcomes();
         AppointmentOutcome record = null;
         for (AppointmentOutcome appointmentOutcome : appointmentOutcomes){
             if (appointmentId == appointmentOutcome.getAppointmentId()){
@@ -45,8 +44,8 @@ public class Pharmacist extends Staff{
             return;
         }
 
-        AppointmentOutcome.updateAppointmentOutcomeStatus(appointmentId);
-        if (!record.isStatus()){
+        AppointmentOutcomeController.updateAppointmentOutcomeStatus(appointmentId);
+        if (!record.isPStatus()){
             MedicationInventoryController.updateMedicineQuantity(record.getMedicine());
         }
     }

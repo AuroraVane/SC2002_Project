@@ -1,7 +1,8 @@
 package boundary;
-import controller.AppointmentOutcome;
+import controller.AppointmentOutcomeController;
 import controller.PatientAppointmentController;
 import entity.Appointment;
+import entity.AppointmentOutcome;
 import entity.Patient;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -200,7 +201,7 @@ public class PatientAppointmentUI extends AppointmentUI{
                 return;
             }
 
-            List<AppointmentOutcome> outcomes = TextFileReader.loadAppointmentOutcomes("./TextFiles/AppointmentOutcome_List.txt");
+            List<AppointmentOutcome> outcomes = AppointmentOutcomeController.getAllAppointmentOutcomes();
             System.out.println("Past Appointment Outcomes:");
             System.out.println("Appointment ID | Date       | Type         | Medication       | Status    | Consultation Notes");
 
