@@ -20,7 +20,7 @@ public class DoctorAppointmentUI extends AppointmentUI{
     public void printAllAppointments(List<Appointment> appointmentList){
         System.out.println("Appointment ID | Patient | Date       | Time");
         for (Appointment appointment : appointmentList) {
-            System.out.printf("%-14s | %-9s | %s | %s%n",
+            System.out.printf("%-14s | %s | %s | %s%n",
                             appointment.getAppointmentID(),
                             TextFileReader.findUserName(appointment.getPatientID(), "Patient"),
                             appointment.getDate(),

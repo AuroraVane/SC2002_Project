@@ -1,8 +1,6 @@
 package controller;
 import boundary.AdminAppointmentUI;
 import entity.Appointment;
-import entity.AppointmentOutcome;
-
 import java.io.IOException;
 import java.util.List;
 import utils.TextFileReader;
@@ -21,11 +19,6 @@ public class AdminAppointmentController{
         appointmentUI.printAllAppointments(appointmentList);
     }
 
-    public void viewAppointmentOutcomeRecord() {
-        List<AppointmentOutcome> appointmentOutcomes = AppointmentOutcomeController.getAllAppointmentOutcomes();
-        for (AppointmentOutcome appointmentOutcome : appointmentOutcomes){
-            appointmentOutcome.printAppointmentOutcome();
-        }
-    }
+    
 
 }

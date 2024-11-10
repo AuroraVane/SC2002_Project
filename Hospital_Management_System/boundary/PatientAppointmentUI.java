@@ -19,7 +19,7 @@ public class PatientAppointmentUI extends AppointmentUI{
     }
 
     public void printAppointment(Appointment appointment){
-        System.out.printf("%-14s | %-9s | %s | %s%n",
+        System.out.printf("%-14s | %s | %s | %s%n",
                         appointment.getAppointmentID(),
                         TextFileReader.findUserName(appointment.getStaffID(), "Doctor"),
                         appointment.getDate(),

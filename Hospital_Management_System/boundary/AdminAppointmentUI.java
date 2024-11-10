@@ -1,9 +1,7 @@
 package boundary;
 
-import java.util.List;
-
 import entity.Appointment;
-import utils.TextFileReader;
+import java.util.List;
 
 public class AdminAppointmentUI extends AppointmentUI{
 
@@ -16,7 +14,7 @@ public class AdminAppointmentUI extends AppointmentUI{
     @Override
     public void printAllAppointments(List<Appointment> appointmentList){
         for (Appointment appointment : appointmentList) {
-            System.out.printf("%-14s | %-9s | %s | %s%n",
+            System.out.printf("%-14s | %-9s | %-9s | %-9s | %s | %s%n",
                             appointment.getAppointmentID(),
                             appointment.getPatientID(),
                             appointment.getStaffID(),

@@ -1,14 +1,15 @@
 package controller;
 
+import entity.AppointmentOutcome;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
-
-import entity.AppointmentOutcome;
 import utils.TextFileReader;
 
 public class AppointmentOutcomeController {
+
+    
     public static List<AppointmentOutcome> getAllAppointmentOutcomes(){
         String filePath = "./TextFiles/AppointmentOutcome_List.txt";
         List<AppointmentOutcome> appointmentOutcomes;
@@ -42,6 +43,15 @@ public class AppointmentOutcomeController {
             System.out.println("File updated successfully.");
         } catch (IOException e) {
             System.err.println("Error updating the file: " + e.getMessage());
+        }
+    }
+
+    public AppointmentOutcomeController() {
+    }
+    public void viewAppointmentOutcomeRecord() {
+        List<AppointmentOutcome> appointmentOutcomes = getAllAppointmentOutcomes();
+        for (AppointmentOutcome appointmentOutcome : appointmentOutcomes){
+            appointmentOutcome.printAppointmentOutcome();
         }
     }
     
