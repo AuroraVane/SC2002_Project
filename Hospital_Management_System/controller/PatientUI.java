@@ -107,22 +107,62 @@ public class PatientUI implements UserUI {
     }
 
     public static void createPatient(){
+        System.out.println("===================================================");
         System.out.println("Registering a new patient...");
         @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
         String id = "P100" + String.valueOf(Patient.getPatientCount()+1);
         System.out.println("Enter your Name: ");
         String name = sc.nextLine();
-        System.out.println("Enter your Date Of Birth: ");
-        String dob = sc.nextLine();
+        System.out.println("Enter your Date Of Birth (YYYY-MM-DD): ");
+        String dob = "";
+        while(true){
+            dob = sc.nextLine();
+            if(dob.matches("\\d{4}-\\d{2}-\\d{2}")){
+                break;
+            }
+            else{
+                System.out.println("Invalid date format. Please enter in the format YYYY-MM-DD");
+            }
+        }
         System.out.println("Enter your gender: ");
-        String gender = sc.nextLine();
-        System.out.println("Enter your blood type: ");
-        String bloodtype = sc.nextLine();
+        String gender = "";
+        while(!gender.equals("Male") || !gender.equals("Female") || gender.equals("Others") || gender.equals("Prefer not to say") || gender.equals("Transformer")){
+            System.out.println("Enter staff gender");
+            gender = sc.nextLine();
+            if(gender.equals("Male") || gender.equals("Female") || gender.equals("Others") || gender.equals("Prefer not to say") || gender.equals("Transformer")){
+                break;
+            }
+            else{
+                System.out.println("Invalid Gender (Male/Female/Others/Prefer not to say). Please try again.");
+            }
+        }
+        System.out.println("Enter your blood type (A/B/AB/O/A+/B+/AB+/O+): ");
+        String bloodtype = "";
+        while(!bloodtype.equals("A") || !bloodtype.equals("B") || !bloodtype.equals("AB") || !bloodtype.equals("O") || !bloodtype.equals("A+") || !bloodtype.equals("B+") || !bloodtype.equals("AB+") || !bloodtype.equals("O+")){
+            bloodtype = sc.nextLine();
+            if(bloodtype.equals("A") || bloodtype.equals("B") || bloodtype.equals("AB") || bloodtype.equals("O") || !bloodtype.equals("A+") || !bloodtype.equals("B+") || !bloodtype.equals("AB+") || !bloodtype.equals("O+")){
+                break;
+            }
+            else{
+                System.out.println("Invalid blood type. Please try again.");
+            }
+        }
         System.out.println("Enter your contact information (email): ");
-        String contactinfo = sc.nextLine();
+        String contactinfo = "";
+        while(true){
+            contactinfo = sc.nextLine();
+            if(contactinfo.matches("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")){
+                break;
+            }
+            else{
+                System.out.println("Invalid email format. Please try again.");
+            }
+        }
         TextFileWriter.addPatient(id,name,dob,gender,bloodtype,contactinfo);
         System.out.println("Patient registered successfully.");
         System.out.println("Your ID is: " + id);
+        System.out.println("Returning to Main Menu");
+        System.out.println("===================================================");
     }
 }
