@@ -12,14 +12,10 @@ public class Hospital {
         Boolean isRunning = true;
         Login login = new Login(patientFilePath, stafffilePath);
         while (isRunning) {
-            System.err.println("\nWelcome to the XYZ Hospital");
+            
             @SuppressWarnings("resource") // Ignore warning for scanner VSCode things
             Scanner scanner = new Scanner(System.in);
-            System.out.println("1. Login");
-            System.out.println("2. Register as a new patient");
-            System.out.println("3. Forget Password");
-            System.out.println("4. Exit");
-            System.out.println("Enter an option: ");
+            printMenu();   
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
@@ -57,5 +53,31 @@ public class Hospital {
 
         }
 
+    }
+    public static void printMenu(){
+        String menu = """
+            ===================================================
+                    WELCOME TO HOSPITAL MANAGEMENT SYSTEM
+            ===================================================
+
+                         _    _ __  __ _______  
+                        | |  | |  \\/  |  ____| 
+                        | |__| | |\\/| | |_____ 
+                        |  __  |_|  | |_____ |
+                        | |  | | |  | |____| |
+                        |_|  |_|_|  |_|______|
+            ===================================================
+                           PLEASE CHOOSE AN OPTION
+            ===================================================
+                      1. Login
+                      2. Register as a New Patient
+                      3. Forget Password
+                      4. Exit
+            ===================================================
+
+            Enter an option:
+            """;
+
+        System.out.println(menu);
     }
 }
