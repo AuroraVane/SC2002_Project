@@ -23,7 +23,7 @@ public class ReplenishmentRequestUI {
     public void printReplenishmentRequests(List<ReplenishmentRequest> replenishmentRequestList) {
         System.out.println("\nReplenishment Requests:");
         for (ReplenishmentRequest replenishmentRequest : replenishmentRequestList) {
-            System.out.println(replenishmentRequest.getMedicationName() + ", " + replenishmentRequest.getQuantity() +", " + replenishmentRequest.getStatus());
+            System.out.println(replenishmentRequest.getId()+" | "+ replenishmentRequest.getMedicationName() + ", " + replenishmentRequest.getQuantity() +", " + replenishmentRequest.getStatus());
         }
     }
     public String approveReplenishmentRequests(List<ReplenishmentRequest> replenishmentRequestList) {
