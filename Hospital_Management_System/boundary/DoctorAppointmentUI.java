@@ -1,4 +1,5 @@
 package boundary;
+import controller.BillController;
 import controller.DoctorAppointmentController;
 import entity.Appointment;
 import entity.Doctor;
@@ -130,17 +131,20 @@ public class DoctorAppointmentUI extends AppointmentUI{
                 }
                 sc.nextLine();
                 Appointment appmt= appointments.get(index);
-                doctorAppmtController.RemoveAppointment(appmt.getAppointmentID());
+                int appmtID = appmt.getAppointmentID();
+                doctorAppmtController.RemoveAppointment(appmtID);
                 System.out.println("Enter service type:");
                 String service=sc.nextLine();
                 
                 //Remove Appointment from appointment list and add appointment outcome
                 System.out.println("Enter medcine prescribed:");
                 String med=sc.nextLine();
+
+                BillController.addBill(String.valueOf(appmtID), appmt.getPatientID(), med, BillController.PaymentStatus.UNPAID);
                 
                 System.out.println("Write Consultation Notes:");
                 String notes=sc.nextLine();
-                writer.addAppointmentOutcome(appmt.getAppointmentID(), appmt.getDate(), service, med, false, notes);
+                writer.addAppointmentOutcome(appmtID, appmt.getDate(), service, med, false, notes);
                 doctorAppmtController.ResolveAppointment(appmt);
             }else{
                 System.out.println("You currently have 0 Completed appointments waiting");

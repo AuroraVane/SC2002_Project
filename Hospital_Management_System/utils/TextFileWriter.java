@@ -21,6 +21,7 @@ public class TextFileWriter {
     private static final String PATIENT_FILE_PATH = "./TextFiles/Patient_List.txt";
     private static final String OVERSEEING_PATIENTS_FILE_PATH = "./TextFiles/OverseeingPatients.txt";
     private static final String RESET_PASSWORD_FILE_PATH = "./TextFiles/ResetPassword.txt";
+    private static final String BILLING_FILE_PATH = "./TextFiles/Billing.txt";
 
     public static String hashPassword(String password) {
         try {
@@ -622,5 +623,19 @@ public class TextFileWriter {
             return false;
         }
         return true;
+    }
+
+    public static void addBill(String billid,String appointmentID,String PatientId, String price, String status) {
+        String newBill = String.format("%s|%s|%s|%s|%s", billid,appointmentID,PatientId, price,status);
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(BILLING_FILE_PATH, true))) {
+            if (Files.size(Paths.get(BILLING_FILE_PATH)) > 0) {
+                writer.newLine(); // Add a newline only if the file is not empty
+            }
+            writer.write(newBill);
+            System.out.println("Staff member added successfully.");
+        } catch (IOException e) {
+            System.out.println("Error writing to file: " + e.getMessage());
+        }
     }
 }

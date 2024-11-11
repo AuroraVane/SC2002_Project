@@ -330,4 +330,20 @@ public class TextFileReader {
         return null;
     }
 
+    public static List<String> loadBillList(){
+        List<String> billList = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader("./TextFiles/Billing.txt")))
+         {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                billList.add(line);
+            }
+            reader.close();
+            return billList;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return billList;
+    }
+
 }
