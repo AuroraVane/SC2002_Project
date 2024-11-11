@@ -624,8 +624,8 @@ public class TextFileWriter {
         return true;
     }
 
-    public static void addBill(String billid,String appointmentID,String PatientId, String price, String status) {
-        String newBill = String.format("%s|%s|%s|%s|%s", billid,appointmentID,PatientId, price,status);
+    public static void addBill(String billid, String appointmentID, String PatientId, String price, String status) {
+        String newBill = String.format("%s|%s|%s|%s|%s", billid, appointmentID, PatientId, price, status);
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(BILLING_FILE_PATH, true))) {
             if (Files.size(Paths.get(BILLING_FILE_PATH)) > 0) {
@@ -636,6 +636,7 @@ public class TextFileWriter {
             System.out.println("Error writing to file: " + e.getMessage());
         }
     }
+
     public static void updateAppointmentOutcome(AppointmentOutcome appmtoutcome) {
         List<String> fileContent = new ArrayList<>();
 
@@ -649,7 +650,7 @@ public class TextFileWriter {
                 String[] parts = line.split("\\|");
 
                 // Check if the ID matches
-                if (parts[0].equals(appmtoutcome.getAppointmentId()+"")) {
+                if (parts[0].equals(appmtoutcome.getAppointmentId() + "")) {
                     // Update the email field
                     parts[4] = "true";
                     // Join the parts back into a line
@@ -665,33 +666,48 @@ public class TextFileWriter {
             System.out.println("An error occurred while updating appointment outcome: " + e.getMessage());
         }
     }
+
     public static void updateBillStatus(String billId) {
-        List<String> fileContent = new ArrayList<>();
+        File inputFile = new File(BILLING_FILE_PATH);
+        File tempFile = new File("tempBillingList.txt");
 
-        try {
-            // Read all lines into a list
-            fileContent = Files.readAllLines(Paths.get(BILLING_FILE_PATH));
+        try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+                BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
 
-            // Loop through each line to find the patient
-            for (int i = 0; i < fileContent.size(); i++) {
-                String line = fileContent.get(i);
-                String[] parts = line.split("\\|");
+            String currentLine;
+            boolean firstLine = true;
 
-                // Check if the ID matches
-                if (parts[0].equals(billId)) {
-                    // Update the email field
-                    parts[4] = "Paid";
-                    // Join the parts back into a line
-                    fileContent.set(i, String.join("|", parts));
-                    break;
+            // Loop through the file and update the line with the matching ID
+            while ((currentLine = reader.readLine()) != null) {
+
+                if (currentLine.trim().isEmpty()) {
+                    continue;
                 }
+
+                String[] billDetails = currentLine.split("\\|");
+                if (billDetails[0].equals(billId)) {
+                    // Write the updated staff details
+                    currentLine = String.format("%s|%s|%s|%s|%s", billDetails[0], billDetails[1], billDetails[2],
+                            billDetails[3], "Paid");
+                }
+                if (!firstLine) {
+                    writer.newLine();
+                } else {
+                    firstLine = false;
+                }
+
+                writer.write(currentLine);
             }
-
-            // Write updated content back to the file
-            Files.write(Paths.get(BILLING_FILE_PATH), fileContent);
-
         } catch (IOException e) {
-            System.out.println("An error occurred while updating the email: " + e.getMessage());
+            System.out.println("Error processing file: " + e.getMessage());
+        }
+
+        // Replace the original file with the updated file
+        if (!inputFile.delete()) {
+            System.out.println("Could not delete the original file.");
+        }
+        if (!tempFile.renameTo(inputFile)) {
+            System.out.println("Could not rename the temp file.");
         }
     }
 }
