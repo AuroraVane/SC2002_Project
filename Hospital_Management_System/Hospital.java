@@ -28,9 +28,10 @@ public class Hospital {
                     User authenticatedUser = login.authenticate(id, password);
 
                     if (authenticatedUser != null) {
+                        System.out.println("\n=========================================");
                         System.out.println("\nWelcome " + authenticatedUser.getName());
                         System.out.println("Role: " + authenticatedUser.getRole());
-                        System.out.println("Navigating to main menu...\n");
+                        System.out.println("\n=========================================");
                         authenticatedUser.displayUI();
                     } else {
                         System.out.println("Invalid ID or password");

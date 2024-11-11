@@ -45,12 +45,13 @@ public class BillController {
             if (billDetails[2].equals(patientID)) {
                 if (billDetails[4].equals("Unpaid")) {
                     found = true;
-                    System.out.println("Bill ID: " + billDetails[0]);
-                    System.out.println("Appointment ID: " + billDetails[1]);
-                    System.out.println("Amount: " + billDetails[3]);
-                    System.out.println("Status: " + billDetails[4]);
-
-                    System.out.println("Do you want to pay bill(Y/N)?");
+                    System.out.println("\n=========================================");
+                    System.out.println("         Bill ID: " + billDetails[0]);
+                    System.out.println("         Appointment ID: " + billDetails[1]);
+                    System.out.println("         Amount: " + billDetails[3]);
+                    System.out.println("         Status: " + billDetails[4]);
+                    System.out.println("=========================================");
+                    System.out.println("Do you want to pay the bill (Y/N)?");
                     String choice = scanner.nextLine();
                     if (choice.equals("Y")) {
                         TextFileWriter.updateBillStatus(billDetails[0]);
