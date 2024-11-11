@@ -2,3 +2,4 @@ Paracetamol|149|20
 Ibuprofen|49|10
 Amoxicillin|75|15
 Charcoal Pills|50|10
+Antibiotics|200|100
