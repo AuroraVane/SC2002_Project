@@ -54,8 +54,10 @@ public class Login {
         return null;
     }
     public static void forgetPassword() {
-        System.out.println("Forget Password");
-        System.out.println("Enter your ID: ");
+        System.out.println("===================================================");
+        System.out.println("                Forget Password");
+        System.out.println("---------------------------------------------------");
+        System.out.println("                Enter your ID ");
         @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
         String id = sc.nextLine();
