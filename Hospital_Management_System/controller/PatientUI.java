@@ -41,6 +41,7 @@ public class PatientUI implements UserUI {
         System.out.println("7. View Scheduled Appointments");
         System.out.println("8. View Past Appointment Outcome Records");
         System.out.println("9. Change Password");
+        System.out.println("10. View Bill");
         System.out.println("0. Log Out");
     }
 
@@ -72,6 +73,9 @@ public class PatientUI implements UserUI {
                 break;
             case 9:
                 changePassword(patient);
+                break;
+            case 10:
+                BillController.getBillbyPatientID(patient.getId());
                 break;
             case 0:
                 System.out.println("Logging out...");

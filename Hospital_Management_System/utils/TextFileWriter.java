@@ -665,4 +665,33 @@ public class TextFileWriter {
             System.out.println("An error occurred while updating appointment outcome: " + e.getMessage());
         }
     }
+    public static void updateBillStatus(String billId) {
+        List<String> fileContent = new ArrayList<>();
+
+        try {
+            // Read all lines into a list
+            fileContent = Files.readAllLines(Paths.get(BILLING_FILE_PATH));
+
+            // Loop through each line to find the patient
+            for (int i = 0; i < fileContent.size(); i++) {
+                String line = fileContent.get(i);
+                String[] parts = line.split("\\|");
+
+                // Check if the ID matches
+                if (parts[0].equals(billId)) {
+                    // Update the email field
+                    parts[4] = "Paid";
+                    // Join the parts back into a line
+                    fileContent.set(i, String.join("|", parts));
+                    break;
+                }
+            }
+
+            // Write updated content back to the file
+            Files.write(Paths.get(BILLING_FILE_PATH), fileContent);
+
+        } catch (IOException e) {
+            System.out.println("An error occurred while updating the email: " + e.getMessage());
+        }
+    }
 }
