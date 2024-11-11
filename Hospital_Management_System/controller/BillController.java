@@ -20,19 +20,19 @@ public class BillController {
         int amount = -1;
         switch (medicine) {
             case "Paracetamol":
-                amount = 5;
-                break;
-            case "Ibuprofen":
                 amount = 10;
                 break;
+            case "Ibuprofen":
+                amount = 20;
+                break;
             case "Amoxicillin":
-                amount = 15;
+                amount = 30;
                 break;
             case "CharcoalPills":
                 amount = 20;
                 break;
         }
-        TextFileWriter.addBill(billID, appointmentID, patientID,String.valueOf(100+1.5*amount),"Unpaid");
+        TextFileWriter.addBill(billID, appointmentID, patientID,String.valueOf(100+(1.5*amount)),"Unpaid");
     }
 
     public static void loadBillList(){

@@ -140,10 +140,9 @@ public class DoctorAppointmentUI extends AppointmentUI{
                 System.out.println("Enter medcine prescribed:");
                 String med=sc.nextLine();
 
-                BillController.addBill(String.valueOf(appmtID), appmt.getPatientID(), med, BillController.PaymentStatus.UNPAID);
-                
                 System.out.println("Write Consultation Notes:");
                 String notes=sc.nextLine();
+                BillController.addBill(String.valueOf(appmtID), appmt.getPatientID(), med, BillController.PaymentStatus.UNPAID);
                 writer.addAppointmentOutcome(appmtID, appmt.getDate(), service, med, false, notes);
                 doctorAppmtController.ResolveAppointment(appmt);
             }else{

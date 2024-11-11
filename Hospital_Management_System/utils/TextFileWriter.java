@@ -633,7 +633,6 @@ public class TextFileWriter {
                 writer.newLine(); // Add a newline only if the file is not empty
             }
             writer.write(newBill);
-            System.out.println("Staff member added successfully.");
         } catch (IOException e) {
             System.out.println("Error writing to file: " + e.getMessage());
         }
