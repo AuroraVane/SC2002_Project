@@ -1,2 +1,2 @@
-1656734241|20241212|Consultation|Ibuprofen|false|NA
+1656734241|20241212|Consultation|Ibuprofen|true|NA
 1656734240|20241010|X-Ray|Amoxicillin|false|NA

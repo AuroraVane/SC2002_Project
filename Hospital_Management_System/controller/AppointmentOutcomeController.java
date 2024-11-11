@@ -1,11 +1,10 @@
 package controller;
 
 import entity.AppointmentOutcome;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import utils.TextFileReader;
+import utils.TextFileWriter;
 
 public class AppointmentOutcomeController {
 
@@ -28,21 +27,9 @@ public class AppointmentOutcomeController {
         for (AppointmentOutcome appointmentOutcome : appointmentOutcomes){
             if (appointmentOutcome.getAppointmentId() == appointmentId){
                 appointmentOutcome.setPStatus(true);
+                TextFileWriter.updateAppointmentOutcome(appointmentOutcome);
+                appointmentOutcome.printAppointmentOutcome();
             }
-        }
-        updateAppointmentOutcomeFile(appointmentOutcomes);
-    }
-
-    public static void updateAppointmentOutcomeFile(List<AppointmentOutcome> appointmentOutcomes) {
-        String filePath = "./TextFiles/AppointmentOutcome_List.txt";
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            for (AppointmentOutcome appointmentOutcome : appointmentOutcomes) {
-                writer.write(appointmentOutcome.toString());
-                writer.newLine();
-            }
-            System.out.println("File updated successfully.");
-        } catch (IOException e) {
-            System.err.println("Error updating the file: " + e.getMessage());
         }
     }
 

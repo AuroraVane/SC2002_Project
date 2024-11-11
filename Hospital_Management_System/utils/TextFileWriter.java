@@ -1,17 +1,16 @@
 package utils;
 
+import entity.Appointment;
+import entity.AppointmentOutcome;
+import entity.Patient;
+import entity.Staff;
 import java.io.*;
 import java.nio.file.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
-import entity.Appointment;
-import entity.Patient;
-import entity.Staff;
 
 public class TextFileWriter {
 
@@ -635,6 +634,35 @@ public class TextFileWriter {
             writer.write(newBill);
         } catch (IOException e) {
             System.out.println("Error writing to file: " + e.getMessage());
+        }
+    }
+    public static void updateAppointmentOutcome(AppointmentOutcome appmtoutcome) {
+        List<String> fileContent = new ArrayList<>();
+
+        try {
+            // Read all lines into a list
+            fileContent = Files.readAllLines(Paths.get(OUTCOME_FILE_PATH));
+
+            // Loop through each line to find the patient
+            for (int i = 0; i < fileContent.size(); i++) {
+                String line = fileContent.get(i);
+                String[] parts = line.split("\\|");
+
+                // Check if the ID matches
+                if (parts[0].equals(appmtoutcome.getAppointmentId()+"")) {
+                    // Update the email field
+                    parts[4] = "true";
+                    // Join the parts back into a line
+                    fileContent.set(i, String.join("|", parts));
+                    break;
+                }
+            }
+
+            // Write updated content back to the file
+            Files.write(Paths.get(OUTCOME_FILE_PATH), fileContent);
+
+        } catch (IOException e) {
+            System.out.println("An error occurred while updating appointment outcome: " + e.getMessage());
         }
     }
 }

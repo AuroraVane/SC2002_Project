@@ -37,14 +37,14 @@ public class Pharmacist extends Staff{
             if (appointmentId == appointmentOutcome.getAppointmentId()){
                 record = appointmentOutcome;
                 System.out.println("AppointmentOutcome Record found!");
-                appointmentOutcome.printAppointmentOutcome();
+                AppointmentOutcomeController.updateAppointmentOutcomeStatus(appointmentId);   
             }
         }
         if (record == null){
             return;
         }
 
-        AppointmentOutcomeController.updateAppointmentOutcomeStatus(appointmentId);
+        
         if (!record.isPStatus()){
             MedicationInventoryController.updateMedicineQuantity(record.getMedicine());
         }

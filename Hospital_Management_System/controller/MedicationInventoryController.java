@@ -1,24 +1,21 @@
 package controller;
+import boundary.MedicationInventoryUI;
+import entity.Medicine;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
-
-import boundary.MedicationInventoryUI;
-import entity.MedicationInventory;
-import entity.Medicine;
-import utils.TextFileReader;
 import utils.TextFileWriter;
 
 
 public class MedicationInventoryController {
-    private List<MedicationInventory> medicationInventoryList;
+    private List<Medicine> medicationInventoryList;
     private MedicationInventoryUI medicationInventoryUI;
     private TextFileWriter writer;
 
     public MedicationInventoryController(String fileName) throws IOException {
-        medicationInventoryList = TextFileReader.loadMedicationInventory(fileName);
+        medicationInventoryList = Medicine.getAllMedicines();
         this.medicationInventoryUI = new MedicationInventoryUI();
     }
 
@@ -70,19 +67,15 @@ public class MedicationInventoryController {
 
         this.writer = new TextFileWriter();
         writer.updateMedicationInventory(name, stock);
-        try{
-            medicationInventoryList = TextFileReader.loadMedicationInventory("./TextFiles/Medicine_List.txt");
-        } catch (IOException e) {
-            System.out.println("Error: Unable to load medication inventory list from file.");
-            e.printStackTrace(); // Optional: To print the stack trace for debugging
-        }
+        this.medicationInventoryList= Medicine.getAllMedicines();
+        
     }
     
     public void updateMedicationInventory(String name,String stock){
         int newstock = -1;
-        for (MedicationInventory medicationInventory : medicationInventoryList) {
-            if (medicationInventory.getName().equals(name)) {
-                newstock = Integer.parseInt(medicationInventory.getStock()) + Integer.parseInt(stock);
+        for (Medicine medicationInventory : medicationInventoryList) {
+            if (medicationInventory.getMedicineName().equals(name)) {
+                newstock = medicationInventory.getQuantity() + Integer.parseInt(stock);
             }
         }
         this.writer = new TextFileWriter();

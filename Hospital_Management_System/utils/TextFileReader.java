@@ -2,7 +2,6 @@ package utils;
 import boundary.MedicalRecord;
 import entity.Appointment;
 import entity.AppointmentOutcome;
-import entity.MedicationInventory;
 import entity.Medicine;
 import entity.Patient;
 import entity.ReplenishmentRequest;
@@ -80,23 +79,7 @@ public class TextFileReader {
         reader.close();
         return appointments;
     }
-    public static List<MedicationInventory> loadMedicationInventory(String filePath) throws IOException {
-        List<MedicationInventory> medicationInventory = new ArrayList<>();
-        BufferedReader reader = new BufferedReader(new FileReader(filePath));
-
-        String line;
-        while ((line = reader.readLine()) != null) {
-            String[] details = line.split("\\|"); // Special Character | requires \\
-            String medicationName = details[0];
-            String quantity = details[1];
-            String threshold = details[2];
-
-            medicationInventory.add(new MedicationInventory(medicationName, quantity, threshold));
-        }
-
-        reader.close();
-        return medicationInventory;
-    }
+    
     public static List<ReplenishmentRequest> loadReplenishmentRequest(String filePath) throws IOException {
         List<ReplenishmentRequest> replenishmentRequests = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
