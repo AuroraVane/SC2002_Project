@@ -1,0 +1,20 @@
+package utils;
+
+public class Color {
+    public enum ColorRole {
+        PATIENT("\u001B[96m"),         // Light Cyan
+        DOCTOR("\u001B[94m"),          // Light Blue
+        ADMINISTRATOR("\u001B[93m"),   // Light Yellow
+        PHARMACIST("\u001B[92m");      // Light Green
+    
+        private final String colorCode;
+    
+        ColorRole(String colorCode) {
+            this.colorCode = colorCode;
+        }
+    
+        public String getColorCode() {
+            return colorCode;
+        }
+    }
+}

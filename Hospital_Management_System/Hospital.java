@@ -4,8 +4,10 @@ import java.util.Scanner;
 import controller.Login;
 import controller.PatientUI;
 import entity.User;
+import utils.Color;
 
 public class Hospital {
+    public static final String ANSI_RESET = "\u001B[0m";
     public static void main(String[] args) throws IOException {
         String patientFilePath = "./TextFiles/Patient_List.txt";
         String stafffilePath = "./TextFiles/Staff_List.txt";
@@ -28,7 +30,8 @@ public class Hospital {
                     User authenticatedUser = login.authenticate(id, password);
 
                     if (authenticatedUser != null) {
-                        System.out.println("\n=========================================");
+                        Color.ColorRole colorRole = authenticatedUser.getColorRole();
+                        System.out.println(colorRole.getColorCode()+"\n=========================================");
                         System.out.println("\nWelcome " + authenticatedUser.getName());
                         System.out.println("Role: " + authenticatedUser.getRole());
                         System.out.println("\n=========================================");
@@ -79,6 +82,6 @@ public class Hospital {
             Enter an option:
             """;
 
-        System.out.println(menu);
+        System.out.println(ANSI_RESET+menu);
     }
 }

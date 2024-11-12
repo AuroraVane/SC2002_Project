@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import controller.PatientUI;
+import utils.Color.ColorRole;
 import utils.TextFileReader;
 
 public class Patient extends User{
@@ -66,6 +67,10 @@ public class Patient extends User{
     
     public void setContactinfo(String contactinfo) {
         this.contactinfo = contactinfo;
+    }
+    @Override
+    public ColorRole getColorRole() {
+        return ColorRole.PATIENT;
     }
 
 }

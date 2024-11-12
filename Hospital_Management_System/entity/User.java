@@ -1,4 +1,7 @@
 package entity;
+
+import utils.Color.ColorRole;
+
 public abstract class User {
     private String id;
     private String name;
@@ -13,7 +16,8 @@ public abstract class User {
     }
 
     public abstract String getRole();
-
+    public abstract ColorRole getColorRole();
+    
     public String getId() {
         return id;
     }

@@ -1,4 +1,7 @@
 package entity;
+
+import utils.Color.ColorRole;
+
 public class Staff extends User{
     private String age;
     private String role;
@@ -13,5 +16,18 @@ public class Staff extends User{
     }
     public String getAge(){
         return age;
+    }
+    @Override
+    public ColorRole getColorRole() {
+        switch (role) {
+            case "Doctor":
+                return ColorRole.DOCTOR;
+            case "Administrator":
+                return ColorRole.ADMINISTRATOR;
+            case "Pharmacist":
+                return ColorRole.PHARMACIST;
+            default:
+                return ColorRole.PATIENT;
+        }
     }
 }
