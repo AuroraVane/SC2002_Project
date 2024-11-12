@@ -26,13 +26,13 @@ public class PatientAppointmentController{
             }
         }
     }
-    public void scheduleAppointment(String patientID, int appointmentID) {
+    public boolean scheduleAppointment(String patientID, int appointmentID) {
         List<Appointment> appointments;
         try {
             appointments = TextFileReader.loadAppointments(this.APPOINTMENT_FILE_PATH);
         } catch (IOException e) {
             System.out.println("Error loading appointments: " + e.getMessage());
-            return;
+            return false;
         }
 
         // Find the appointment with the given appointmentID
@@ -53,8 +53,10 @@ public class PatientAppointmentController{
             // Update the appointment in the file
             TextFileWriter.updateAppointment(appointmentToBook);
             System.out.println("Appointment scheduled successfully for patient " + patientID);
+            return true;
         } else {
             System.out.println("Appointment not available or already booked.");
+            return false;
         }
         
     }

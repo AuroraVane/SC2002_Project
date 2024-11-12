@@ -76,13 +76,13 @@ public class PatientAppointmentUI extends AppointmentUI{
             System.out.print("Enter the new Appointment ID for rescheduling: ");
             int newAppointmentID = Integer.parseInt(scanner.nextLine());
 
-            // Update the existing appointment to mark it as "RESCHEDULED" (optional, if you want to track this)
-            appointmentToReschedule.setPatientID("NA");
-            appointmentToReschedule.setStatus("EMPTY");
-            TextFileWriter.updateAppointment(appointmentToReschedule);
-
             // Schedule the new appointment with "PENDING" status for the patient
-            appointmentcontroller.scheduleAppointment(patientID, newAppointmentID);
+            if(appointmentcontroller.scheduleAppointment(patientID, newAppointmentID)){
+                // Update the existing appointment to mark it as "RESCHEDULED" (optional, if you want to track this)
+                appointmentToReschedule.setPatientID("NA");
+                appointmentToReschedule.setStatus("EMPTY");
+                TextFileWriter.updateAppointment(appointmentToReschedule);
+            }
 
             System.out.println("Appointment rescheduled successfully for patient " + patientID);
 
