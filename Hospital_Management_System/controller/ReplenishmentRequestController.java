@@ -49,7 +49,6 @@ public class ReplenishmentRequestController {
 
     public void navigateMenu(int option, Staff staff){
         if (staff instanceof Administrator){
-            System.out.println("Admin");
             switch(option){
                 case 1:
                     viewReplenishmentRequests();

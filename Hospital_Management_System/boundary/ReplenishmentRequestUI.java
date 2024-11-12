@@ -10,24 +10,32 @@ import entity.Staff;
 
 public class ReplenishmentRequestUI {
     public void printMainMenu(Staff staff) {
-
-        System.out.println("\n1. View Replenishment Requests");
+        System.out.println("=========================================");
+        System.out.println("\n    1. View Replenishment Requests");
         if(staff instanceof Administrator){
-            System.out.println("2. Approve Replenishment Requests");
+            System.out.println("    2. Approve Replenishment Requests");
         }
         else if(staff instanceof Pharmacist){
-            System.out.println("2. Submit Replenishment Requests");
+            System.out.println("    2. Submit Replenishment Requests");
         }
-        System.out.println("3. Back");
+        System.out.println("    3. Back");
+        System.out.println("\n=========================================");
     }
     public void printReplenishmentRequests(List<ReplenishmentRequest> replenishmentRequestList) {
-        System.out.println("\nReplenishment Requests:");
+        System.out.println("=========================================");
+        System.out.println("\n      Replenishment Requests:");
         for (ReplenishmentRequest replenishmentRequest : replenishmentRequestList) {
-            System.out.println(replenishmentRequest.getId()+" | "+ replenishmentRequest.getMedicationName() + ", " + replenishmentRequest.getQuantity() +", " + replenishmentRequest.getStatus());
+            System.out.printf("%-4s | %-14s | %-4s | %-8s \n",
+                                        replenishmentRequest.getId(),
+                                        replenishmentRequest.getMedicationName(),
+                                        replenishmentRequest.getQuantity(),
+                                        replenishmentRequest.getStatus()
+                                          );
         }
     }
     public String approveReplenishmentRequests(List<ReplenishmentRequest> replenishmentRequestList) {
         printReplenishmentRequests(replenishmentRequestList);
+        System.out.println("=========================================");
         System.out.println("\nSelect a replenishment request to approve:");
         @SuppressWarnings("resource")
         Scanner scanner = new Scanner(System.in);

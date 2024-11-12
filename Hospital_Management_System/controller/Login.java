@@ -87,7 +87,6 @@ public class Login {
     }
     public static void approvePasswordResetRequests(){
         resetPasswordRequests = TextFileReader.loadResetPasswordRequests();
-        System.out.println(resetPasswordRequests);
         for(String id : resetPasswordRequests){
             System.out.println("Approve password reset request for " + id + "? (Y/N)");
             @SuppressWarnings("resource")
