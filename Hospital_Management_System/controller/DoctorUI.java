@@ -22,6 +22,7 @@ public class DoctorUI extends StaffUI {
         }
     }
     public void printMenu() {
+        System.out.println("=========================================");
         System.out.println("1. View Patient Medical Records");
         System.out.println("2. Update Patient Medical Records");
         System.out.println("3. View Personal Schedule");
@@ -31,6 +32,7 @@ public class DoctorUI extends StaffUI {
         System.out.println("7. Record Appointment Outcome");
         System.out.println("8. Change Password");
         System.out.println("9. Log Out");
+        System.out.println("=========================================");
     }
     @Override
     public void navigateMenu(int option) {

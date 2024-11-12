@@ -22,12 +22,16 @@ public class PharmacistUI extends StaffUI{
         }
     }
     public void printMenu(){
+        System.out.println("=========================================");
+        System.out.println("           PHARMACIST MAIN MENU          ");
+        System.out.println("=========================================");
         System.out.println("1. View Appointment Outcome Record");
         System.out.println("2. Update Prescription Status");
         System.out.println("3. View Medication Inventory");
         System.out.println("4. Submit Replenishment Request");
         System.out.println("5. Change Password");
         System.out.println("6. Log Out");
+        System.out.println("=========================================");
     }
     public void changePassword(){
         System.out.println("Enter new password: ");
