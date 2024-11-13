@@ -190,11 +190,10 @@ public class PatientAppointmentUI extends AppointmentUI{
             appointments = TextFileReader.loadAppointments(APPOINTMENT_FILE_PATH);
     
             System.out.println("Your Pending and Confirmed Appointments:");
-    
+            System.out.println("Appointment ID |     Doctor     | Date     | Time | Status");
             for (Appointment appointment : appointments) {
                 if (appointment.getPatientID().equals(patientID) &&
                     (appointment.getStatus().equals(Status.PENDING) || appointment.getStatus().equals(Status.CONFIRMED))) {
-                    System.out.println("Appointment ID |     Doctor     | Date     | Time | Status");
                     printAppointment(appointment);
                     foundAppointments = true;
                 }
