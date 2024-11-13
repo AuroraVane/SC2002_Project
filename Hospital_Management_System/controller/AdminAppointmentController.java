@@ -6,7 +6,7 @@ import java.util.List;
 import utils.TextFileReader;
 
 /**
- *
+ * Controller class for AdminAppointmentUI 
  */
 public class AdminAppointmentController{
     private List<Appointment> appointmentList;
@@ -22,7 +22,7 @@ public class AdminAppointmentController{
     }
 
     /**
-     *
+     * Controller for the menu
      */
     public void MenuController() {
         appointmentUI.printMainMenu();

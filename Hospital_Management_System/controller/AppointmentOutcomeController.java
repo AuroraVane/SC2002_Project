@@ -9,7 +9,7 @@ import utils.TextFileReader;
 import utils.TextFileWriter;
 
 /**
- *
+ * Controller class for AppointmentOutcome entity and AppointmentOutcomeUI
  */
 public class AppointmentOutcomeController {
 
@@ -45,7 +45,7 @@ public class AppointmentOutcomeController {
     }
 
     /**
-     *
+     * @param appointmentId
      */
     public AppointmentOutcomeController() {
     }

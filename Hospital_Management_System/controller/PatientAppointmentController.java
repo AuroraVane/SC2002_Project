@@ -7,13 +7,13 @@ import utils.TextFileReader;
 import utils.TextFileWriter;
 
 /**
- *
+ * Controller class for PatientAppointmentUI 
  */
 public class PatientAppointmentController{
     private static final String APPOINTMENT_FILE_PATH = "./TextFiles/Appointment_List.txt";
 
     /**
-     *
+     * Constructor for PatientAppointmentController
      */
     public PatientAppointmentController(){
     }

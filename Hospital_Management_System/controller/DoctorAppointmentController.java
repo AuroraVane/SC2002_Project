@@ -11,7 +11,7 @@ import utils.TextFileReader;
 import utils.TextFileWriter;
 
 /**
- *
+ * Controller class for DoctorAppointmentUI 
  */
 public class DoctorAppointmentController{
     private List<Appointment> DoctorAppointmentList;

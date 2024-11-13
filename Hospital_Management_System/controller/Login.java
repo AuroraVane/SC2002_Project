@@ -14,7 +14,7 @@ import utils.TextFileWriter;
 import java.util.Scanner;
 
 /**
- *
+ * Controller class for Login 
  */
 public class Login {
     private List<Patient> patientList;
@@ -68,7 +68,7 @@ public class Login {
     }
 
     /**
-     *
+     * Forget password function to reset password
      */
     public static void forgetPassword() {
         System.out.println("===================================================");
@@ -104,7 +104,7 @@ public class Login {
     }
 
     /**
-     *
+     * Approve password reset requests for administrator usage
      */
     public static void approvePasswordResetRequests(){
         resetPasswordRequests = TextFileReader.loadResetPasswordRequests();

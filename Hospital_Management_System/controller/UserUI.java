@@ -4,7 +4,7 @@ import entity.Staff;
 import entity.Patient;
 
 /**
- *
+ * Interface for UserUI to be used to set controller functions for user interface
  */
 public interface UserUI {
     public void printMenu();

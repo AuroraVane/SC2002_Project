@@ -13,7 +13,7 @@ import utils.TextFileReader;
 import utils.TextFileWriter;
 
 /**
- *
+ * Controller class for ManageStaffUI used by Administrator to manage staff controls the flow of the ManageStaffUI and the staff entity
  */
 public class ManageStaffController {
     private static List<Staff> staffList;
@@ -30,7 +30,7 @@ public class ManageStaffController {
     }
 
     /**
-     *
+     * Controller for the menu to manage staff
      */
     public void MenuController() {
         int option = -1;
@@ -81,7 +81,7 @@ public class ManageStaffController {
     }
 
     /**
-     *
+     * @param staffList 
      */
     public void viewStaff() {
         manageStaff.printViewStaffMenu();
@@ -120,7 +120,7 @@ public class ManageStaffController {
     }
 
     /**
-     *
+     * Add a staff member to the staff list
      */
     public void addStaff() {
         String[] staffDetails = manageStaff.getStaffDetails();
@@ -147,7 +147,7 @@ public class ManageStaffController {
     }
 
     /**
-     *
+     * Remove a staff member from the staff list
      */
     public void removeStaff() {
         String id = manageStaff.getStaffId();
@@ -162,7 +162,7 @@ public class ManageStaffController {
     }
 
     /**
-     *
+     * Update a staff member's details
      */
     public void updateStaff() {
         String id = manageStaff.getStaffId();
@@ -179,7 +179,7 @@ public class ManageStaffController {
     }
 
     /**
-     *
+     * Load the staff list from the file
      */
     public static void loadStaffList() {
         try {

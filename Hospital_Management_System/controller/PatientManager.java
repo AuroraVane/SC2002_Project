@@ -5,7 +5,7 @@ import java.util.List;
 import utils.TextFileReader;
 
 /**
- *
+ * Controller class for PatientManager 
  */
 public class PatientManager {
     private List<Patient> OverseeingPatients;
@@ -25,7 +25,7 @@ public class PatientManager {
     }
 
     /**
-     *
+     * @param patient
      */
     public void printAlloverseeingPatients() {
         int i=1;
@@ -52,7 +52,7 @@ public class PatientManager {
     }
 
     /**
-     *
+     * @param id
      */
     public static void loadPatientList() {
         try {

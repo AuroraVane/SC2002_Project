@@ -3,7 +3,7 @@ import entity.Administrator;
 import java.io.IOException;
 
 /**
- *
+ * Controller class for AdministratorUI to manage the administrator's functions and UI, inherits from StaffUI
  */
 public class AdministratorUI extends StaffUI{
     private Administrator administrator;
@@ -30,7 +30,7 @@ public class AdministratorUI extends StaffUI{
     }
 
     /**
-     *
+     * Display the UI for the administrator
      */
     public void printMenu(){
         System.out.println("=========================================");

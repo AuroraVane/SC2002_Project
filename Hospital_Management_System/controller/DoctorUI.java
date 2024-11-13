@@ -6,7 +6,7 @@ import boundary.MedicalRecordUI;
 import entity.Doctor;
 
 /**
- *
+ * Controller class for DoctorUI to navigate the doctor functions and UI, inherits from StaffUI
  */
 public class DoctorUI extends StaffUI {
     private Doctor doctor;
@@ -29,7 +29,7 @@ public class DoctorUI extends StaffUI {
     }
 
     /**
-     *
+     * Display the UI for the doctor
      */
     public void printMenu() {
         System.out.println("=========================================");

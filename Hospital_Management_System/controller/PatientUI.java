@@ -10,7 +10,7 @@ import entity.Staff;
 import utils.TextFileWriter;
 
 /**
- *
+ * Controller class for PatientUI implemented from UserUI interface 
  */
 public class PatientUI implements UserUI {
     private Patient patient;

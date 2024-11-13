@@ -13,7 +13,7 @@ import utils.TextFileReader;
 import utils.TextFileWriter;
 
 /**
- *
+ * Controller class for ReplenishmentRequestUI used by Administrator and Pharmacist to manage replenishment requests controls the flow of the ReplenishmentRequestUI and the replenishment request entity
  */
 public class ReplenishmentRequestController {
     private List<ReplenishmentRequest> replenishmentRequestList;

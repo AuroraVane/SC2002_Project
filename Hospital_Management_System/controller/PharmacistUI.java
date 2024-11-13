@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- *
+ * Controller class for PharmacistUI to be used to navigate the pharmacist functions
  */
 public class PharmacistUI extends StaffUI{
     private Pharmacist pharmacist;

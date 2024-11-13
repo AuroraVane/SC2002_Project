@@ -10,7 +10,7 @@ import utils.TextFileWriter;
 
 
 /**
- *
+ * Controller class for MedicationInventoryUI 
  */
 public class MedicationInventoryController {
     private List<Medicine> medicationInventoryList;
@@ -27,7 +27,7 @@ public class MedicationInventoryController {
     }
 
     /**
-     *
+     * Controller for the menu to manage medication inventory
      */
     public void MenuController() {
         int option = -1;
@@ -70,14 +70,14 @@ public class MedicationInventoryController {
     }
 
     /**
-     *
+     * Display the medication inventory
      */
     public void viewMedicationInventory(){
         medicationInventoryUI.printMedicationInventory();
     }
 
     /**
-     *
+     * Update the medication inventory
      */
     public void updateMedicationInventory(){
         @SuppressWarnings("resource")

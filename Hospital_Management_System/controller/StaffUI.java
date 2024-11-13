@@ -6,7 +6,7 @@ import java.util.Scanner;
 import utils.TextFileWriter;
 
 /**
- *
+ * Abstract class for StaffUI to be used to fill in the functions for the staff user interface
  */
 public abstract class StaffUI implements UserUI{
     /**
