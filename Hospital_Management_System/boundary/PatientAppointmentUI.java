@@ -30,11 +30,13 @@ public class PatientAppointmentUI extends AppointmentUI{
      * @param appointment
      */
     public void printAppointment(Appointment appointment){
-        System.out.printf("%-14s | %s | %s | %s%n",
+        
+        System.out.printf("%-14s | %-14s | %s | %s | %s%n",
                         appointment.getAppointmentID(),
                         TextFileReader.findUserName(appointment.getStaffID(), "Doctor"),
                         appointment.getDate(),
-                        appointment.getTime());
+                        appointment.getTime(),
+                        appointment.getStatus().toString());
     }
 
     /**
@@ -42,6 +44,7 @@ public class PatientAppointmentUI extends AppointmentUI{
      */
     @Override
     public void printAllAppointments(List<Appointment> appointmentList){
+        System.out.println("Appointment ID |     Doctor     | Date     | Time | Status");
         for (Appointment appointment : appointmentList) {
             printAppointment(appointment);
         }
@@ -186,12 +189,11 @@ public class PatientAppointmentUI extends AppointmentUI{
             appointments = TextFileReader.loadAppointments(APPOINTMENT_FILE_PATH);
     
             System.out.println("Your Pending and Confirmed Appointments:");
-            System.out.println("Appointment ID | Doctor | Date       | Time");
     
             for (Appointment appointment : appointments) {
                 if (appointment.getPatientID().equals(patientID) &&
                     (appointment.getStatus().equals(Status.PENDING) || appointment.getStatus().equals(Status.CONFIRMED))) {
-                    
+                    System.out.println("Appointment ID |     Doctor     | Date     | Time | Status");
                     printAppointment(appointment);
                     foundAppointments = true;
                 }
