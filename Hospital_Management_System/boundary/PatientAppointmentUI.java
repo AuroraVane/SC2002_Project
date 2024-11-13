@@ -108,7 +108,6 @@ public class PatientAppointmentUI extends AppointmentUI{
                 TextFileWriter.updateAppointment(appointmentToReschedule);
             }
 
-            System.out.println("Appointment rescheduled successfully for patient " + patientID);
 
         } catch (IOException e) {
             System.out.println("Error processing file: " + e.getMessage());
