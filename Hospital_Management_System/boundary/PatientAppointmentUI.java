@@ -166,10 +166,10 @@ public class PatientAppointmentUI extends AppointmentUI{
         List<Appointment> appointments;
         try {
             appointments = TextFileReader.loadAppointments("./TextFiles/Appointment_List.txt");
+            System.out.println("Appointment ID |     Doctor     | Date     | Time | Status");
             for (Appointment appointment : appointments) {
                 // Check if the appointment has no patient assigned (patientID is "NA")
                 if (appointment.getPatientID().equals("NA")) {
-                    System.out.println("Appointment ID |     Doctor     | Date     | Time | Status");
                     printAppointment(appointment);
                 }
             }
