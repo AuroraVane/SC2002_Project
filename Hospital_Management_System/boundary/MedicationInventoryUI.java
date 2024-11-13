@@ -3,7 +3,13 @@ import java.util.List;
 
 import entity.Medicine;
 
+/**
+ *
+ */
 public class MedicationInventoryUI {
+    /**
+     *
+     */
     public void printMainMenu() {
         System.out.println("=========================================");
         System.out.println("\n      1. View Medication Inventory");
@@ -11,6 +17,10 @@ public class MedicationInventoryUI {
         System.out.println("      3. Back");
         System.out.println("\n=========================================");
     }
+
+    /**
+     *
+     */
     public void printMedicationInventory() {
         List <Medicine> medicineList = Medicine.getAllMedicines();
         System.out.println("\nMedication Inventory:");

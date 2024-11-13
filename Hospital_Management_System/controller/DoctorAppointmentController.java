@@ -9,15 +9,27 @@ import java.util.List;
 import utils.TextFileReader;
 import utils.TextFileWriter;
 
+/**
+ *
+ */
 public class DoctorAppointmentController{
     private List<Appointment> DoctorAppointmentList;
     private TextFileWriter writer;
-    
-    
+
+
+    /**
+     * @param fileName
+     * @param doctor
+     * @throws IOException
+     */
     public DoctorAppointmentController(String fileName, Doctor doctor) throws IOException {
         this.DoctorAppointmentList = TextFileReader.loadDoctorAppointments(fileName, doctor.getId());
         writer= new TextFileWriter();
     }
+
+    /**
+     * @param appmtID
+     */
     public void RemoveAppointment(int appmtID){
         int i=0;
         for (Appointment appmt:this.DoctorAppointmentList){
@@ -28,7 +40,11 @@ public class DoctorAppointmentController{
             i++;
         }
     }
-    
+
+    /**
+     * @param status
+     * @return
+     */
     public List<Appointment> GetStatusAppointments(String status){
         List<Appointment> appointments = new ArrayList<>();
         for (Appointment appmt:this.DoctorAppointmentList){
@@ -39,20 +55,36 @@ public class DoctorAppointmentController{
         return appointments;
     }
 
+    /**
+     * @param doctorID
+     * @param date
+     * @param time
+     */
     public void SetAvailableSlot(String doctorID, String date, String time){
         Appointment appmt=new Appointment(doctorID, "EMPTY", date, time);
         writer.addAppointment(appmt);
         DoctorAppointmentList.add(appmt);
     }
 
+    /**
+     * @param appmt
+     */
     public void AcceptPendingAppointment(Appointment appmt){
         appmt.setStatus("CONFIRMED");
         TextFileWriter.updateAppointment(appmt);
     }
+
+    /**
+     * @param appmt
+     */
     public void DeclinePendingAppointment(Appointment appmt){
         appmt.setStatus("CANCELLED");
         TextFileWriter.updateAppointment(appmt);
     }
+
+    /**
+     * @return
+     */
     public List<Appointment> GetDoctorUpcoming(){
         List<Appointment> appointments=GetStatusAppointments("CONFIRMED");
         if (!appointments.isEmpty()){
@@ -71,6 +103,10 @@ public class DoctorAppointmentController{
         }
         return appointments;
     }
+
+    /**
+     * @param appmt
+     */
     public void ResolveAppointment(Appointment appmt){
         appmt.setStatus("COMPLETED");
         TextFileWriter.updateAppointment(appmt);

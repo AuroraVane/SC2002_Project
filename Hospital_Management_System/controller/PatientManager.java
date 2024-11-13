@@ -4,17 +4,29 @@ import java.io.IOException;
 import java.util.List;
 import utils.TextFileReader;
 
+/**
+ *
+ */
 public class PatientManager {
     private List<Patient> OverseeingPatients;
     private List<String> OverseeingPatientsID;
     private static List<Patient> patientList;
 
+    /**
+     * @param doctorId
+     * @param OverseeingPatientsFilePath
+     * @param PatientFilePath
+     * @throws IOException
+     */
     public PatientManager(String doctorId, String OverseeingPatientsFilePath, String PatientFilePath) throws IOException{
         this.OverseeingPatientsID=TextFileReader.loadOverseeingPatients(doctorId, OverseeingPatientsFilePath);
         this.OverseeingPatients=TextFileReader.loadSelectivePatients(PatientFilePath, OverseeingPatientsID);
         
     }
 
+    /**
+     *
+     */
     public void printAlloverseeingPatients() {
         int i=1;
         System.out.println("Overseeing Patients:");
@@ -23,13 +35,25 @@ public class PatientManager {
             i++;
         }
     }
+
+    /**
+     * @param index
+     * @return
+     */
     public Patient getPatientByIndex(int index){
         return this.OverseeingPatients.get(index);
     }
+
+    /**
+     * @return
+     */
     public List<String> getOverseeingPatientsID(){
         return this.OverseeingPatientsID;
     }
 
+    /**
+     *
+     */
     public static void loadPatientList() {
         try {
             patientList = TextFileReader.loadPatients("./TextFiles/Patient_List.txt");
@@ -38,6 +62,10 @@ public class PatientManager {
         }
     }
 
+    /**
+     * @param id
+     * @return
+     */
     public static boolean checkPatientIDExist(String id) {
         // Check if staff ID exists
         loadPatientList();

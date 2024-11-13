@@ -5,18 +5,36 @@ import controller.PharmacistUI;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ *
+ */
 public class Pharmacist extends Staff{
     private PharmacistUI pharmacistUI;
 
+    /**
+     * @param id
+     * @param name
+     * @param password
+     * @param gender
+     * @param role
+     * @param age
+     */
     public Pharmacist(String id, String name, String password, String gender, String role, String age) {
         super(id,name,password,gender,role,age);
         this.pharmacistUI = new PharmacistUI(this);
     }
 
+    /**
+     * @return
+     */
     @Override
     public String getRole() {
         return "Pharmacist";
-    } 
+    }
+
+    /**
+     *
+     */
     public void displayUI(){
         int option = 0;
         @SuppressWarnings("resource")
@@ -30,6 +48,9 @@ public class Pharmacist extends Staff{
     }
 
 
+    /**
+     * @param appointmentId
+     */
     public void updatePrescriptionStatus(int appointmentId) {
         List<AppointmentOutcome> appointmentOutcomes = AppointmentOutcomeController.getAllAppointmentOutcomes();
         AppointmentOutcome record = null;

@@ -5,12 +5,18 @@ import boundary.DoctorAppointmentUI;
 import boundary.MedicalRecordUI;
 import entity.Doctor;
 
+/**
+ *
+ */
 public class DoctorUI extends StaffUI {
     private Doctor doctor;
     
     private MedicalRecordUI medicalRecordUI;
     private DoctorAppointmentUI doctorAppointmentUI;
-    
+
+    /**
+     * @param doctor
+     */
     public DoctorUI(Doctor doctor) {
         this.doctor = doctor;
         try {
@@ -21,6 +27,10 @@ public class DoctorUI extends StaffUI {
             e.printStackTrace();
         }
     }
+
+    /**
+     *
+     */
     public void printMenu() {
         System.out.println("=========================================");
         System.out.println("1. View Patient Medical Records");
@@ -34,6 +44,10 @@ public class DoctorUI extends StaffUI {
         System.out.println("9. Log Out");
         System.out.println("=========================================");
     }
+
+    /**
+     * @param option
+     */
     @Override
     public void navigateMenu(int option) {
         switch (option) {

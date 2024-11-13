@@ -9,12 +9,18 @@ import entity.Patient;
 import entity.Staff;
 import utils.TextFileWriter;
 
+/**
+ *
+ */
 public class PatientUI implements UserUI {
     private Patient patient;
     private PatientMedicalRecordUI medicalrecordUI;
     private PatientAppointmentUI patientappointmentUI;
     private PatientNonMedicalRecordUI nonmedicalrecordUI;
 
+    /**
+     * @param patient
+     */
     public PatientUI(Patient patient) {
         this.patient = patient;
         try {
@@ -27,10 +33,10 @@ public class PatientUI implements UserUI {
         this.nonmedicalrecordUI = new PatientNonMedicalRecordUI(patient); 
         
     }
-    public void changePassword(){
-        System.out.println("Enter new password: ");
-        // Code to change password
-    }
+
+    /**
+     *
+     */
     public void printMenu() {
         System.out.println("1. View Medical Record");
         System.out.println("2. Update Personal Information");
@@ -45,6 +51,9 @@ public class PatientUI implements UserUI {
         System.out.println("0. Log Out");
     }
 
+    /**
+     * @param option
+     */
     public void navigateMenu(int option) {
         switch (option) {
             case 1:
@@ -85,8 +94,10 @@ public class PatientUI implements UserUI {
         }
     }
 
-    
-    
+
+    /**
+     *
+     */
     public void skeletonAppointment() {
         System.out.println("Skeleton for Appointment");
     }
@@ -94,6 +105,10 @@ public class PatientUI implements UserUI {
     public void changePassword(Staff staff) {
         
     }
+
+    /**
+     * @param patient
+     */
     @Override
     public void changePassword(Patient patient) {
         System.out.println("Enter new password: ");
@@ -110,6 +125,9 @@ public class PatientUI implements UserUI {
         }
     }
 
+    /**
+     *
+     */
     public static void createPatient(){
         System.out.println("===================================================");
         System.out.println("Registering a new patient...");

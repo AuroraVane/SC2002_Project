@@ -13,16 +13,29 @@ import utils.TextFileWriter;
 
 import java.util.Scanner;
 
+/**
+ *
+ */
 public class Login {
     private List<Patient> patientList;
     private List<Staff> staffList;
     private static List<String> resetPasswordRequests;
 
+    /**
+     * @param patientFilePath
+     * @param staffFilePath
+     * @throws IOException
+     */
     public Login(String patientFilePath, String staffFilePath) throws IOException{
         patientList = TextFileReader.loadPatients(patientFilePath);
         staffList = TextFileReader.loadStaff(staffFilePath);
     }
 
+    /**
+     * @param id
+     * @param password
+     * @return
+     */
     public User authenticate(String id, String password){
         try{
             patientList = TextFileReader.loadPatients("./TextFiles/Patient_List.txt");
@@ -53,6 +66,10 @@ public class Login {
         System.out.println("Invalid ID or password");
         return null;
     }
+
+    /**
+     *
+     */
     public static void forgetPassword() {
         System.out.println("===================================================");
         System.out.println("                Forget Password");
@@ -85,6 +102,10 @@ public class Login {
                 break;
         }
     }
+
+    /**
+     *
+     */
     public static void approvePasswordResetRequests(){
         resetPasswordRequests = TextFileReader.loadResetPasswordRequests();
         for(String id : resetPasswordRequests){

@@ -5,14 +5,27 @@ import java.io.IOException;
 import java.util.List;
 import utils.TextFileReader;
 
+/**
+ *
+ */
 public class PatientMedicalRecordUI {
     //private MedicalRecordController MRController;
     private String patientID;
 
+    /**
+     * @param MRfilepath
+     * @param PatientfilePath
+     * @param patientID
+     * @throws IOException
+     */
     public PatientMedicalRecordUI(String MRfilepath, String PatientfilePath, String patientID) throws IOException{
         //MRController=new MedicalRecordController(MRfilepath, PatientfilePath);
         this.patientID=patientID;
     }
+
+    /**
+     * @param p
+     */
     public void viewMedicalRecord(Patient p) {
         System.out.println("Medical Record for " + p.getName() + ":");
         System.out.println("DOB: " + p.getDOB());

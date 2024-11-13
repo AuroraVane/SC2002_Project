@@ -1,6 +1,12 @@
 package utils;
 
+/**
+ *
+ */
 public class Color {
+    /**
+     *
+     */
     public enum ColorRole {
         PATIENT("\u001B[96m"),         // Light Cyan
         DOCTOR("\u001B[94m"),          // Light Blue
@@ -8,11 +14,17 @@ public class Color {
         PHARMACIST("\u001B[92m");      // Light Green
     
         private final String colorCode;
-    
+
+        /**
+         * @param colorCode
+         */
         ColorRole(String colorCode) {
             this.colorCode = colorCode;
         }
-    
+
+        /**
+         * @return
+         */
         public String getColorCode() {
             return colorCode;
         }

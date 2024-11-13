@@ -12,6 +12,9 @@ import entity.Staff;
 import utils.TextFileReader;
 import utils.TextFileWriter;
 
+/**
+ *
+ */
 public class ReplenishmentRequestController {
     private List<ReplenishmentRequest> replenishmentRequestList;
     private ReplenishmentRequestUI replenishmentRequestUI;
@@ -19,6 +22,10 @@ public class ReplenishmentRequestController {
     private MedicationInventoryController medicationInventoryController;
     private int nextID;
 
+    /**
+     * @param fileName
+     * @throws IOException
+     */
     public ReplenishmentRequestController(String fileName) throws IOException {
         this.replenishmentRequestList = TextFileReader.loadReplenishmentRequest(fileName);
         this.nextID = replenishmentRequestList.size() + 1;
@@ -26,6 +33,9 @@ public class ReplenishmentRequestController {
         this.medicationInventoryController = new MedicationInventoryController("./TextFiles/Medicine_List.txt");
     }
 
+    /**
+     * @param staff
+     */
     public void MenuController(Staff staff) {
         int option = -1;
         while(option != 3){
@@ -47,6 +57,10 @@ public class ReplenishmentRequestController {
         }
     }
 
+    /**
+     * @param option
+     * @param staff
+     */
     public void navigateMenu(int option, Staff staff){
         if (staff instanceof Administrator){
             switch(option){
@@ -80,9 +94,16 @@ public class ReplenishmentRequestController {
         }
     }
 
+    /**
+     *
+     */
     public void viewReplenishmentRequests(){
         replenishmentRequestUI.printReplenishmentRequests(replenishmentRequestList);
     }
+
+    /**
+     *
+     */
     public void approveReplenishmentRequests(){
         String input = replenishmentRequestUI.approveReplenishmentRequests(replenishmentRequestList);
         this.writer = new TextFileWriter();
@@ -96,6 +117,10 @@ public class ReplenishmentRequestController {
         }
         
     }
+
+    /**
+     *
+     */
     public void submitReplenishmentRequests(){
         Medicine medicine = replenishmentRequestUI.submitReplenishmentRequests();
         if(medicine != null){

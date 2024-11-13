@@ -4,8 +4,15 @@ import java.util.Scanner;
 import entity.Patient;
 import utils.TextFileWriter;
 
+/**
+ *
+ */
 public class PatientNonMedicalRecordUI {
     Patient patient;
+
+    /**
+     * @param patient
+     */
     public PatientNonMedicalRecordUI(Patient patient) {
         this.patient=patient;
     }
@@ -13,6 +20,10 @@ public class PatientNonMedicalRecordUI {
         this.patient.setContactinfo(newContactInfo);
         System.out.println("Contact information updated successfully to " + newContactInfo + ".");
     }
+
+    /**
+     *
+     */
     public void updateContactInfo(){
         System.out.println("Enter new contact information:");
         @SuppressWarnings("resource")

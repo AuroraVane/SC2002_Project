@@ -11,13 +11,23 @@ import java.util.Scanner;
 import utils.TextFileReader;
 import utils.TextFileWriter;
 
+/**
+ *
+ */
 public class PatientAppointmentUI extends AppointmentUI{
     private PatientAppointmentController appointmentcontroller;
     private static final String APPOINTMENT_FILE_PATH = "./TextFiles/Appointment_List.txt";
+
+    /**
+     *
+     */
     public PatientAppointmentUI() {
         this.appointmentcontroller = new PatientAppointmentController(); 
     }
 
+    /**
+     * @param appointment
+     */
     public void printAppointment(Appointment appointment){
         System.out.printf("%-14s | %s | %s | %s%n",
                         appointment.getAppointmentID(),
@@ -25,6 +35,10 @@ public class PatientAppointmentUI extends AppointmentUI{
                         appointment.getDate(),
                         appointment.getTime());
     }
+
+    /**
+     * @param appointmentList
+     */
     @Override
     public void printAllAppointments(List<Appointment> appointmentList){
         for (Appointment appointment : appointmentList) {
@@ -32,6 +46,9 @@ public class PatientAppointmentUI extends AppointmentUI{
         }
     }
 
+    /**
+     * @param patient
+     */
     public void scheduleAppointment(Patient patient) {
         System.out.println("Enter the appointment ID you would like to schedule your appointment:");
         @SuppressWarnings("resource")
@@ -39,7 +56,10 @@ public class PatientAppointmentUI extends AppointmentUI{
         int appointmentId = sc.nextInt();
         appointmentcontroller.scheduleAppointment(patient.getId(), appointmentId);
     }
-    
+
+    /**
+     * @param patientID
+     */
     public void rescheduleAppointment(String patientID) {
         try {
             if (!viewScheduledAppointments(patientID)) {
@@ -91,6 +111,9 @@ public class PatientAppointmentUI extends AppointmentUI{
         }
     }
 
+    /**
+     * @param patientID
+     */
     public void cancelAppointment(String patientID) {
         try {
             if (!viewScheduledAppointments(patientID)) {
@@ -132,6 +155,9 @@ public class PatientAppointmentUI extends AppointmentUI{
         }
     }
 
+    /**
+     *
+     */
     public void viewAvailableAppointmentSlots(){
         List<Appointment> appointments;
         try {
@@ -147,8 +173,11 @@ public class PatientAppointmentUI extends AppointmentUI{
         }
     }
 
-    
 
+    /**
+     * @param patientID
+     * @return
+     */
     public boolean viewScheduledAppointments(String patientID){
         List<Appointment> appointments;
         boolean foundAppointments = false;
@@ -177,6 +206,12 @@ public class PatientAppointmentUI extends AppointmentUI{
         }
         return foundAppointments;
     }
+
+    /**
+     * @param appointments
+     * @param patientID
+     * @return
+     */
     private List<Appointment> filterCompletedAppointments(List<Appointment> appointments, String patientID) {
         List<Appointment> completedAppointments = new ArrayList<>();
 
@@ -188,7 +223,10 @@ public class PatientAppointmentUI extends AppointmentUI{
 
         return completedAppointments;
     }
-    
+
+    /**
+     * @param patientID
+     */
     public void viewAppointmentOutcomeRecords(String patientID) {
         List<Appointment> completedAppointments;
         try {

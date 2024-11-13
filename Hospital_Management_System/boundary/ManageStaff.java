@@ -4,7 +4,13 @@ import java.util.Scanner;
 
 import entity.Staff;
 
+/**
+ *
+ */
 public class ManageStaff {
+    /**
+     *
+     */
     public void printMainMenu(){
         System.out.println("\n=========================================");
         System.out.println("\n          STAFF MANAGEMENT MENU");
@@ -16,12 +22,21 @@ public class ManageStaff {
         System.out.println("            5. Back");
         System.out.println("=========================================");
     }
+
+    /**
+     *
+     */
     public void printViewStaffMenu(){
         System.out.println("\n=========================================");
         System.out.println("\n            View Staff By:");
         System.out.println("            1. Name\n            2. Role\n            3. Gender\n            4. Age\n");
         System.out.println("\n=========================================");
     }
+
+    /**
+     * @param staffList
+     * @param option
+     */
     public void printViewStaff(List<Staff> staffList,int option){
         System.out.println("\n=========================================");
         System.out.println("\n              Staff List");
@@ -51,6 +66,10 @@ public class ManageStaff {
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
     }
+
+    /**
+     * @return
+     */
     public String[] getStaffDetails() {
         @SuppressWarnings("resource")
         Scanner scanner = new Scanner(System.in);
@@ -101,6 +120,9 @@ public class ManageStaff {
         return new String[] {name, role, gender, String.valueOf(age)};
     }
 
+    /**
+     * @return
+     */
     public String getStaffId() {
         System.out.println("=========================================");
         @SuppressWarnings("resource")

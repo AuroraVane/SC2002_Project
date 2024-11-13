@@ -9,14 +9,27 @@ import java.util.Scanner;
 import utils.TextFileReader;
 import utils.TextFileWriter;
 
+/**
+ *
+ */
 public class DoctorAppointmentUI extends AppointmentUI{
     private TextFileWriter writer;
     DoctorAppointmentController doctorAppmtController; 
     int index, choice;
+
+    /**
+     * @param doctor
+     * @param appointmentfilepath
+     * @throws IOException
+     */
     public DoctorAppointmentUI(Doctor doctor, String appointmentfilepath)throws IOException{
         this.writer=new TextFileWriter();
         this.doctorAppmtController=new DoctorAppointmentController(appointmentfilepath, doctor);
     }
+
+    /**
+     * @param appointmentList
+     */
     @Override
     public void printAllAppointments(List<Appointment> appointmentList){
         System.out.println("Appointment ID | Patient | Date       | Time");
@@ -28,8 +41,11 @@ public class DoctorAppointmentUI extends AppointmentUI{
                             appointment.getTime());
         }
     }
-    
 
+
+    /**
+     *
+     */
     public void ViewDoctorPersonalSchedule(){
         List<Appointment> appointments=doctorAppmtController.GetStatusAppointments("CONFIRMED");
         if (!appointments.isEmpty()){
@@ -40,6 +56,9 @@ public class DoctorAppointmentUI extends AppointmentUI{
         
     }//3
 
+    /**
+     * @param doctorID
+     */
     public void SetAvailability(String doctorID){
         while (true) {
             @SuppressWarnings("resource")
@@ -81,6 +100,9 @@ public class DoctorAppointmentUI extends AppointmentUI{
         }
     }//4
 
+    /**
+     *
+     */
     public void ManagePendingAppointments(){
         List<Appointment> appointments=doctorAppmtController.GetStatusAppointments("PENDING");
         
@@ -113,6 +135,10 @@ public class DoctorAppointmentUI extends AppointmentUI{
             System.out.println("You currently have 0 Pending appointments");
         }
     }//5
+
+    /**
+     *
+     */
     public void RecordAppointmentOutcome(){
         while(true){
             List<Appointment> appointments=doctorAppmtController.GetStatusAppointments("CONFIRMED");
@@ -153,6 +179,9 @@ public class DoctorAppointmentUI extends AppointmentUI{
     }//7
 
 
+    /**
+     *
+     */
     public void ViewUpcomingAppointments(){
         List<Appointment> list=doctorAppmtController.GetDoctorUpcoming();
         if (list!=null){

@@ -6,6 +6,9 @@ import java.util.Scanner;
 import utils.TextFileReader;
 import utils.TextFileWriter;
 
+/**
+ *
+ */
 public class BillController {
     public static enum PaymentStatus {
         PAID, UNPAID
@@ -15,6 +18,12 @@ public class BillController {
         Paracetamol, Ibuprofen, Amoxicillin, CharcoalPills
     }
 
+    /**
+     * @param appointmentID
+     * @param patientID
+     * @param medicine
+     * @param status
+     */
     public static void addBill(String appointmentID, String patientID, String medicine, PaymentStatus status) {
         String billID = String.valueOf(getBillCount() + 1);
         int amount = -1;
@@ -35,6 +44,9 @@ public class BillController {
         TextFileWriter.addBill(billID, appointmentID, patientID, String.valueOf(100 + (1.5 * amount)), "Unpaid");
     }
 
+    /**
+     * @param patientID
+     */
     public static void getBillbyPatientID(String patientID) {
         List<String> billList = TextFileReader.loadBillList();
         boolean found = false;
@@ -64,6 +76,9 @@ public class BillController {
         }
     }
 
+    /**
+     * @return
+     */
     public static int getBillCount() {
         List<String> billList = TextFileReader.loadBillList();
         int billCount = billList.size();

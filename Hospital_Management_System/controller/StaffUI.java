@@ -5,7 +5,13 @@ import entity.Staff;
 import java.util.Scanner;
 import utils.TextFileWriter;
 
+/**
+ *
+ */
 public abstract class StaffUI implements UserUI{
+    /**
+     * @param staff
+     */
     @Override
     public void changePassword(Staff staff){
         System.out.println("Enter new password: ");
@@ -21,6 +27,10 @@ public abstract class StaffUI implements UserUI{
             System.out.println("Error: Unable to change password.");
         }
     }
+
+    /**
+     * @param patient
+     */
     @Override
     public void changePassword(Patient patient){
         // Code to change password

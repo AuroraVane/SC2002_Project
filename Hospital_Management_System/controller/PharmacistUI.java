@@ -4,12 +4,18 @@ import entity.Pharmacist;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ *
+ */
 public class PharmacistUI extends StaffUI{
     private Pharmacist pharmacist;
     private AppointmentOutcomeController appointmentController;
     private MedicationInventoryController medicationInventoryController;
     private ReplenishmentRequestController replenishmentRequestController;
 
+    /**
+     * @param pharmacist
+     */
     public PharmacistUI(Pharmacist pharmacist){
         this.pharmacist = pharmacist;
         try{
@@ -21,6 +27,10 @@ public class PharmacistUI extends StaffUI{
             e.printStackTrace();
         }
     }
+
+    /**
+     *
+     */
     public void printMenu(){
         System.out.println("=========================================");
         System.out.println("           PHARMACIST MAIN MENU          ");
@@ -33,10 +43,10 @@ public class PharmacistUI extends StaffUI{
         System.out.println("6. Log Out");
         System.out.println("=========================================");
     }
-    public void changePassword(){
-        System.out.println("Enter new password: ");
-        // Code to change password
-    }
+
+    /**
+     * @param option
+     */
     public void navigateMenu(int option){
         switch(option){
             case 1:
@@ -62,6 +72,9 @@ public class PharmacistUI extends StaffUI{
         }
     }
 
+    /**
+     *
+     */
     public void updatePrescriptionStatus() { //Rain Check
         @SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
@@ -70,6 +83,9 @@ public class PharmacistUI extends StaffUI{
         pharmacist.updatePrescriptionStatus(appointmentId);
     }
 
+    /**
+     *
+     */
     public void submitReplenishmentRequest() {
         System.out.println("Select medicine for replenishment");
         @SuppressWarnings("resource")

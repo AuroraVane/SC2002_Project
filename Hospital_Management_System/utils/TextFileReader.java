@@ -15,8 +15,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ *
+ */
 public class TextFileReader {
 
+    /**
+     * @param filePath
+     * @return
+     * @throws IOException
+     */
     public static List<Patient> loadPatients(String filePath) throws IOException {
         List<Patient> patients = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -39,6 +47,11 @@ public class TextFileReader {
         return patients;
     }
 
+    /**
+     * @param filePath
+     * @return
+     * @throws IOException
+     */
     public static List<Staff> loadStaff(String filePath) throws IOException {
         List<Staff> staff = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -60,6 +73,11 @@ public class TextFileReader {
         return staff;
     }
 
+    /**
+     * @param filePath
+     * @return
+     * @throws IOException
+     */
     public static List<Appointment> loadAppointments(String filePath) throws IOException {
         List<Appointment> appointments = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -79,7 +97,12 @@ public class TextFileReader {
         reader.close();
         return appointments;
     }
-    
+
+    /**
+     * @param filePath
+     * @return
+     * @throws IOException
+     */
     public static List<ReplenishmentRequest> loadReplenishmentRequest(String filePath) throws IOException {
         List<ReplenishmentRequest> replenishmentRequests = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -99,6 +122,11 @@ public class TextFileReader {
         return replenishmentRequests;
     }
 
+    /**
+     * @param filePath
+     * @return
+     * @throws IOException
+     */
     public static List<Medicine> loadMedicineList(String filePath) throws IOException {
         List<Medicine> medicineList = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -117,6 +145,11 @@ public class TextFileReader {
         return medicineList;
     }
 
+    /**
+     * @param filePath
+     * @return
+     * @throws IOException
+     */
     public static List<AppointmentOutcome> loadAppointmentOutcomes(String filePath) throws IOException {
         List<AppointmentOutcome> aoList = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -138,8 +171,14 @@ public class TextFileReader {
         return aoList;
     }
 
-    public static List<MedicalRecord> loadMedicalRecord(String filePath, String PatientfilePath)throws IOException{
-        List<MedicalRecord> MRList=new ArrayList<>();
+    /**
+     * @param filePath
+     * @param PatientfilePath
+     * @return
+     * @throws IOException
+     */
+    public static List<MedicalRecord> loadMedicalRecord(String filePath, String PatientfilePath)throws IOException {
+        List<MedicalRecord> MRList = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         String line;
         while ((line = reader.readLine()) != null) {
@@ -147,38 +186,20 @@ public class TextFileReader {
             String id = details[0];
             String diagnosis_FILEPATH = details[1];
             String treatment_plans_FILEPATH = details[2];
-            MedicalRecord mr=new MedicalRecord(loadSelectivePatient(PatientfilePath, id), diagnosis_FILEPATH, treatment_plans_FILEPATH);
+            MedicalRecord mr = new MedicalRecord(loadSelectivePatient(PatientfilePath, id), diagnosis_FILEPATH, treatment_plans_FILEPATH);
             MRList.add(mr);
         }
         reader.close();
-        
+
         return MRList;
     }
 
-    public static List<String> loadDiagnosis(String diagnosisFilePath) throws IOException{
-        List<String> diagnoses=new ArrayList<>();
-        BufferedReader reader = new BufferedReader(new FileReader(diagnosisFilePath));
-        String line;
-        while ((line = reader.readLine()) != null) {
-            diagnoses.add(line);
-        }
-        reader.close();
-        
-        return diagnoses;
-    }
-
-    public static String loadTreatmentPlan(String treatmentFilePath) throws IOException{
-        String treatment= "";
-        BufferedReader reader = new BufferedReader(new FileReader(treatmentFilePath));
-        String line;
-        while ((line = reader.readLine()) != null) {
-            treatment += " " + line;
-        }
-        reader.close();
-        
-        return treatment;
-    }
-
+    /**
+     * @param filePath
+     * @param patientID
+     * @return
+     * @throws IOException
+     */
     public static Patient loadSelectivePatient(String filePath, String patientID) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         String line;
@@ -201,6 +222,12 @@ public class TextFileReader {
         return p;
     }
 
+    /**
+     * @param doctorId
+     * @param filePath
+     * @return
+     * @throws IOException
+     */
     public static List<String> loadOverseeingPatients(String doctorId, String filePath)throws IOException{
         List<String> PatientIDs=new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -217,6 +244,13 @@ public class TextFileReader {
         reader.close();
         return PatientIDs;
     }
+
+    /**
+     * @param filePath
+     * @param patientIDs
+     * @return
+     * @throws IOException
+     */
     public static List<Patient> loadSelectivePatients(String filePath, List<String> patientIDs) throws IOException {
         List<Patient> patients = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -239,6 +273,11 @@ public class TextFileReader {
         reader.close();
         return patients;
     }
+
+    /**
+     * @param filePath
+     * @throws IOException
+     */
     public static void NormalRead(String filePath)throws IOException {
         try {
             File myObj = new File(filePath);
@@ -253,6 +292,13 @@ public class TextFileReader {
             e.printStackTrace();
         }
     }
+
+    /**
+     * @param filePath
+     * @param doctorid
+     * @return
+     * @throws IOException
+     */
     public static List<Appointment> loadDoctorAppointments(String filePath, String doctorid) throws IOException {
         List<Appointment> appointments = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -274,6 +320,9 @@ public class TextFileReader {
         return appointments;
     }
 
+    /**
+     * @return
+     */
     public static List<String> loadResetPasswordRequests(){
         List<String> resetPasswordRequests = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader("./TextFiles/ResetPassword.txt")))
@@ -289,6 +338,12 @@ public class TextFileReader {
         }
         return resetPasswordRequests;
     }
+
+    /**
+     * @param id
+     * @param type
+     * @return
+     */
     public static String findUserName(String id, String type) {
         String filename;
         if (type.equals("Doctor")){
@@ -313,6 +368,9 @@ public class TextFileReader {
         return null;
     }
 
+    /**
+     * @return
+     */
     public static List<String> loadBillList(){
         List<String> billList = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader("./TextFiles/Billing.txt")))

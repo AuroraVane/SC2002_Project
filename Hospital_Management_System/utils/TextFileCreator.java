@@ -3,7 +3,13 @@ import java.io.File;  // Import the File class
 import java.io.IOException;
 
 
+/**
+ *
+ */
 public class TextFileCreator {
+    /**
+     * @param FILE_PATH
+     */
     public static void createFile(String FILE_PATH){
         File file = new File(FILE_PATH);
         if (file.exists()) {

@@ -8,9 +8,15 @@ import java.util.Scanner;
 import utils.TextFileReader;
 import utils.TextFileWriter;
 
+/**
+ *
+ */
 public class AppointmentOutcomeController {
 
-    
+
+    /**
+     * @return
+     */
     public static List<AppointmentOutcome> getAllAppointmentOutcomes(){
         String filePath = "./TextFiles/AppointmentOutcome_List.txt";
         List<AppointmentOutcome> appointmentOutcomes;
@@ -24,6 +30,9 @@ public class AppointmentOutcomeController {
     }
 
 
+    /**
+     * @param appointmentId
+     */
     public static void updateAppointmentOutcomeStatus(int appointmentId){
         List<AppointmentOutcome> appointmentOutcomes = getAllAppointmentOutcomes();
         for (AppointmentOutcome appointmentOutcome : appointmentOutcomes){
@@ -35,8 +44,15 @@ public class AppointmentOutcomeController {
         }
     }
 
+    /**
+     *
+     */
     public AppointmentOutcomeController() {
     }
+
+    /**
+     *
+     */
     public void viewAppointmentOutcomeRecord() {
         List<AppointmentOutcome> appointmentOutcomes = getAllAppointmentOutcomes();
         System.out.println("=========================================");

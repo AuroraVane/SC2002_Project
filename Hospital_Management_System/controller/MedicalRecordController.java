@@ -9,11 +9,21 @@ import utils.TextFileReader;
 
 public class MedicalRecordController {
     private List<MedicalRecord> MedicalRecordList;
-    
 
+
+    /**
+     * @param filepath
+     * @param PatientfilePath
+     * @throws IOException
+     */
     public MedicalRecordController(String filepath, String PatientfilePath)throws IOException{
         this.MedicalRecordList=TextFileReader.loadMedicalRecord(filepath, PatientfilePath);
     }
+
+    /**
+     * @param OverseeingPatientsID
+     * @return
+     */
     public List<MedicalRecord> getOverseeingPatientsMR(List<String> OverseeingPatientsID){
         List<MedicalRecord> MRList=new ArrayList<>();
         for (MedicalRecord x: this.MedicalRecordList) {
@@ -23,7 +33,11 @@ public class MedicalRecordController {
         }
         return MRList;
     }
-    
+
+    /**
+     * @param MRList
+     * @throws IOException
+     */
     public void printAllMedicalRecordOfOverseeing(List<MedicalRecord> MRList) throws IOException{
         System.out.println("Overseeing Patients' Medical Records:");
         Patient p;
@@ -44,6 +58,11 @@ public class MedicalRecordController {
               
         }
     }
+
+    /**
+     * @param patientID
+     * @return
+     */
     public MedicalRecord findPatientMedicalRecord(String patientID){
         for (MedicalRecord x: this.MedicalRecordList) {
             if (patientID.equals(x.getPatient().getId())){

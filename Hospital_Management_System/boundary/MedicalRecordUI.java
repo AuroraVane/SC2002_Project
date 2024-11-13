@@ -7,12 +7,22 @@ import java.util.List;
 import java.util.Scanner;
 import utils.TextFileWriter;
 
+/**
+ *
+ */
 public class MedicalRecordUI {
     private MedicalRecordController MRController;
     private PatientManager patientmanager;
     private TextFileWriter writer;
     private String id;
 
+    /**
+     * @param MRfilepath
+     * @param PatientfilePath
+     * @param OverseeingPatientsFilePath
+     * @param id
+     * @throws IOException
+     */
     public MedicalRecordUI(String MRfilepath, String PatientfilePath, String OverseeingPatientsFilePath, String id)throws IOException{
         this.MRController=new MedicalRecordController(MRfilepath, PatientfilePath);
         this.patientmanager=new PatientManager(id, OverseeingPatientsFilePath, PatientfilePath);
@@ -20,6 +30,9 @@ public class MedicalRecordUI {
         this.id=id;
     }
 
+    /**
+     *
+     */
     public void ViewOverseeingPatients(){
         List<MedicalRecord> MRList=MRController.getOverseeingPatientsMR(patientmanager.getOverseeingPatientsID());
         try {
@@ -29,7 +42,10 @@ public class MedicalRecordUI {
             e.printStackTrace(); // Optional: To print the stack trace for debugging
         }
     }
-    
+
+    /**
+     *
+     */
     public void UpdatePatientMedicalRecords(){
 
         while(true){

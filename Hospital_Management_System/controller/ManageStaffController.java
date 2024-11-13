@@ -12,16 +12,26 @@ import entity.Staff;
 import utils.TextFileReader;
 import utils.TextFileWriter;
 
+/**
+ *
+ */
 public class ManageStaffController {
     private static List<Staff> staffList;
     private ManageStaff manageStaff;
     private TextFileWriter writer;
 
+    /**
+     * @param fileName
+     * @throws IOException
+     */
     public ManageStaffController(String fileName) throws IOException {
         staffList = TextFileReader.loadStaff(fileName);
         this.manageStaff = new ManageStaff();
     }
 
+    /**
+     *
+     */
     public void MenuController() {
         int option = -1;
         while (option != 5) {
@@ -45,6 +55,9 @@ public class ManageStaffController {
         }
     }
 
+    /**
+     * @param option
+     */
     public void navigateMenu(int option) {
         switch (option) {
             case 1:
@@ -67,6 +80,9 @@ public class ManageStaffController {
         }
     }
 
+    /**
+     *
+     */
     public void viewStaff() {
         manageStaff.printViewStaffMenu();
         @SuppressWarnings("resource")
@@ -103,6 +119,9 @@ public class ManageStaffController {
         }
     }
 
+    /**
+     *
+     */
     public void addStaff() {
         String[] staffDetails = manageStaff.getStaffDetails();
         String id = "";
@@ -127,6 +146,9 @@ public class ManageStaffController {
 
     }
 
+    /**
+     *
+     */
     public void removeStaff() {
         String id = manageStaff.getStaffId();
         this.writer = new TextFileWriter();
@@ -139,6 +161,9 @@ public class ManageStaffController {
         }
     }
 
+    /**
+     *
+     */
     public void updateStaff() {
         String id = manageStaff.getStaffId();
         String[] staffDetails = manageStaff.getStaffDetails();
@@ -153,6 +178,9 @@ public class ManageStaffController {
         }
     }
 
+    /**
+     *
+     */
     public static void loadStaffList() {
         try {
             staffList = TextFileReader.loadStaff("./TextFiles/Staff_List.txt");
@@ -162,6 +190,10 @@ public class ManageStaffController {
         }
     }
 
+    /**
+     * @param id
+     * @return
+     */
     public static boolean checkStaffIDExist(String id) {
         // Check if staff ID exists
         loadStaffList();
@@ -172,6 +204,10 @@ public class ManageStaffController {
         }
         return false;
     }
+
+    /**
+     * @return
+     */
     public static List<Integer> getStaffCount(){
         List<Integer> count = new ArrayList<>(Arrays.asList(0, 0, 0)); 
         for (Staff staff : staffList) {

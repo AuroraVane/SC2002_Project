@@ -9,16 +9,26 @@ import java.util.Scanner;
 import utils.TextFileWriter;
 
 
+/**
+ *
+ */
 public class MedicationInventoryController {
     private List<Medicine> medicationInventoryList;
     private MedicationInventoryUI medicationInventoryUI;
     private TextFileWriter writer;
 
+    /**
+     * @param fileName
+     * @throws IOException
+     */
     public MedicationInventoryController(String fileName) throws IOException {
         medicationInventoryList = Medicine.getAllMedicines();
         this.medicationInventoryUI = new MedicationInventoryUI();
     }
 
+    /**
+     *
+     */
     public void MenuController() {
         int option = -1;
         while(option != 3){
@@ -39,6 +49,10 @@ public class MedicationInventoryController {
             navigateMenu(option);
         }
     }
+
+    /**
+     * @param option
+     */
     public void navigateMenu(int option){
         switch(option){
             case 1:
@@ -54,9 +68,17 @@ public class MedicationInventoryController {
                 System.out.println("Invalid option. Please try again.");
         }
     }
+
+    /**
+     *
+     */
     public void viewMedicationInventory(){
         medicationInventoryUI.printMedicationInventory();
     }
+
+    /**
+     *
+     */
     public void updateMedicationInventory(){
         @SuppressWarnings("resource")
         Scanner scanner = new Scanner(System.in);
@@ -70,7 +92,11 @@ public class MedicationInventoryController {
         this.medicationInventoryList= Medicine.getAllMedicines();
         
     }
-    
+
+    /**
+     * @param name
+     * @param stock
+     */
     public void updateMedicationInventory(String name,String stock){
         int newstock = -1;
         for (Medicine medicationInventory : medicationInventoryList) {
@@ -83,6 +109,10 @@ public class MedicationInventoryController {
             writer.updateMedicationInventory(name, String.valueOf(newstock));
         }
     }
+
+    /**
+     * @param medicineName
+     */
     public static void updateMedicineQuantity(String medicineName){
         List<Medicine> medicines = Medicine.getAllMedicines();
         for (Medicine medicine : medicines){
@@ -97,6 +127,9 @@ public class MedicationInventoryController {
         updateMedicineFile(medicines);
     }
 
+    /**
+     * @param medicines
+     */
     public static void updateMedicineFile(List<Medicine> medicines) {
         String filePath = "./TextFiles/Medicine_List.txt";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {

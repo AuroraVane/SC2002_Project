@@ -2,6 +2,9 @@ package controller;
 import entity.Administrator;
 import java.io.IOException;
 
+/**
+ *
+ */
 public class AdministratorUI extends StaffUI{
     private Administrator administrator;
 
@@ -10,6 +13,9 @@ public class AdministratorUI extends StaffUI{
     private MedicationInventoryController medicationInventoryController;
     private ReplenishmentRequestController replenishmentRequestController;
 
+    /**
+     * @param administrator
+     */
     public AdministratorUI(Administrator administrator){
         this.administrator = administrator;
         try {
@@ -22,6 +28,10 @@ public class AdministratorUI extends StaffUI{
             e.printStackTrace(); // Optional: To print the stack trace for debugging
         }
     }
+
+    /**
+     *
+     */
     public void printMenu(){
         System.out.println("=========================================");
         System.out.println("         ADMINISTRATOR MAIN MENU         ");
@@ -35,6 +45,10 @@ public class AdministratorUI extends StaffUI{
         System.out.println(" 7. Log Out");
         System.out.println("=========================================");
     }
+
+    /**
+     * @param option
+     */
     public void navigateMenu(int option){
         switch(option){
             case 1:

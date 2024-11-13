@@ -6,11 +6,21 @@ import entity.Appointment;
 import utils.TextFileReader;
 import utils.TextFileWriter;
 
+/**
+ *
+ */
 public class PatientAppointmentController{
     private static final String APPOINTMENT_FILE_PATH = "./TextFiles/Appointment_List.txt";
 
+    /**
+     *
+     */
     public PatientAppointmentController(){
     }
+
+    /**
+     * @param appointments
+     */
     public static void showAvailableAppointments(List<Appointment> appointments) {
         System.out.println("Available Appointments:");
         System.out.println("Appointment ID | Doctor ID | Date     | Time");
@@ -26,6 +36,12 @@ public class PatientAppointmentController{
             }
         }
     }
+
+    /**
+     * @param patientID
+     * @param appointmentID
+     * @return
+     */
     public boolean scheduleAppointment(String patientID, int appointmentID) {
         List<Appointment> appointments;
         try {

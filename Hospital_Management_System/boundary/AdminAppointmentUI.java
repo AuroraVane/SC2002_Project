@@ -3,14 +3,26 @@ package boundary;
 import entity.Appointment;
 import java.util.List;
 
+/**
+ *
+ */
 public class AdminAppointmentUI extends AppointmentUI{
-
+    /**
+     *
+     */
     public AdminAppointmentUI() {
     }
 
+    /**
+     *
+     */
     public void printMainMenu() {
         System.out.println("View Appointments");
     }
+
+    /**
+     * @param appointmentList
+     */
     @Override
     public void printAllAppointments(List<Appointment> appointmentList){
         for (Appointment appointment : appointmentList) {

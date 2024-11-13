@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ *
+ */
 public class TextFileWriter {
 
     private static final String FILE_PATH = "./TextFiles/Staff_List.txt"; // Path to the staff list file
@@ -22,6 +25,10 @@ public class TextFileWriter {
     private static final String RESET_PASSWORD_FILE_PATH = "./TextFiles/ResetPassword.txt";
     private static final String BILLING_FILE_PATH = "./TextFiles/Billing.txt";
 
+    /**
+     * @param password
+     * @return
+     */
     public static String hashPassword(String password) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -37,6 +44,13 @@ public class TextFileWriter {
         }
     }
 
+    /**
+     * @param id
+     * @param name
+     * @param role
+     * @param gender
+     * @param age
+     */
     // Method to add a new staff member
     public void addStaff(String id, String name, String role, String gender, int age) {
         String newStaff = String.format("%s|%s|%s|%s|%d|%s", id, name, role, gender, age, hashPassword("password"));
@@ -52,6 +66,14 @@ public class TextFileWriter {
         }
     }
 
+    /**
+     * @param id
+     * @param name
+     * @param dob
+     * @param gender
+     * @param bloodtype
+     * @param email
+     */
     public static void addPatient(String id, String name, String dob, String gender, String bloodtype, String email) {
         String newPatient = String.format("%s|%s|%s|%s|%s|%s|%s", id, name, dob, gender, bloodtype, email,
                 hashPassword("password"));
@@ -67,6 +89,9 @@ public class TextFileWriter {
         }
     }
 
+    /**
+     * @param id
+     */
     // Method to delete a staff member by ID
     public void deleteStaff(String id) {
         File inputFile = new File(FILE_PATH);
@@ -118,6 +143,14 @@ public class TextFileWriter {
         }
     }
 
+    /**
+     * @param id
+     * @param name
+     * @param role
+     * @param gender
+     * @param age
+     * @param password
+     */
     // Method to update an existing staff member's details by ID
     public void updateStaff(String id, String name, String role, String gender, int age, String password) {
         File inputFile = new File(FILE_PATH);
@@ -160,6 +193,10 @@ public class TextFileWriter {
         }
     }
 
+    /**
+     * @param name
+     * @param stock
+     */
     public void updateMedicationInventory(String name, String stock) {
         File inputFile = new File("./TextFiles/Medicine_List.txt");
         File tempFile = new File("tempMedicineList.txt");
@@ -204,6 +241,12 @@ public class TextFileWriter {
         }
     }
 
+    /**
+     * @param id
+     * @param name
+     * @param status
+     * @param value
+     */
     public void addReplenishmentRequest(String id, String name, String status, String value) {
         String newReplenishment = String.format("%s|%s|%s|%s", id, name, status, value);
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("./TextFiles/Replenishment_List.txt", true))) {
@@ -217,6 +260,10 @@ public class TextFileWriter {
         }
     }
 
+    /**
+     * @param name
+     * @return
+     */
     public String[] updateReplenishmentRequest(String name) {
         File inputFile = new File("./TextFiles/Replenishment_List.txt");
         File tempFile = new File("tempReplenishmentList.txt");
@@ -262,6 +309,9 @@ public class TextFileWriter {
         return new String[] { medicinename, quantity };
     }
 
+    /**
+     * @param appmt
+     */
     public static void updateAppointment(Appointment appmt) {
         File inputFile = new File(APPOINTMENT_FILE_PATH);
         File tempFile = new File("tempAppointment.txt");
@@ -304,6 +354,9 @@ public class TextFileWriter {
         }
     }
 
+    /**
+     * @param appmt
+     */
     public void addAppointment(Appointment appmt) {
         String newAppointment = String.format("%d|%s|%s|%s|%s|%s", appmt.getAppointmentID(), appmt.getPatientID(),
                 appmt.getStaffID(), appmt.getStatus(), appmt.getDate(), appmt.getTime());
@@ -319,45 +372,14 @@ public class TextFileWriter {
         }
     }
 
-    public void deleteAppointment(String id) {
-        File inputFile = new File(APPOINTMENT_FILE_PATH);
-        File tempFile = new File("tempAppointmentList.txt");
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-                BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
-
-            String currentLine;
-            boolean firstLine = true;
-            while ((currentLine = reader.readLine()) != null) {
-                // Skip any empty lines
-                if (currentLine.trim().isEmpty()) {
-                    continue;
-                }
-                String[] appointmentDetails = currentLine.split("\\|");
-                if (appointmentDetails[0].equals(id)) {
-                    continue;
-                }
-                if (!firstLine) {
-                    writer.newLine();
-                } else {
-                    firstLine = false;
-                }
-                writer.write(currentLine);
-            }
-            System.out.println("Appointment deleted successfully.");
-        } catch (IOException e) {
-            System.out.println("Error processing file: " + e.getMessage());
-        }
-
-        // Replace the original file with the updated file
-        if (!inputFile.delete()) {
-            System.out.println("Could not delete the original file.");
-        }
-        if (!tempFile.renameTo(inputFile)) {
-            System.out.println("Could not rename the temp file.");
-        }
-    }
-
+    /**
+     * @param appointmentId
+     * @param date
+     * @param service
+     * @param medicine
+     * @param status
+     * @param consulationNotes
+     */
     public void addAppointmentOutcome(int appointmentId, String date, String service, String medicine, boolean status,
             String consulationNotes) {
         String newAppointment = String.format("%d|%s|%s|%s|%b|%s", appointmentId, date, service, medicine, status,
@@ -374,6 +396,9 @@ public class TextFileWriter {
         }
     }
 
+    /**
+     * @param FILE_PATH
+     */
     public void WriteFile(String FILE_PATH) {
         try (BufferedWriter Writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
             System.out.println("Enter 0 to exit");
@@ -394,6 +419,10 @@ public class TextFileWriter {
         }
     }
 
+    /**
+     * @param patientId
+     * @param newEmail
+     */
     public static void updatePatientEmail(String patientId, String newEmail) {
         List<String> fileContent = new ArrayList<>();
 
@@ -424,6 +453,10 @@ public class TextFileWriter {
         }
     }
 
+    /**
+     * @param doctorID
+     * @param newpatientID
+     */
     public static void updateOverseeingPatient(String doctorID, String newpatientID) {
         File inputFile = new File(OVERSEEING_PATIENTS_FILE_PATH);
         File tempFile = new File("tempfile.txt");
@@ -468,6 +501,11 @@ public class TextFileWriter {
         }
     }
 
+    /**
+     * @param patient
+     * @param newPassword
+     * @return
+     */
     public static boolean changePassword(Patient patient, String newPassword) {
         List<String> fileContent = new ArrayList<>();
 
@@ -500,6 +538,11 @@ public class TextFileWriter {
         return true;
     }
 
+    /**
+     * @param staff
+     * @param newPassword
+     * @return
+     */
     public static boolean changePassword(Staff staff, String newPassword) {
         List<String> fileContent = new ArrayList<>();
 
@@ -532,6 +575,9 @@ public class TextFileWriter {
         return true;
     }
 
+    /**
+     * @param id
+     */
     public static void sendResetPassword(String id) {
         String newResetRequest = String.format("%s", id);
 
@@ -545,6 +591,10 @@ public class TextFileWriter {
         }
     }
 
+    /**
+     * @param id
+     * @return
+     */
     public static boolean completeResetPassword(String id) {
         List<String> fileContent = new ArrayList<>();
         try {
@@ -624,6 +674,13 @@ public class TextFileWriter {
         return true;
     }
 
+    /**
+     * @param billid xx
+     * @param appointmentID
+     * @param PatientId
+     * @param price
+     * @param status
+     */
     public static void addBill(String billid, String appointmentID, String PatientId, String price, String status) {
         String newBill = String.format("%s|%s|%s|%s|%s", billid, appointmentID, PatientId, price, status);
 
@@ -637,6 +694,9 @@ public class TextFileWriter {
         }
     }
 
+    /**
+     * @param appmtoutcome
+     */
     public static void updateAppointmentOutcome(AppointmentOutcome appmtoutcome) {
         List<String> fileContent = new ArrayList<>();
 
@@ -667,6 +727,9 @@ public class TextFileWriter {
         }
     }
 
+    /**
+     * @param billId
+     */
     public static void updateBillStatus(String billId) {
         File inputFile = new File(BILLING_FILE_PATH);
         File tempFile = new File("tempBillingList.txt");

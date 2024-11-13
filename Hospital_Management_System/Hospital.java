@@ -6,8 +6,16 @@ import controller.PatientUI;
 import entity.User;
 import utils.Color;
 
+/**
+ *
+ */
 public class Hospital {
     public static final String ANSI_RESET = "\u001B[0m";
+
+    /**
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         String patientFilePath = "./TextFiles/Patient_List.txt";
         String stafffilePath = "./TextFiles/Staff_List.txt";
@@ -58,6 +66,10 @@ public class Hospital {
         }
 
     }
+
+    /**
+     *
+     */
     public static void printMenu(){
         String menu = """
             ===================================================

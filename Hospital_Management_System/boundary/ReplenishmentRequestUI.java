@@ -8,7 +8,13 @@ import entity.Pharmacist;
 import entity.ReplenishmentRequest;
 import entity.Staff;
 
+/**
+ *
+ */
 public class ReplenishmentRequestUI {
+    /**
+     * @param staff
+     */
     public void printMainMenu(Staff staff) {
         System.out.println("=========================================");
         System.out.println("\n    1. View Replenishment Requests");
@@ -21,6 +27,10 @@ public class ReplenishmentRequestUI {
         System.out.println("    3. Back");
         System.out.println("\n=========================================");
     }
+
+    /**
+     * @param replenishmentRequestList
+     */
     public void printReplenishmentRequests(List<ReplenishmentRequest> replenishmentRequestList) {
         System.out.println("=========================================");
         System.out.println("\n      Replenishment Requests:");
@@ -33,6 +43,11 @@ public class ReplenishmentRequestUI {
                                           );
         }
     }
+
+    /**
+     * @param replenishmentRequestList
+     * @return
+     */
     public String approveReplenishmentRequests(List<ReplenishmentRequest> replenishmentRequestList) {
         printReplenishmentRequests(replenishmentRequestList);
         System.out.println("=========================================");
@@ -43,6 +58,9 @@ public class ReplenishmentRequestUI {
         return input;
     }
 
+    /**
+     * @return
+     */
     public Medicine submitReplenishmentRequests() {
         System.out.println("Select medicine for replenishment");
         @SuppressWarnings("resource")
