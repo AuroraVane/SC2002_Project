@@ -172,6 +172,7 @@ public class DoctorAppointmentUI extends AppointmentUI{
         List<Appointment> appointments=doctorAppmtController.GetStatusAppointments(Status.PENDING);
         
         while (!appointments.isEmpty()){
+            
             System.out.println("Select which Pending Slot you want to review. \nEnter 0 to go back");
             printAllAppointmentsWithIndex(appointments);
             @SuppressWarnings("resource")
@@ -195,6 +196,7 @@ public class DoctorAppointmentUI extends AppointmentUI{
                         break;
 
             }
+            appointments=doctorAppmtController.GetStatusAppointments(Status.PENDING);
         }
         if(appointments.isEmpty()){
             System.out.println("You currently have 0 Pending appointments");
