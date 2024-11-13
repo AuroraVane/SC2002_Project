@@ -100,7 +100,12 @@ public class DoctorAppointmentUI extends AppointmentUI{
             }
     
             doctorAppmtController.SetAvailableSlot(doctorID, dateStr, time);
+            List<Appointment> emptyappointments=doctorAppmtController.GetStatusAppointments(Status.EMPTY);
+            System.out.println("These are your current availability slots: ");
+            printAllAppointments(emptyappointments);
         }
+        
+
     }//4
 
     /**
