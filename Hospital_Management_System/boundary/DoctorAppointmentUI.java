@@ -2,6 +2,7 @@ package boundary;
 import controller.BillController;
 import controller.DoctorAppointmentController;
 import entity.Appointment;
+import entity.Appointment.Status;
 import entity.Doctor;
 import java.io.IOException;
 import java.util.List;
@@ -47,7 +48,7 @@ public class DoctorAppointmentUI extends AppointmentUI{
      *
      */
     public void ViewDoctorPersonalSchedule(){
-        List<Appointment> appointments=doctorAppmtController.GetStatusAppointments("CONFIRMED");
+        List<Appointment> appointments=doctorAppmtController.GetStatusAppointments(Status.CONFIRMED);
         if (!appointments.isEmpty()){
             printAllAppointments(appointments);
         }else{
@@ -104,7 +105,7 @@ public class DoctorAppointmentUI extends AppointmentUI{
      *
      */
     public void ManagePendingAppointments(){
-        List<Appointment> appointments=doctorAppmtController.GetStatusAppointments("PENDING");
+        List<Appointment> appointments=doctorAppmtController.GetStatusAppointments(Status.PENDING);
         
         while (!appointments.isEmpty()){
             System.out.println("Select which Pending Slot you want to review. \nEnter 0 to go back");
@@ -141,7 +142,7 @@ public class DoctorAppointmentUI extends AppointmentUI{
      */
     public void RecordAppointmentOutcome(){
         while(true){
-            List<Appointment> appointments=doctorAppmtController.GetStatusAppointments("CONFIRMED");
+            List<Appointment> appointments=doctorAppmtController.GetStatusAppointments(Status.CONFIRMED);
             if (!appointments.isEmpty()){
                 printAllAppointmentsWithIndex(appointments);
                 System.out.println("Select which Confirmed Appointment you want to conclude \nEnter 0 to go back");

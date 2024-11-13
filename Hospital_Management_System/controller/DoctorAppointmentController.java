@@ -1,5 +1,6 @@
 package controller;
 import entity.Appointment;
+import entity.Appointment.Status;
 import entity.Doctor;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ public class DoctorAppointmentController{
      * @param status
      * @return
      */
-    public List<Appointment> GetStatusAppointments(String status){
+    public List<Appointment> GetStatusAppointments(Status status){
         List<Appointment> appointments = new ArrayList<>();
         for (Appointment appmt:this.DoctorAppointmentList){
             if (appmt.getStatus().equals(status)){
@@ -61,7 +62,7 @@ public class DoctorAppointmentController{
      * @param time
      */
     public void SetAvailableSlot(String doctorID, String date, String time){
-        Appointment appmt=new Appointment(doctorID, "EMPTY", date, time);
+        Appointment appmt=new Appointment(doctorID, Status.EMPTY, date, time);
         writer.addAppointment(appmt);
         DoctorAppointmentList.add(appmt);
     }
@@ -70,7 +71,7 @@ public class DoctorAppointmentController{
      * @param appmt
      */
     public void AcceptPendingAppointment(Appointment appmt){
-        appmt.setStatus("CONFIRMED");
+        appmt.setStatus(Status.CONFIRMED);
         TextFileWriter.updateAppointment(appmt);
     }
 
@@ -78,7 +79,7 @@ public class DoctorAppointmentController{
      * @param appmt
      */
     public void DeclinePendingAppointment(Appointment appmt){
-        appmt.setStatus("CANCELLED");
+        appmt.setStatus(Status.CANCELLED);
         TextFileWriter.updateAppointment(appmt);
     }
 
@@ -86,7 +87,7 @@ public class DoctorAppointmentController{
      * @return
      */
     public List<Appointment> GetDoctorUpcoming(){
-        List<Appointment> appointments=GetStatusAppointments("CONFIRMED");
+        List<Appointment> appointments=GetStatusAppointments(Status.CONFIRMED);
         if (!appointments.isEmpty()){
             Collections.sort(appointments, Comparator.comparing(Appointment::getDate));
         }else{
@@ -108,7 +109,7 @@ public class DoctorAppointmentController{
      * @param appmt
      */
     public void ResolveAppointment(Appointment appmt){
-        appmt.setStatus("COMPLETED");
+        appmt.setStatus(Status.COMPLETED);
         TextFileWriter.updateAppointment(appmt);
     }
     

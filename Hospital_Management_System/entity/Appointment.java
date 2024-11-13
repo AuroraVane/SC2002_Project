@@ -2,13 +2,23 @@ package entity;
 
 import java.time.Instant;
 
+
 /**
  *
  */
 public class Appointment {
+
+    public enum Status{
+        CONFIRMED,
+        PENDING,
+        EMPTY,
+        COMPLETED,
+        CANCELLED
+
+    }
     private String patientID;
     private String staffID;
-    private String status;
+    private Status status;
     private String date;
     private String time;
     private int appointmentID;
@@ -32,7 +42,7 @@ public class Appointment {
      * @param date
      * @param time
      */
-    public Appointment(int appointmentID, String patientID, String staffID, String status, String date, String time) {
+    public Appointment(int appointmentID, String patientID, String staffID, Status status, String date, String time) {
         this.patientID = patientID;
         this.staffID = staffID;
         this.status = status;
@@ -49,7 +59,7 @@ public class Appointment {
      * @param date
      * @param time
      */
-    public Appointment(String staffID, String status, String date, String time) {
+    public Appointment(String staffID, Status status, String date, String time) {
         this.patientID = "NA";
         this.staffID = staffID;
         this.status = status;
@@ -98,14 +108,14 @@ public class Appointment {
     /**
      * @return
      */
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
     /**
      * @param status
      */
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

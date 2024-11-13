@@ -2,6 +2,7 @@ package boundary;
 import controller.AppointmentOutcomeController;
 import controller.PatientAppointmentController;
 import entity.Appointment;
+import entity.Appointment.Status;
 import entity.AppointmentOutcome;
 import entity.Patient;
 import java.io.IOException;
@@ -78,7 +79,7 @@ public class PatientAppointmentUI extends AppointmentUI{
             for (Appointment appointment : appointments) {
                 if (appointment.getAppointmentID() == appointmentIDToReschedule &&
                     appointment.getPatientID().equals(patientID) &&
-                    (appointment.getStatus().equals("PENDING") || appointment.getStatus().equals("CONFIRMED"))) {
+                    (appointment.getStatus().equals(Status.PENDING) || appointment.getStatus().equals(Status.CONFIRMED))) {
                     appointmentToReschedule = appointment;
                     break;
                 }
@@ -100,7 +101,7 @@ public class PatientAppointmentUI extends AppointmentUI{
             if(appointmentcontroller.scheduleAppointment(patientID, newAppointmentID)){
                 // Update the existing appointment to mark it as "RESCHEDULED" (optional, if you want to track this)
                 appointmentToReschedule.setPatientID("NA");
-                appointmentToReschedule.setStatus("EMPTY");
+                appointmentToReschedule.setStatus(Status.EMPTY);
                 TextFileWriter.updateAppointment(appointmentToReschedule);
             }
 
@@ -132,7 +133,7 @@ public class PatientAppointmentUI extends AppointmentUI{
             for (Appointment appointment : appointments) {
                 if (appointment.getAppointmentID() == appointmentIDToCancel &&
                     appointment.getPatientID().equals(patientID) &&
-                    (appointment.getStatus().equals("PENDING") || appointment.getStatus().equals("CONFIRMED"))) {
+                    (appointment.getStatus().equals(Status.PENDING) || appointment.getStatus().equals(Status.CONFIRMED))) {
                     appointmentToCancel = appointment;
                     break;
                 }
@@ -145,7 +146,7 @@ public class PatientAppointmentUI extends AppointmentUI{
 
             // Update the appointment details to cancel it
             appointmentToCancel.setPatientID("NA");
-            appointmentToCancel.setStatus("EMPTY");
+            appointmentToCancel.setStatus(Status.EMPTY);
             TextFileWriter.updateAppointment(appointmentToCancel);
 
             System.out.println("Appointment canceled successfully for patient " + patientID);
@@ -189,7 +190,7 @@ public class PatientAppointmentUI extends AppointmentUI{
     
             for (Appointment appointment : appointments) {
                 if (appointment.getPatientID().equals(patientID) &&
-                    (appointment.getStatus().equals("PENDING") || appointment.getStatus().equals("CONFIRMED"))) {
+                    (appointment.getStatus().equals(Status.PENDING) || appointment.getStatus().equals(Status.CONFIRMED))) {
                     
                     printAppointment(appointment);
                     foundAppointments = true;
@@ -216,7 +217,7 @@ public class PatientAppointmentUI extends AppointmentUI{
         List<Appointment> completedAppointments = new ArrayList<>();
 
         for (Appointment appointment : appointments) {
-            if (appointment.getPatientID().equals(patientID) && appointment.getStatus().equals("COMPLETED")) {
+            if (appointment.getPatientID().equals(patientID) && appointment.getStatus().equals(Status.COMPLETED)) {
                 completedAppointments.add(appointment);
             }
         }

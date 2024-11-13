@@ -1,7 +1,7 @@
 package controller;
 import java.io.IOException;
 import java.util.List;
-
+import entity.Appointment.Status;
 import entity.Appointment;
 import utils.TextFileReader;
 import utils.TextFileWriter;
@@ -64,7 +64,7 @@ public class PatientAppointmentController{
             // Update the appointment details with patientID and set status to "PENDING"
             TextFileWriter.updateOverseeingPatient(appointmentToBook.getStaffID(), patientID);
             appointmentToBook.setPatientID(patientID);
-            appointmentToBook.setStatus("PENDING");
+            appointmentToBook.setStatus(Status.PENDING);
 
             // Update the appointment in the file
             TextFileWriter.updateAppointment(appointmentToBook);

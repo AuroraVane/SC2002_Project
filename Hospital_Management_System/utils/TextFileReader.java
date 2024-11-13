@@ -1,6 +1,7 @@
 package utils;
 import boundary.MedicalRecord;
 import entity.Appointment;
+import entity.Appointment.Status;
 import entity.AppointmentOutcome;
 import entity.Medicine;
 import entity.Patient;
@@ -91,7 +92,8 @@ public class TextFileReader {
             String status = details[3];
             String date = details[4];
             String time = details[5];
-            appointments.add(new Appointment(Integer.parseInt(appointmentID), patientID, staffID, status, date, time));
+            Status s=Status.valueOf(status);
+            appointments.add(new Appointment(Integer.parseInt(appointmentID), patientID, staffID, s, date, time));
         }
 
         reader.close();
@@ -313,7 +315,8 @@ public class TextFileReader {
                 String status = details[3];
                 String date = details[4];
                 String time = details[5];
-                appointments.add(new Appointment(Integer.parseInt(appointmentID), patientID, staffID, status, date, time));
+                Status s=Status.valueOf(status);
+                appointments.add(new Appointment(Integer.parseInt(appointmentID), patientID, staffID, s, date, time));
             }
         }
         reader.close();
