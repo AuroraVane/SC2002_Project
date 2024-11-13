@@ -29,7 +29,9 @@ public class PatientMedicalRecordUI {
     public void viewMedicalRecord(Patient p) {
         System.out.println("Medical Record for " + p.getName() + ":");
         System.out.println("DOB: " + p.getDOB());
-        System.out.println("Blood Type: " + p.getBloodtype()+"\n");
+        System.out.println("Blood Type: " + p.getBloodtype());
+        System.out.println("Gender: " + p.getGender());
+        System.out.println("Contact Information: " + p.getContactinfo()+"\n");
         try {
             List<MedicalRecord> mRecords = TextFileReader.loadMedicalRecord("./TextFiles/MedicalRecord.txt", "./TextFiles/Patient_List.txt");
             for (MedicalRecord x : mRecords){
