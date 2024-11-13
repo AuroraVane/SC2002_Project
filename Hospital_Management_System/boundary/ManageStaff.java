@@ -5,11 +5,11 @@ import java.util.Scanner;
 import entity.Staff;
 
 /**
- *
+ * UI class for ManageStaff used by ManageStaffController
  */
 public class ManageStaff {
     /**
-     *
+     * Print the staff main menu
      */
     public void printMainMenu(){
         System.out.println("\n=========================================");
@@ -24,7 +24,7 @@ public class ManageStaff {
     }
 
     /**
-     *
+     * Print the view staff menu
      */
     public void printViewStaffMenu(){
         System.out.println("\n=========================================");

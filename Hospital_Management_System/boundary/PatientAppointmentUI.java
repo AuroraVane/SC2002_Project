@@ -13,14 +13,14 @@ import utils.TextFileReader;
 import utils.TextFileWriter;
 
 /**
- *
+ * UI class for PatientAppointmentUI used by PatientAppointmentController
  */
 public class PatientAppointmentUI extends AppointmentUI{
     private PatientAppointmentController appointmentcontroller;
     private static final String APPOINTMENT_FILE_PATH = "./TextFiles/Appointment_List.txt";
 
     /**
-     *
+     * Constructor for PatientAppointmentUI class
      */
     public PatientAppointmentUI() {
         this.appointmentcontroller = new PatientAppointmentController(); 
@@ -159,7 +159,7 @@ public class PatientAppointmentUI extends AppointmentUI{
     }
 
     /**
-     *
+     * View available appointment slots for scheduling
      */
     public void viewAvailableAppointmentSlots(){
         List<Appointment> appointments;

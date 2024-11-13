@@ -4,17 +4,17 @@ import entity.Appointment;
 import java.util.List;
 
 /**
- *
+ * UI class for AdminAppointmentUI used by AdminAppointmentController
  */
 public class AdminAppointmentUI extends AppointmentUI{
     /**
-     *
+     * Default constructor
      */
     public AdminAppointmentUI() {
     }
 
     /**
-     *
+     * Print the main menu
      */
     public void printMainMenu() {
         System.out.println("View Appointments");

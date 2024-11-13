@@ -11,7 +11,7 @@ import utils.TextFileReader;
 import utils.TextFileWriter;
 
 /**
- *
+ * UI class for DoctorAppointmentUI used by DoctorAppointmentController
  */
 public class DoctorAppointmentUI extends AppointmentUI{
     private TextFileWriter writer;
@@ -46,7 +46,7 @@ public class DoctorAppointmentUI extends AppointmentUI{
 
 
     /**
-     *
+     * @param appointmentList
      */
     public void ViewDoctorPersonalSchedule(){
         List<Appointment> appointments=doctorAppmtController.GetStatusAppointments(Status.CONFIRMED);
@@ -166,7 +166,7 @@ public class DoctorAppointmentUI extends AppointmentUI{
     }//4
 
     /**
-     *
+     * @param appointments
      */
     public void ManagePendingAppointments(){
         List<Appointment> appointments=doctorAppmtController.GetStatusAppointments(Status.PENDING);
@@ -204,7 +204,7 @@ public class DoctorAppointmentUI extends AppointmentUI{
     }//5
 
     /**
-     *
+     * @param appointments
      */
     public void RecordAppointmentOutcome(){
         while(true){
@@ -244,7 +244,7 @@ public class DoctorAppointmentUI extends AppointmentUI{
 
 
     /**
-     *
+     * @param appointments
      */
     public void ViewUpcomingAppointments(){
         List<Appointment> list=doctorAppmtController.GetDoctorUpcoming();

@@ -8,7 +8,7 @@ import java.util.Scanner;
 import utils.TextFileWriter;
 
 /**
- *
+ * UI class for MedicalRecordUI used by MedicalRecordController
  */
 public class MedicalRecordUI {
     private MedicalRecordController MRController;
@@ -31,7 +31,7 @@ public class MedicalRecordUI {
     }
 
     /**
-     *
+     * Controller for the menu to manage medical records
      */
     public void ViewOverseeingPatients(){
         List<MedicalRecord> MRList=MRController.getOverseeingPatientsMR(patientmanager.getOverseeingPatientsID());
@@ -44,7 +44,7 @@ public class MedicalRecordUI {
     }
 
     /**
-     *
+     * Controller for the menu to manage medical records of patients
      */
     public void UpdatePatientMedicalRecords(){
 

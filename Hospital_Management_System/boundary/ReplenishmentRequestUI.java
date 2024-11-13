@@ -9,7 +9,7 @@ import entity.ReplenishmentRequest;
 import entity.Staff;
 
 /**
- *
+ * UI class for ReplenishmentRequestUI used by ReplenishmentRequestController
  */
 public class ReplenishmentRequestUI {
     /**

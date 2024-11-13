@@ -5,7 +5,7 @@ import entity.Patient;
 import utils.TextFileWriter;
 
 /**
- *
+ * UI class for PatientNonMedicalRecordUI
  */
 public class PatientNonMedicalRecordUI {
     Patient patient;

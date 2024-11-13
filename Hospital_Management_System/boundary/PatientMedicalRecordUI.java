@@ -6,7 +6,7 @@ import java.util.List;
 import utils.TextFileReader;
 
 /**
- *
+ * UI class for PatientMedicalRecordUI
  */
 public class PatientMedicalRecordUI {
     //private MedicalRecordController MRController;

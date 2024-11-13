@@ -4,7 +4,7 @@ import entity.Patient;
 import utils.TextFileCreator;
 
 /**
- *
+ * Class for Medical Record used by MedicalRecordController
  */
 public class MedicalRecord {
     private Patient patient;

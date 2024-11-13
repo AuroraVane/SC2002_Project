@@ -3,7 +3,7 @@ import entity.Appointment;
 import java.util.List;
 
 /**
- *
+ * UI class for AppointmentUI to be inherited by other AppointmentUI subclasses
  */
 public abstract  class AppointmentUI {
 

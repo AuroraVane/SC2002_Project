@@ -4,11 +4,11 @@ import java.util.List;
 import entity.Medicine;
 
 /**
- *
+ * UI class for MedicationInventoryUI used by MedicationInventoryController
  */
 public class MedicationInventoryUI {
     /**
-     *
+     * print the main menu
      */
     public void printMainMenu() {
         System.out.println("=========================================");
@@ -19,7 +19,7 @@ public class MedicationInventoryUI {
     }
 
     /**
-     *
+     * print the view medication inventory menu 
      */
     public void printMedicationInventory() {
         List <Medicine> medicineList = Medicine.getAllMedicines();
