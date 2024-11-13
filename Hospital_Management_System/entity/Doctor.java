@@ -4,7 +4,7 @@ import java.util.Scanner;
 import controller.DoctorUI;
 
 /**
- *
+ * Subclass of Staff, Doctor entity class to be used to get and set attributes for doctor functions
  */
 public class Doctor extends Staff{
 
@@ -32,7 +32,7 @@ public class Doctor extends Staff{
     }
 
     /**
-     *
+     * Display the UI for the doctor
      */
     public void displayUI(){
         int option = 0;

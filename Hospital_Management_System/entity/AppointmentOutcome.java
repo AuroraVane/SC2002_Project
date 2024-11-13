@@ -1,7 +1,7 @@
 package entity;
 
 /**
- *
+ * An entity class to represent an appointment outcome that holds the appointment id, date of appointment, service, medicine, prescription status and consultation notes
  */
 public class AppointmentOutcome{
     private int appointmentId; 
@@ -95,7 +95,7 @@ public class AppointmentOutcome{
 
 
     /**
-     *
+     * Print the appointment outcome details
      */
     public void printAppointmentOutcome(){
         System.out.printf("%-14d | %-10s | %-12s | %-16s | %-9s | %s%n",

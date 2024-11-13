@@ -3,7 +3,7 @@ package entity;
 import utils.Color.ColorRole;
 
 /**
- *
+ * Abstract superclass For all user types
  */
 public abstract class User {
     private String id;
@@ -70,7 +70,7 @@ public abstract class User {
     }
 
     /**
-     *
+     * Pseudo method to display the UI of the user
      */
     public void displayUI(){};
 }

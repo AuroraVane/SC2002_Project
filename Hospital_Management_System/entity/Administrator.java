@@ -4,7 +4,7 @@ import java.util.Scanner;
 import controller.AdministratorUI;
 
 /**
- *
+ * Subclass of Staff, Administrator entity class to be used to get and set attributes for administrator functions
  */
 public class Administrator extends Staff{
     private AdministratorUI administratorUI;
@@ -31,7 +31,7 @@ public class Administrator extends Staff{
     }
 
     /**
-     *
+     * Display the UI for the administrator
      */
     public void displayUI(){
         int option = 0;

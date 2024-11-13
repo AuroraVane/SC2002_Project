@@ -1,8 +1,10 @@
 package entity;
+
+/**
+ * An entity class to represent a replenishment request
+ */
+
 public class ReplenishmentRequest {
-    /**
-     *
-     */
     private String id;
     private String medicationName;
     private String status;

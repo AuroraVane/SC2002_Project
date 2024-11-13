@@ -4,7 +4,7 @@ import java.time.Instant;
 
 
 /**
- *
+ * An entity class to represent an appointment that holds the patient ID, staff ID, status, date and time
  */
 public class Appointment {
 

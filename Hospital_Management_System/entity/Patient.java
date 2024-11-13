@@ -8,7 +8,7 @@ import utils.Color.ColorRole;
 import utils.TextFileReader;
 
 /**
- *
+ * Subclass of User, Patient entity class to be used to get and set attributes for patient functions
  */
 public class Patient extends User{
     private String DOB;
@@ -43,7 +43,7 @@ public class Patient extends User{
     }
 
     /**
-     *
+     * Display the UI for the patient
      */
     public void displayUI(){
         int option = -1;

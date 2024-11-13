@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- *
+ * Subclass of Staff, Pharmacist entity class to be used to get and set attributes for pharmacist functions
  */
 public class Pharmacist extends Staff{
     private PharmacistUI pharmacistUI;
@@ -33,7 +33,7 @@ public class Pharmacist extends Staff{
     }
 
     /**
-     *
+     * Display the UI for the pharmacist
      */
     public void displayUI(){
         int option = 0;

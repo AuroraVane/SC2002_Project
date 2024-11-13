@@ -6,7 +6,7 @@ import utils.TextFileReader;
 
 public class Medicine {
     /**
-     *
+     * An entity class to represent a medicine that holds the medicine name, quantity and low quantity alert
      */
     private String medicineName;
     private int quantity;

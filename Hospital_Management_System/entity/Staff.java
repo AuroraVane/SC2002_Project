@@ -3,7 +3,7 @@ package entity;
 import utils.Color.ColorRole;
 
 /**
- *
+ *  Subclass of User, Superclass of Doctor, Administrator, Pharmacist to be used for general staff functions
  */
 public class Staff extends User{
     private String age;
