@@ -33,13 +33,14 @@ public class DoctorAppointmentUI extends AppointmentUI{
      */
     @Override
     public void printAllAppointments(List<Appointment> appointmentList){
-        System.out.println("Appointment ID | Patient | Date       | Time");
+        System.out.println("Appointment ID |     Patient    | Date     | Time | Status");
         for (Appointment appointment : appointmentList) {
-            System.out.printf("%-14s | %s | %s | %s%n",
+            System.out.printf("%-14s | %-14s | %s | %s | %s%n",
                             appointment.getAppointmentID(),
                             TextFileReader.findUserName(appointment.getPatientID(), "Patient"),
                             appointment.getDate(),
-                            appointment.getTime());
+                            appointment.getTime(),
+                            appointment.getStatus().toString());
         }
     }
 
@@ -49,6 +50,7 @@ public class DoctorAppointmentUI extends AppointmentUI{
      */
     public void ViewDoctorPersonalSchedule(){
         List<Appointment> appointments=doctorAppmtController.GetStatusAppointments(Status.CONFIRMED);
+        appointments.addAll(doctorAppmtController.GetStatusAppointments(Status.EMPTY));
         if (!appointments.isEmpty()){
             printAllAppointments(appointments);
         }else{

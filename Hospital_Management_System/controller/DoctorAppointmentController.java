@@ -94,14 +94,6 @@ public class DoctorAppointmentController{
             System.out.println("You have no upcoming appointments.");
             return null;
         }
-        int s=appointments.size();
-        int i=0;
-        String firstdate=appointments.get(0).getDate();
-        for (int j=0;j<s;j++){
-            if (!appointments.get(j).getDate().equals(firstdate)){
-                appointments.remove(i);
-            }else i++;
-        }
         return appointments;
     }
 
