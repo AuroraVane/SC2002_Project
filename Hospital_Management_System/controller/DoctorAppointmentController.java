@@ -61,10 +61,11 @@ public class DoctorAppointmentController{
      * @param date
      * @param time
      */
-    public void SetAvailableSlot(String doctorID, String date, String time){
+    public Appointment SetAvailableSlot(String doctorID, String date, String time){
         Appointment appmt=new Appointment(doctorID, Status.EMPTY, date, time);
         writer.addAppointment(appmt);
         DoctorAppointmentList.add(appmt);
+        return appmt;
     }
 
     /**

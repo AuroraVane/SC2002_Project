@@ -59,53 +59,110 @@ public class DoctorAppointmentUI extends AppointmentUI{
         
     }//3
 
+    public int Selection(List<Appointment> appmt){
+        @SuppressWarnings("resource")
+        Scanner sc = new Scanner(System.in);
+        int index;
+        index=sc.nextInt()-1;
+        sc.nextLine();
+        if (index==-1){
+            return -1;
+        }else if(index<-1 || index>appmt.size()){
+            System.out.println("Invalid Slot Chosen. ");
+        }else{
+            System.out.println("Slot selected.");
+            return index;
+        }
+        return -1;
+    }
+
     /**
      * @param doctorID
      */
     public void SetAvailability(String doctorID){
-        while (true) {
-            @SuppressWarnings("resource")
-            Scanner sc = new Scanner(System.in);
-    
-            String dateStr=""; // Declare outside the loop
-            String time="";   // Declare outside the loop
-    
-            boolean validDate = false;
-            while (!validDate) {
-                System.out.println("Enter date in format YYYYMMDD (e.g., 20241110): \nEnter 'b' to return to menu");
-                dateStr = sc.nextLine();
-    
-                // Validate date format (YYYYMMDD)
-                if (dateStr.equals("b")) {
-                    return;
-                }
-                if (dateStr.matches("\\d{8}")) {
-                    validDate = true;
-                } else {
-                    System.out.println("Invalid date format. Please try again.");
-                }
-            }
-    
-            boolean validTime = false;
-            while (!validTime) {
-                System.out.println("Give Time in format HHMM (e.g., 1400): ");
-                time = sc.nextLine();
-    
-                // Validate time format (HHMM)
-                if (time.matches("\\d{4}")) {
-                    validTime = true;
-                } else {
-                    System.out.println("Invalid time format. Please try again.");
-                }
-            }
-    
-            doctorAppmtController.SetAvailableSlot(doctorID, dateStr, time);
-            List<Appointment> emptyappointments=doctorAppmtController.GetStatusAppointments(Status.EMPTY);
-            System.out.println("These are your current availability slots: ");
-            printAllAppointments(emptyappointments);
-        }
         
-
+        while (true) {
+            System.out.println("Current avilability slots:");
+            List<Appointment> emptyappointments=doctorAppmtController.GetStatusAppointments(Status.EMPTY);
+            printAllAppointmentsWithIndex(emptyappointments);
+            System.out.println("1. Set new avilability slot");
+            System.out.println("2. Update existing avilability slot");
+            System.out.println("3. Remove an avilability slot");
+            System.out.println("0. Back");
+            @SuppressWarnings("resource")
+            int index=0, index2=0;
+            Scanner sc = new Scanner(System.in);
+            int choice=sc.nextInt();
+            sc.nextLine();
+            
+            if (choice==0){
+                return;
+            }
+            switch (choice) {
+                case 1:
+                    break;
+                case 2:
+                    System.out.println("Select which Slot you want to update:");
+                    index=Selection(emptyappointments);
+                    if (index!=-1){
+                        break;
+                    }
+                case 3:
+                    System.out.println("Select which Slot you want to remove:");
+                    index2=Selection(emptyappointments);
+                    if (index2!=-1){
+                        System.out.println("Slot Removed.");
+                        int id=emptyappointments.get(index2).getAppointmentID();
+                        doctorAppmtController.RemoveAppointment(id);
+                        TextFileWriter.deleteAppointment(id);
+                        break;
+                    }
+                default:
+                    System.out.println("Invalid option.");
+                    
+            }
+            if (choice==1 || choice==2){
+                String dateStr=""; // Declare outside the loop
+                String time="";   // Declare outside the loop
+            
+                boolean validDate = false;
+                while (!validDate) {
+                    System.out.println("Enter date in format YYYYMMDD (e.g., 20241110): \nEnter 'b' to return to menu");
+                    dateStr = sc.nextLine();
+        
+                    // Validate date format (YYYYMMDD)
+                    if (dateStr.equals("b")) {
+                        return;
+                    }
+                    if (dateStr.matches("\\d{8}")) {
+                        validDate = true;
+                    } else {
+                        System.out.println("Invalid date format. Please try again.");
+                    }
+                }
+                boolean validTime = false;
+                while (!validTime ) {
+                    System.out.println("Give Time in format HHMM (e.g., 1400): ");
+                    time = sc.nextLine();
+        
+                    // Validate time format (HHMM)
+                    if (time.matches("\\d{4}")) {
+                        validTime = true;
+                    } else {
+                        System.out.println("Invalid time format. Please try again.");
+                    }
+                }
+                if (choice==1){
+                    Appointment appmt=doctorAppmtController.SetAvailableSlot(doctorID, dateStr, time);
+                    emptyappointments.add(appmt);
+                }else if (choice==2){
+                    Appointment newappmt=emptyappointments.get(index);
+                    newappmt.setDate(dateStr);
+                    newappmt.setTime(time);
+                    TextFileWriter.updateAppointment(newappmt);
+                }
+            }
+        }
     }//4
 
     /**
@@ -154,15 +211,11 @@ public class DoctorAppointmentUI extends AppointmentUI{
                 printAllAppointmentsWithIndex(appointments);
                 System.out.println("Select which Confirmed Appointment you want to conclude \nEnter 0 to go back");
                 @SuppressWarnings("resource")
+                int index=-1;
                 Scanner sc=new Scanner(System.in);
-                index=sc.nextInt()-1;
-                if(index==-1){
-                    return;
-                }
-                if (index>=appointments.size()){
-                    System.out.println("Invalid Option.");
-                    break;
-                }
+                while(index==-1){
+                    index=Selection(appointments);
+                };
                 sc.nextLine();
                 Appointment appmt= appointments.get(index);
                 int appmtID = appmt.getAppointmentID();
@@ -181,6 +234,7 @@ public class DoctorAppointmentUI extends AppointmentUI{
                 doctorAppmtController.ResolveAppointment(appmt);
             }else{
                 System.out.println("You currently have 0 Completed appointments waiting");
+                break;
             }
         }
         

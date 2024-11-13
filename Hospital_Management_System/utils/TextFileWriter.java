@@ -773,4 +773,42 @@ public class TextFileWriter {
             System.out.println("Could not rename the temp file.");
         }
     }
+
+    public static void deleteAppointment(int id) {
+        String strID=id+"";
+        File inputFile = new File(APPOINTMENT_FILE_PATH);
+        File tempFile = new File("tempAppointmentList.txt");
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+                BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+
+            String currentLine;
+            boolean firstLine = true;
+            while ((currentLine = reader.readLine()) != null) {
+                // Skip any empty lines
+                if (currentLine.trim().isEmpty()) {
+                    continue;
+                }
+                String[] appointmentDetails = currentLine.split("\\|");
+                if (appointmentDetails[0].equals(strID)) {
+                    continue;
+                }
+                if (!firstLine) {
+                    writer.newLine();
+                } else {
+                    firstLine = false;
+                }
+                writer.write(currentLine);
+            }
+            System.out.println("Appointment deleted successfully.");
+        } catch (IOException e) {
+            System.out.println("Error processing file: " + e.getMessage());
+        }
+        if (!inputFile.delete()) {
+            System.out.println("Could not delete the original file.");
+        }
+        if (!tempFile.renameTo(inputFile)) {
+            System.out.println("Could not rename the temp file.");
+        }
+    }
 }
