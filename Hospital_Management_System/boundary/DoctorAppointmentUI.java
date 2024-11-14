@@ -222,8 +222,11 @@ public class DoctorAppointmentUI extends AppointmentUI{
         }
     }//5
 
-    public void PrintMedicine(){
-        
+    public void PrintMedicine(List<String> arr){
+        for (int i = 0; i < arr.size(); i++) {
+            System.out.print(arr.get(i) + " ");
+        }
+        System.out.println();
     }
 
     public String checkMedicineStock(){
@@ -236,7 +239,6 @@ public class DoctorAppointmentUI extends AppointmentUI{
             medicineNames.add(medicine.getMedicineName());
         }
         while (true) {
-            
             System.out.println("Enter medicine prescribed (or 'b' to return):");
             String med = sc.nextLine();
         
@@ -252,6 +254,8 @@ public class DoctorAppointmentUI extends AppointmentUI{
             }
             if (!found) {
                 System.out.println("No stock of this medicine. Try again.");
+                System.out.println("Medicine Available: ");
+                PrintMedicine(medicineNames);
 
             } else {
                 return med;
