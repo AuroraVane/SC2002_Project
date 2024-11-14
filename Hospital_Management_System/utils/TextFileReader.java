@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- *
+ *Class responsible for file reading related methods
  */
 public class TextFileReader {
 

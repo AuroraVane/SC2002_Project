@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- *
+ *Class responsible for file writing related methods
  */
 public class TextFileWriter {
 

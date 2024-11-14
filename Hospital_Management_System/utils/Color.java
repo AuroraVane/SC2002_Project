@@ -1,7 +1,7 @@
 package utils;
 
 /**
- *
+ *Class for colour display interface for respective user roles
  */
 public class Color {
     /**

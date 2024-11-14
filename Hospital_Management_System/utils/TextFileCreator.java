@@ -4,10 +4,11 @@ import java.io.IOException;
 
 
 /**
- *
+ *Class responsible for file creation related methods
  */
 public class TextFileCreator {
     /**
+     * creates new a file
      * @param FILE_PATH
      */
     public static void createFile(String FILE_PATH){
