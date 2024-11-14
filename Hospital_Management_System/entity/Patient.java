@@ -18,6 +18,7 @@ public class Patient extends User{
     private PatientUI patientUI;
 
     /**
+     * Patient constructor
      * @param id
      * @param name
      * @param password
@@ -35,6 +36,7 @@ public class Patient extends User{
     }
 
     /**
+     * getter for role Patient
      * @return
      */
     @Override
@@ -58,6 +60,7 @@ public class Patient extends User{
     }
 
     /**
+     * gets all Patients from file
      * @return
      */
     public static List<Patient> getAllPatients(){
@@ -74,6 +77,7 @@ public class Patient extends User{
     }
 
     /**
+     * gets number of Pateints
      * @return
      */
     public static int getPatientCount(){
@@ -82,6 +86,7 @@ public class Patient extends User{
     }
 
     /**
+     * getter for date of birth
      * @return
      */
     public String getDOB() {
@@ -89,6 +94,7 @@ public class Patient extends User{
     }
 
     /**
+     * getter for blood type
      * @return
      */
     public String getBloodtype() {
@@ -96,6 +102,7 @@ public class Patient extends User{
     }
 
     /**
+     * getter for contact information
      * @return
      */
     public String getContactinfo() {
@@ -103,6 +110,7 @@ public class Patient extends User{
     }
 
     /**
+     * setter for contact information
      * @param contactinfo
      */
     public void setContactinfo(String contactinfo) {
@@ -110,6 +118,7 @@ public class Patient extends User{
     }
 
     /**
+     * getter for colour role
      * @return
      */
     @Override

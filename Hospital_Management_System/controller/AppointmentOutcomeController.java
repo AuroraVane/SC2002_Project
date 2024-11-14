@@ -67,5 +67,38 @@ public class AppointmentOutcomeController {
         Scanner sc = new Scanner(System.in);
         sc.nextLine();
     }
+    /**
+     * update prescription status
+     * @param appointmentId
+     */
+    public void checkPrescriptionStatus(int appointmentId) {
+        List<AppointmentOutcome> appointmentOutcomes = AppointmentOutcomeController.getAllAppointmentOutcomes();
+        AppointmentOutcome record = null;
+        for (AppointmentOutcome appointmentOutcome : appointmentOutcomes){
+            if (appointmentId == appointmentOutcome.getAppointmentId()){
+                record = appointmentOutcome;
+                System.out.println("AppointmentOutcome Record found!");
+                AppointmentOutcomeController.updateAppointmentOutcomeStatus(appointmentId);
+            }
+        }
+        if (record == null){
+            return;
+        }
+
+
+        if (!record.isPStatus()){
+            MedicationInventoryController.updateMedicineQuantity(record.getMedicine());
+        }
+    }
+    /**
+     *Update Prescription Status
+     */
+    public void updatePrescriptionStatus() { //Rain Check
+        @SuppressWarnings("resource")
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter Appointment ID: ");
+        int appointmentId = sc.nextInt();
+        checkPrescriptionStatus(appointmentId);
+    }
     
 }

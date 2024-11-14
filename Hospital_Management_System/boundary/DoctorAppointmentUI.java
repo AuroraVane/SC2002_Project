@@ -222,6 +222,10 @@ public class DoctorAppointmentUI extends AppointmentUI{
         }
     }//5
 
+    /**
+     * prints array of string, used for Medicine names
+     * @param arr
+     */
     public void PrintMedicine(List<String> arr){
         for (int i = 0; i < arr.size(); i++) {
             System.out.print(arr.get(i) + " ");
@@ -229,6 +233,11 @@ public class DoctorAppointmentUI extends AppointmentUI{
         System.out.println();
     }
 
+
+    /**
+     * checks input to Medicine stock
+     * @return
+     */
     public String checkMedicineStock(){
         @SuppressWarnings("resource")
         Scanner sc=new Scanner(System.in);

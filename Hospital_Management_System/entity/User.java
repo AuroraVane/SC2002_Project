@@ -12,6 +12,7 @@ public abstract class User {
     private String gender;
 
     /**
+     * User constructor
      * @param id
      * @param name
      * @param password
@@ -25,16 +26,19 @@ public abstract class User {
     }
 
     /**
+     * abstract getter for user role
      * @return
      */
     public abstract String getRole();
 
     /**
+     * abstract getter for colour role
      * @return
      */
     public abstract ColorRole getColorRole();
 
     /**
+     * getter for id
      * @return
      */
     public String getId() {
@@ -42,6 +46,7 @@ public abstract class User {
     }
 
     /**
+     * getter for name
      * @return
      */
     public String getName(){
@@ -49,6 +54,7 @@ public abstract class User {
     }
 
     /**
+     * getter for password
      * @return
      */
     public String getPassword(){
@@ -56,6 +62,7 @@ public abstract class User {
     }
 
     /**
+     * setter for password
      * @param password
      */
     public void setPassword(String password){
@@ -63,6 +70,7 @@ public abstract class User {
     }
 
     /**
+     * getter for gender
      * @return
      */
     public String getGender(){

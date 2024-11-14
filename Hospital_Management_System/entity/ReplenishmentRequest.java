@@ -11,6 +11,7 @@ public class ReplenishmentRequest {
     private String quantity;
 
     /**
+     * Replenish Request constructor
      * @param id
      * @param medicationName
      * @param status
@@ -24,6 +25,7 @@ public class ReplenishmentRequest {
     }
 
     /**
+     * getter for medicine name
      * @return
      */
     public String getMedicationName() {
@@ -31,13 +33,7 @@ public class ReplenishmentRequest {
     }
 
     /**
-     * @param medicationName
-     */
-    public void setMedicationName(String medicationName) {
-        this.medicationName = medicationName;
-    }
-
-    /**
+     * getter for request status
      * @return
      */
     public String getStatus() {
@@ -45,6 +41,7 @@ public class ReplenishmentRequest {
     }
 
     /**
+     * setter for request status
      * @param status
      */
     public void setStatus(String status) {
@@ -52,6 +49,7 @@ public class ReplenishmentRequest {
     }
 
     /**
+     * getter for requested quantity
      * @return
      */
     public String getQuantity() {
@@ -59,13 +57,7 @@ public class ReplenishmentRequest {
     }
 
     /**
-     * @param quantity
-     */
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
-    }
-
-    /**
+     * getter for request id
      * @return
      */
     public String getId() {
@@ -73,6 +65,7 @@ public class ReplenishmentRequest {
     }
 
     /**
+     * setter for request id
      * @param id
      */
     public void setId(String id) {

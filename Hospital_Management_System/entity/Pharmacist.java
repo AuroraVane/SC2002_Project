@@ -12,6 +12,7 @@ public class Pharmacist extends Staff{
     private PharmacistUI pharmacistUI;
 
     /**
+     * Pharmacist constructor
      * @param id
      * @param name
      * @param password
@@ -25,6 +26,7 @@ public class Pharmacist extends Staff{
     }
 
     /**
+     * getter for Pharmacist role
      * @return
      */
     @Override
@@ -48,28 +50,7 @@ public class Pharmacist extends Staff{
     }
 
 
-    /**
-     * @param appointmentId
-     */
-    public void updatePrescriptionStatus(int appointmentId) {
-        List<AppointmentOutcome> appointmentOutcomes = AppointmentOutcomeController.getAllAppointmentOutcomes();
-        AppointmentOutcome record = null;
-        for (AppointmentOutcome appointmentOutcome : appointmentOutcomes){
-            if (appointmentId == appointmentOutcome.getAppointmentId()){
-                record = appointmentOutcome;
-                System.out.println("AppointmentOutcome Record found!");
-                AppointmentOutcomeController.updateAppointmentOutcomeStatus(appointmentId);   
-            }
-        }
-        if (record == null){
-            return;
-        }
 
-        
-        if (!record.isPStatus()){
-            MedicationInventoryController.updateMedicineQuantity(record.getMedicine());
-        }
-    }
     
 }
 

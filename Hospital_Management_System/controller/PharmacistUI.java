@@ -12,7 +12,7 @@ public class PharmacistUI extends StaffUI{
     private AppointmentOutcomeController appointmentController;
     private MedicationInventoryController medicationInventoryController;
     private ReplenishmentRequestController replenishmentRequestController;
-
+    private AppointmentOutcomeController appointmentOutcomeController;
     /**
      * Pharmacist UI constructor
      * @param pharmacist
@@ -23,6 +23,7 @@ public class PharmacistUI extends StaffUI{
             this.appointmentController = new AppointmentOutcomeController();
             this.medicationInventoryController = new MedicationInventoryController("./TextFiles/Medicine_List.txt");
             this.replenishmentRequestController = new ReplenishmentRequestController("./TextFiles/Replenishment_List.txt");
+            this.appointmentOutcomeController=new AppointmentOutcomeController();
         } catch (Exception e){
             System.out.println("Error: Unable to load appointment list from file.");
             e.printStackTrace();
@@ -55,7 +56,7 @@ public class PharmacistUI extends StaffUI{
                 appointmentController.viewAppointmentOutcomeRecord();
                 break;
             case 2:
-                updatePrescriptionStatus();
+                appointmentOutcomeController.updatePrescriptionStatus();
                 break;
             case 3:
                 medicationInventoryController.viewMedicationInventory();
@@ -71,40 +72,6 @@ public class PharmacistUI extends StaffUI{
                 break;
             default:
                 System.out.println("Invalid option. Please try again.");
-        }
-    }
-
-    /**
-     *Update Prescription Status
-     */
-    public void updatePrescriptionStatus() { //Rain Check
-        @SuppressWarnings("resource")
-		Scanner sc = new Scanner(System.in);
-        System.out.println("Enter Appointment ID: ");
-        int appointmentId = sc.nextInt();
-        pharmacist.updatePrescriptionStatus(appointmentId);
-    }
-
-    /**
-     *Submit Replenish Request
-     */
-    public void submitReplenishmentRequest() {
-        System.out.println("Select medicine for replenishment");
-        @SuppressWarnings("resource")
-		Scanner sc = new Scanner(System.in);
-        String medicineName = sc.nextLine();
-        List<Medicine> medicineList = Medicine.getAllMedicines();
-        Medicine medicine = null;
-        for (Medicine med : medicineList){
-            if (med.equals(medicineName)) {
-                medicine = med;
-            }
-        }
-
-        if (medicine != null){
-            if(medicine.getQuantity() <= medicine.getLowQAlert()){
-                //Submit a request
-            }
         }
     }
 }

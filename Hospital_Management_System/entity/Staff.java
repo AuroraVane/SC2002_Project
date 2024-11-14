@@ -10,6 +10,7 @@ public class Staff extends User{
     private String role;
 
     /**
+     * Staff constructor
      * @param id
      * @param name
      * @param password
@@ -24,6 +25,7 @@ public class Staff extends User{
     }
 
     /**
+     * getter for role staff
      * @return
      */
     @Override
@@ -32,6 +34,7 @@ public class Staff extends User{
     }
 
     /**
+     * getter for age
      * @return
      */
     public String getAge(){
@@ -39,6 +42,7 @@ public class Staff extends User{
     }
 
     /**
+     * Colour role for Users
      * @return
      */
     @Override

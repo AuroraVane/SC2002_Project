@@ -7,12 +7,13 @@ import entity.User;
 import utils.Color;
 
 /**
- *
+ *main Hospital class
  */
 public class Hospital {
     public static final String ANSI_RESET = "\u001B[0m";
 
     /**
+     * main
      * @param args
      * @throws IOException
      */
@@ -68,7 +69,7 @@ public class Hospital {
     }
 
     /**
-     *
+     *prints Welcome page
      */
     public static void printMenu(){
         String menu = """
