@@ -4,7 +4,9 @@ import controller.DoctorAppointmentController;
 import entity.Appointment;
 import entity.Appointment.Status;
 import entity.Doctor;
+import entity.Medicine;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import utils.TextFileReader;
@@ -220,6 +222,44 @@ public class DoctorAppointmentUI extends AppointmentUI{
         }
     }//5
 
+    public void PrintMedicine(){
+        
+    }
+
+    public String checkMedicineStock(){
+        @SuppressWarnings("resource")
+        Scanner sc=new Scanner(System.in);
+
+        List<Medicine> medicineList=Medicine.getAllMedicines();
+        List<String> medicineNames=new ArrayList<>();
+        for (Medicine medicine : medicineList) {
+            medicineNames.add(medicine.getMedicineName());
+        }
+        while (true) {
+            
+            System.out.println("Enter medicine prescribed (or 'b' to return):");
+            String med = sc.nextLine();
+        
+            if (med.equals("b")) {
+                return "b";
+            }
+            boolean found = false;
+            for (String m : medicineNames) {
+                if (m.equalsIgnoreCase(med)) {
+                    found = true;
+                    break; // Exit the loop if a match is found
+                }
+            }
+            if (!found) {
+                System.out.println("No stock of this medicine. Try again.");
+
+            } else {
+                return med;
+            }
+        }
+
+    }
+
     /**
      * Select any confirmed appointments and resolve it into a appointment outcome using it
      */
@@ -231,20 +271,23 @@ public class DoctorAppointmentUI extends AppointmentUI{
                 System.out.println("Select which Confirmed Appointment you want to conclude \nEnter 0 to go back");
                 int index=Selection(appointments);
                 if (index==-1) {
-                    break;
+                    return;
                 }
                 @SuppressWarnings("resource")
                 Scanner sc=new Scanner(System.in);
-                Appointment appmt= appointments.get(index);
-                int appmtID = appmt.getAppointmentID();
-                doctorAppmtController.RemoveAppointment(appmtID);
+                
                 System.out.println("Enter service type:");
                 String service=sc.nextLine();
                 
                 //Remove Appointment from appointment list and add appointment outcome
-                System.out.println("Enter medcine prescribed:");
-                String med=sc.nextLine();
-
+                String med=checkMedicineStock();
+                if (med=="b"){
+                    return;
+                }
+                Appointment appmt= appointments.get(index);
+                int appmtID = appmt.getAppointmentID();
+                doctorAppmtController.RemoveAppointment(appmtID);
+                
                 System.out.println("Write Consultation Notes:");
                 String notes=sc.nextLine();
                 BillController.addBill(String.valueOf(appmtID), appmt.getPatientID(), med, BillController.PaymentStatus.UNPAID);

@@ -57,7 +57,7 @@ public class Medicine {
     }
 
     /**
-     * get all medicine in a list
+     * get all medicine from file
      * @return
      */
     public static List<Medicine> getAllMedicines(){
