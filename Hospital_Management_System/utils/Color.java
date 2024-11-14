@@ -5,7 +5,7 @@ package utils;
  */
 public class Color {
     /**
-     *
+     *Colour role enumeration
      */
     public enum ColorRole {
         PATIENT("\u001B[96m"),         // Light Cyan

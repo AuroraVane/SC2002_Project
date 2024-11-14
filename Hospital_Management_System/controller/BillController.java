@@ -10,10 +10,16 @@ import utils.TextFileWriter;
  * Controller class for Bill with methods to add bill, get bill by patient ID and get bill count with enums for PaymentStatus and Medicine
  */
 public class BillController {
+    /**
+     * payment status enumeration
+     */
     public static enum PaymentStatus {
         PAID, UNPAID
     }
 
+    /**
+     * types of medicine enumeration
+     */
     public static enum Medicine {
         Paracetamol, Ibuprofen, Amoxicillin, CharcoalPills
     }

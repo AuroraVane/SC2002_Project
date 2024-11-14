@@ -7,10 +7,9 @@ import boundary.MedicalRecord;
 import entity.Patient;
 import utils.TextFileReader;
 
-/*
+/**
  * Controller class for MedicalRecord 
- */
-
+*/
 public class MedicalRecordController {
     private List<MedicalRecord> MedicalRecordList;
 

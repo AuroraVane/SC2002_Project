@@ -4,6 +4,9 @@ import java.util.List;
 
 import utils.TextFileReader;
 
+/**
+ * An entity class to represent Medicine, holds medicine name, quantity, low quantity alert
+ */
 public class Medicine {
     /**
      * An entity class to represent a medicine that holds the medicine name, quantity and low quantity alert
