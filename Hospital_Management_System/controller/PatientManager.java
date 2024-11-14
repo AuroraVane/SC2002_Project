@@ -43,7 +43,12 @@ public class PatientManager {
      * @return
      */
     public Patient getPatientByIndex(int index){
-        return this.OverseeingPatients.get(index);
+        if (index>=0 && index<this.OverseeingPatients.size()){
+            return this.OverseeingPatients.get(index);
+        }
+        System.out.println("Invalid input. ");
+        return null;
+        
     }
 
     /**

@@ -54,11 +54,24 @@ public class MedicalRecordUI {
             patientmanager.printAlloverseeingPatients();
             @SuppressWarnings("resource")
             Scanner sc=new Scanner(System.in);
-            int index=sc.nextInt()-1;
-            if (index==-1){
-                return;
+            int index=-2;
+            Patient p;
+            while (true) { 
+                try {
+                    index=sc.nextInt()-1;
+                } catch (java.util.InputMismatchException e) {
+                }
+                sc.nextLine();
+                if (index==-1){
+                    return;
+                }
+                p=patientmanager.getPatientByIndex(index);
+                if (p!=null){
+                    break;
+                }
+                
             }
-            Patient p=patientmanager.getPatientByIndex(index);
+            
             MedicalRecord m=MRController.findPatientMedicalRecord(p.getId());
             if (m==null){
                 System.out.println("Error. Could not find Patients medical record in database.");
