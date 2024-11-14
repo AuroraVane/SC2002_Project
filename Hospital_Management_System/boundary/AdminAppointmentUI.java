@@ -21,6 +21,7 @@ public class AdminAppointmentUI extends AppointmentUI{
     }
 
     /**
+     * Prints a list of appointments
      * @param appointmentList
      */
     @Override

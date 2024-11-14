@@ -15,6 +15,7 @@ public class MedicalRecord {
     // Would need it own textfile to store the data
 
     /**
+     * Medical Record constructor
      * @param patient
      * @param diagnosis_FILEPATH
      * @param treatment_plans_FILEPATH
@@ -30,6 +31,7 @@ public class MedicalRecord {
 
 
     /**
+     * getter for patient attribute
      * @return
      */
     public Patient getPatient() {
@@ -37,6 +39,7 @@ public class MedicalRecord {
     }
 
     /**
+     * getter for filepath of patient's diagnosis relative to ./TextFiles
      * @return
      */
     public String getDiagnosis_FILEPATH() {
@@ -44,6 +47,7 @@ public class MedicalRecord {
     }
 
     /**
+     * setter for filepath of patient's diagnosis relative to ./TextFiles
      * @param diagnosis_FILEPATH
      */
     public void setDiagnosis_FILEPATH(String diagnosis_FILEPATH) {
@@ -51,6 +55,7 @@ public class MedicalRecord {
     }
 
     /**
+     * getter for filepath of patient's treatment plans relative to ./TextFiles
      * @return
      */
     public String getTreatment_plans_FILEPATH() {
@@ -58,6 +63,7 @@ public class MedicalRecord {
     }
 
     /**
+     * setter for filepath of patient's treatment plans relative to ./TextFiles
      * @param treatment_plans_FILEPATH
      */
     public void setTreatment_plans_FILEPATH(String treatment_plans_FILEPATH) {

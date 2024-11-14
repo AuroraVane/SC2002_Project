@@ -13,6 +13,7 @@ public class AdminAppointmentController{
     private AdminAppointmentUI appointmentUI;
 
     /**
+     * Admin Appointment Controller constructor
      * @param fileName
      * @throws IOException
      */

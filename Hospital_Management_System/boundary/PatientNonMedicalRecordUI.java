@@ -11,6 +11,7 @@ public class PatientNonMedicalRecordUI {
     Patient patient;
 
     /**
+     * Patient Non Medical Record UI constructor
      * @param patient
      */
     public PatientNonMedicalRecordUI(Patient patient) {
@@ -22,7 +23,7 @@ public class PatientNonMedicalRecordUI {
     }
 
     /**
-     *
+     *updates contact information of patient via medical record
      */
     public void updateContactInfo(){
         System.out.println("Enter new contact information:");

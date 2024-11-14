@@ -14,6 +14,7 @@ public class AdministratorUI extends StaffUI{
     private ReplenishmentRequestController replenishmentRequestController;
 
     /**
+     * Administrator UI constructor
      * @param administrator
      */
     public AdministratorUI(Administrator administrator){
@@ -47,6 +48,7 @@ public class AdministratorUI extends StaffUI{
     }
 
     /**
+     * naviaget main menu for Administrator
      * @param option
      */
     public void navigateMenu(int option){

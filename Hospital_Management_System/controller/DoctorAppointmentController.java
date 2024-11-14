@@ -19,6 +19,7 @@ public class DoctorAppointmentController{
 
 
     /**
+     * Doctor Appointment Controller constructor
      * @param fileName
      * @param doctor
      * @throws IOException
@@ -29,6 +30,7 @@ public class DoctorAppointmentController{
     }
 
     /**
+     * Remove Appointment from controller appointment list
      * @param appmtID
      */
     public void RemoveAppointment(int appmtID){
@@ -43,6 +45,7 @@ public class DoctorAppointmentController{
     }
 
     /**
+     * get the list of appointments with the given status
      * @param status
      * @return
      */
@@ -57,6 +60,7 @@ public class DoctorAppointmentController{
     }
 
     /**
+     * set new available slot
      * @param doctorID
      * @param date
      * @param time
@@ -69,6 +73,7 @@ public class DoctorAppointmentController{
     }
 
     /**
+     * Accept a pending appointment
      * @param appmt
      */
     public void AcceptPendingAppointment(Appointment appmt){
@@ -77,6 +82,7 @@ public class DoctorAppointmentController{
     }
 
     /**
+     * Decline a pending appointment
      * @param appmt
      */
     public void DeclinePendingAppointment(Appointment appmt){
@@ -85,6 +91,7 @@ public class DoctorAppointmentController{
     }
 
     /**
+     * Get the doctor's upcoming confirmed appointments
      * @return
      */
     public List<Appointment> GetDoctorUpcoming(){
@@ -99,6 +106,7 @@ public class DoctorAppointmentController{
     }
 
     /**
+     * resolve appointment as archived by changing status to completed
      * @param appmt
      */
     public void ResolveAppointment(Appointment appmt){

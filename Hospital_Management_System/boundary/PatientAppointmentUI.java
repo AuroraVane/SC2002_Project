@@ -27,10 +27,10 @@ public class PatientAppointmentUI extends AppointmentUI{
     }
 
     /**
+     * prints a single appointment while omitting Patient ID
      * @param appointment
      */
     public void printAppointment(Appointment appointment){
-        
         System.out.printf("%-14s | %-14s | %s | %s | %s%n",
                         appointment.getAppointmentID(),
                         TextFileReader.findUserName(appointment.getStaffID(), "Doctor"),
@@ -40,6 +40,7 @@ public class PatientAppointmentUI extends AppointmentUI{
     }
 
     /**
+     * prints all appointments from a list of appointments
      * @param appointmentList
      */
     @Override
@@ -51,6 +52,7 @@ public class PatientAppointmentUI extends AppointmentUI{
     }
 
     /**
+     * Schecules Patient appointment
      * @param patient
      */
     public void scheduleAppointment(Patient patient) {
@@ -62,6 +64,7 @@ public class PatientAppointmentUI extends AppointmentUI{
     }
 
     /**
+     * Reschedules PENDING or CONFIRMED appointments
      * @param patientID
      */
     public void rescheduleAppointment(String patientID) {
@@ -115,6 +118,7 @@ public class PatientAppointmentUI extends AppointmentUI{
     }
 
     /**
+     * Cancels PENDING or CONFIRMED appointments
      * @param patientID
      */
     public void cancelAppointment(String patientID) {
@@ -179,6 +183,7 @@ public class PatientAppointmentUI extends AppointmentUI{
 
 
     /**
+     * View Scheduled Appointments of patient
      * @param patientID
      * @return
      */
@@ -210,6 +215,7 @@ public class PatientAppointmentUI extends AppointmentUI{
     }
 
     /**
+     * filter a list of appointments to return completed appointments
      * @param appointments
      * @param patientID
      * @return
@@ -227,6 +233,7 @@ public class PatientAppointmentUI extends AppointmentUI{
     }
 
     /**
+     * View appointment outcome records relevant to patient
      * @param patientID
      */
     public void viewAppointmentOutcomeRecords(String patientID) {

@@ -8,11 +8,13 @@ import java.util.List;
 public abstract  class AppointmentUI {
 
     /**
+     * Abstract class for printing all appointments from a list of appointments
      * @param appointmentList
      */
     public abstract void printAllAppointments(List<Appointment> appointmentList);
 
     /**
+     * Abstract class for printing all appointments from a list of appointments with index
      * @param appointmentList
      */
     public void printAllAppointmentsWithIndex(List<Appointment> appointmentList) {

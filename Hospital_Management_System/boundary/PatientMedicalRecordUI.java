@@ -13,6 +13,7 @@ public class PatientMedicalRecordUI {
     private String patientID;
 
     /**
+     * Patient Medical Record UI constructor
      * @param MRfilepath
      * @param PatientfilePath
      * @param patientID
@@ -24,6 +25,7 @@ public class PatientMedicalRecordUI {
     }
 
     /**
+     * Print medical record of a patient
      * @param p
      */
     public void viewMedicalRecord(Patient p) {

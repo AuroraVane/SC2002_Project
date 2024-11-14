@@ -15,6 +15,7 @@ public class DoctorUI extends StaffUI {
     private DoctorAppointmentUI doctorAppointmentUI;
 
     /**
+     * Doctor UI constructor
      * @param doctor
      */
     public DoctorUI(Doctor doctor) {
@@ -46,6 +47,7 @@ public class DoctorUI extends StaffUI {
     }
 
     /**
+     * navigate main menu for doctor
      * @param option
      */
     @Override

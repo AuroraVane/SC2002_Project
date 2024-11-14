@@ -17,6 +17,7 @@ public class MedicalRecordUI {
     private String id;
 
     /**
+     * Medical Record UI constructor
      * @param MRfilepath
      * @param PatientfilePath
      * @param OverseeingPatientsFilePath
@@ -31,7 +32,7 @@ public class MedicalRecordUI {
     }
 
     /**
-     * Controller for the menu to manage medical records
+     * Prints Medical Record of doctor's overseeing patients
      */
     public void ViewOverseeingPatients(){
         List<MedicalRecord> MRList=MRController.getOverseeingPatientsMR(patientmanager.getOverseeingPatientsID());
@@ -44,7 +45,7 @@ public class MedicalRecordUI {
     }
 
     /**
-     * Controller for the menu to manage medical records of patients
+     * allows doctor to update medical record for selected patient
      */
     public void UpdatePatientMedicalRecords(){
 

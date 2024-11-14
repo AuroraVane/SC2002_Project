@@ -13,6 +13,7 @@ import entity.Staff;
  */
 public class ReplenishmentRequestUI {
     /**
+     * prints main menu for replenishment request UI
      * @param staff
      */
     public void printMainMenu(Staff staff) {
@@ -29,6 +30,7 @@ public class ReplenishmentRequestUI {
     }
 
     /**
+     * prints request list
      * @param replenishmentRequestList
      */
     public void printReplenishmentRequests(List<ReplenishmentRequest> replenishmentRequestList) {
@@ -45,6 +47,7 @@ public class ReplenishmentRequestUI {
     }
 
     /**
+     * Approve Replenish Requests
      * @param replenishmentRequestList
      * @return
      */
@@ -59,6 +62,7 @@ public class ReplenishmentRequestUI {
     }
 
     /**
+     * Submit Replenish Requests
      * @return
      */
     public Medicine submitReplenishmentRequests() {

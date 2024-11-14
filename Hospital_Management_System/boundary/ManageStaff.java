@@ -34,6 +34,7 @@ public class ManageStaff {
     }
 
     /**
+     * Print for admin when viewing staff
      * @param staffList
      * @param option
      */
@@ -68,6 +69,7 @@ public class ManageStaff {
     }
 
     /**
+     * get details for staff, given their name
      * @return
      */
     public String[] getStaffDetails() {
@@ -121,6 +123,7 @@ public class ManageStaff {
     }
 
     /**
+     * get id of staff by input
      * @return
      */
     public String getStaffId() {

@@ -19,6 +19,7 @@ public class BillController {
     }
 
     /**
+     * Billing according to type of medcine
      * @param appointmentID
      * @param patientID
      * @param medicine
@@ -45,6 +46,7 @@ public class BillController {
     }
 
     /**
+     * get billing information by the patient's ID
      * @param patientID
      */
     public static void getBillbyPatientID(String patientID) {
@@ -77,6 +79,7 @@ public class BillController {
     }
 
     /**
+     * get bill count
      * @return
      */
     public static int getBillCount() {

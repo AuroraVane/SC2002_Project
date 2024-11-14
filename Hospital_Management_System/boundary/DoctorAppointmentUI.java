@@ -19,6 +19,7 @@ public class DoctorAppointmentUI extends AppointmentUI{
     int index, choice;
 
     /**
+     * Doctor appointment related UI
      * @param doctor
      * @param appointmentfilepath
      * @throws IOException
@@ -29,6 +30,7 @@ public class DoctorAppointmentUI extends AppointmentUI{
     }
 
     /**
+     * Prints all appointments from a list of appointments while omitting doctorID
      * @param appointmentList
      */
     @Override
@@ -46,7 +48,7 @@ public class DoctorAppointmentUI extends AppointmentUI{
 
 
     /**
-     * @param appointmentList
+     * View Doctor's Personal Schedule
      */
     public void ViewDoctorPersonalSchedule(){
         List<Appointment> appointments=doctorAppmtController.GetStatusAppointments(Status.CONFIRMED);
@@ -59,24 +61,39 @@ public class DoctorAppointmentUI extends AppointmentUI{
         
     }//3
 
+    /**
+     * Allows index based inputting to retrieve desired appointment
+     * @param appmt
+     * @return
+     */
     public int Selection(List<Appointment> appmt){
         @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
-        int index;
-        index=sc.nextInt()-1;
-        sc.nextLine();
-        if (index==-1){
-            return -1;
-        }else if(index<-1 || index>appmt.size()){
-            System.out.println("Invalid Slot Chosen. ");
-        }else{
-            System.out.println("Slot selected.");
-            return index;
+        int index=-2;
+
+        while (true){
+            try {
+                index=sc.nextInt()-1;
+            } catch (java.util.InputMismatchException e) {
+                
+            }
+            
+            sc.nextLine();
+            if (index==-1){
+                return -1;
+            }else if(index<-1 || index>appmt.size()){
+                System.out.println("Invalid Slot Chosen. ");
+            }else{
+                System.out.println("Slot selected.");
+                return index;
+            }
+            
         }
-        return -1;
+
     }
 
     /**
+     * Set, update and remove any available slots under the doctor
      * @param doctorID
      */
     public void SetAvailability(String doctorID){
@@ -166,7 +183,7 @@ public class DoctorAppointmentUI extends AppointmentUI{
     }//4
 
     /**
-     * @param appointments
+     *Manage by Accepting or Declining Pending appointments
      */
     public void ManagePendingAppointments(){
         List<Appointment> appointments=doctorAppmtController.GetStatusAppointments(Status.PENDING);
@@ -204,7 +221,7 @@ public class DoctorAppointmentUI extends AppointmentUI{
     }//5
 
     /**
-     * @param appointments
+     * Select any confirmed appointments and resolve it into a appointment outcome using it
      */
     public void RecordAppointmentOutcome(){
         while(true){
@@ -212,13 +229,12 @@ public class DoctorAppointmentUI extends AppointmentUI{
             if (!appointments.isEmpty()){
                 printAllAppointmentsWithIndex(appointments);
                 System.out.println("Select which Confirmed Appointment you want to conclude \nEnter 0 to go back");
+                int index=Selection(appointments);
+                if (index==-1) {
+                    break;
+                }
                 @SuppressWarnings("resource")
-                int index=-1;
                 Scanner sc=new Scanner(System.in);
-                while(index==-1){
-                    index=Selection(appointments);
-                };
-                sc.nextLine();
                 Appointment appmt= appointments.get(index);
                 int appmtID = appmt.getAppointmentID();
                 doctorAppmtController.RemoveAppointment(appmtID);
@@ -244,7 +260,7 @@ public class DoctorAppointmentUI extends AppointmentUI{
 
 
     /**
-     * @param appointments
+     * View Upcoming confirmed appointments
      */
     public void ViewUpcomingAppointments(){
         List<Appointment> list=doctorAppmtController.GetDoctorUpcoming();

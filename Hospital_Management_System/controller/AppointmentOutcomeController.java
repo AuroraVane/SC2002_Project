@@ -15,6 +15,7 @@ public class AppointmentOutcomeController {
 
 
     /**
+     * get all appointment outcomes from file
      * @return
      */
     public static List<AppointmentOutcome> getAllAppointmentOutcomes(){
@@ -31,6 +32,7 @@ public class AppointmentOutcomeController {
 
 
     /**
+     * update appointment outcome status
      * @param appointmentId
      */
     public static void updateAppointmentOutcomeStatus(int appointmentId){
@@ -45,13 +47,13 @@ public class AppointmentOutcomeController {
     }
 
     /**
-     * @param appointmentId
+     * Appointment Outcome Controller constructor
      */
     public AppointmentOutcomeController() {
     }
 
     /**
-     *
+     *View all appointment outcomes
      */
     public void viewAppointmentOutcomeRecord() {
         List<AppointmentOutcome> appointmentOutcomes = getAllAppointmentOutcomes();
