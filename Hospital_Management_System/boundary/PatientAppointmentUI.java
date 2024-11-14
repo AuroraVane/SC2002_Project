@@ -15,7 +15,7 @@ import utils.TextFileWriter;
 /**
  * UI class for PatientAppointmentUI used by PatientAppointmentController
  */
-public class PatientAppointmentUI extends AppointmentUI{
+public class PatientAppointmentUI implements AppointmentUI{
     private PatientAppointmentController appointmentcontroller;
     private static final String APPOINTMENT_FILE_PATH = "./TextFiles/Appointment_List.txt";
 

@@ -15,7 +15,7 @@ import utils.TextFileWriter;
 /**
  * UI class for DoctorAppointmentUI used by DoctorAppointmentController
  */
-public class DoctorAppointmentUI extends AppointmentUI{
+public class DoctorAppointmentUI implements AppointmentUI{
     private TextFileWriter writer;
     DoctorAppointmentController doctorAppmtController; 
     int index, choice;
@@ -31,6 +31,15 @@ public class DoctorAppointmentUI extends AppointmentUI{
         this.doctorAppmtController=new DoctorAppointmentController(appointmentfilepath, doctor);
     }
 
+    public void printAppointment(Appointment appointment){
+        System.out.printf("%-14s | %-14s | %s | %s | %s%n",
+                            appointment.getAppointmentID(),
+                            TextFileReader.findUserName(appointment.getPatientID(), "Patient"),
+                            appointment.getDate(),
+                            appointment.getTime(),
+                            appointment.getStatus().toString());
+    }
+
     /**
      * Prints all appointments from a list of appointments while omitting doctorID
      * @param appointmentList
@@ -39,12 +48,19 @@ public class DoctorAppointmentUI extends AppointmentUI{
     public void printAllAppointments(List<Appointment> appointmentList){
         System.out.println("Appointment ID |     Patient    | Date     | Time | Status");
         for (Appointment appointment : appointmentList) {
-            System.out.printf("%-14s | %-14s | %s | %s | %s%n",
-                            appointment.getAppointmentID(),
-                            TextFileReader.findUserName(appointment.getPatientID(), "Patient"),
-                            appointment.getDate(),
-                            appointment.getTime(),
-                            appointment.getStatus().toString());
+            printAppointment(appointment);
+            
+        }
+    }
+    /**
+     * Abstract class for printing all appointments from a list of appointments with index
+     * @param appointmentList
+     */
+    public void printAllAppointmentsWithIndex(List<Appointment> appointmentList) {
+        int i=1;
+        for (Appointment appmt: appointmentList){
+            System.out.println(i + ". "+appmt.getDate()+ " "+appmt.getTime()+"\n");
+            i++;
         }
     }
 
@@ -316,7 +332,8 @@ public class DoctorAppointmentUI extends AppointmentUI{
 
 
     /**
-     * View Upcoming confirmed appointments
+     *
+     *
      */
     public void ViewUpcomingAppointments(){
         List<Appointment> list=doctorAppmtController.GetDoctorUpcoming();

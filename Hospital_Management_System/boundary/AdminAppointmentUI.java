@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * UI class for AdminAppointmentUI used by AdminAppointmentController
  */
-public class AdminAppointmentUI extends AppointmentUI{
+public class AdminAppointmentUI implements AppointmentUI{
     /**
      * Default constructor
      */
@@ -20,6 +20,16 @@ public class AdminAppointmentUI extends AppointmentUI{
         System.out.println("View Appointments");
     }
 
+    @Override
+    public void printAppointment(Appointment appointment){
+        System.out.printf("%-14s | %-9s | %-9s | %-9s | %s | %s%n",
+                            appointment.getAppointmentID(),
+                            appointment.getPatientID(),
+                            appointment.getStaffID(),
+                            appointment.getStatus(),
+                            appointment.getDate(),
+                            appointment.getTime());
+    }
     /**
      * Prints a list of appointments
      * @param appointmentList
@@ -27,13 +37,7 @@ public class AdminAppointmentUI extends AppointmentUI{
     @Override
     public void printAllAppointments(List<Appointment> appointmentList){
         for (Appointment appointment : appointmentList) {
-            System.out.printf("%-14s | %-9s | %-9s | %-9s | %s | %s%n",
-                            appointment.getAppointmentID(),
-                            appointment.getPatientID(),
-                            appointment.getStaffID(),
-                            appointment.getStatus(),
-                            appointment.getDate(),
-                            appointment.getTime());
+            printAppointment(appointment);
         }
     }
 }
