@@ -23,6 +23,7 @@ public class ReplenishmentRequestController {
     private int nextID;
 
     /**
+     * Replenishment Request Controller constructor
      * @param fileName
      * @throws IOException
      */
@@ -34,6 +35,7 @@ public class ReplenishmentRequestController {
     }
 
     /**
+     * menu controller for replenishment request
      * @param staff
      */
     public void MenuController(Staff staff) {
@@ -58,6 +60,7 @@ public class ReplenishmentRequestController {
     }
 
     /**
+     * navigate menu for replenishment request
      * @param option
      * @param staff
      */

@@ -10,6 +10,7 @@ import utils.TextFileWriter;
  */
 public abstract class StaffUI implements UserUI{
     /**
+     * change password for staff
      * @param staff
      */
     @Override
@@ -29,6 +30,7 @@ public abstract class StaffUI implements UserUI{
     }
 
     /**
+     * chang password for patient
      * @param patient
      */
     @Override

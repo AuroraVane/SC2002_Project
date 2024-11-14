@@ -25,6 +25,7 @@ public class Appointment {
 
 
     /**
+     * getter for appointment ID
      * @return
      */
     public int getAppointmentID() {
@@ -35,6 +36,7 @@ public class Appointment {
     }
 
     /**
+     * Appointment constructor for loading existing apointments
      * @param appointmentID
      * @param patientID
      * @param staffID
@@ -54,6 +56,7 @@ public class Appointment {
     }
 
     /**
+     * Appointment constructor for new appointments
      * @param staffID
      * @param status
      * @param date
@@ -71,6 +74,7 @@ public class Appointment {
     }
 
     /**
+     * generates new unique IDs
      * @return
      */
     public static int generateID() {
@@ -78,6 +82,7 @@ public class Appointment {
     }
 
     /**
+     * getter for patient ID
      * @return
      */
     public String getPatientID() {
@@ -85,6 +90,7 @@ public class Appointment {
     }
 
     /**
+     * setter for patient ID
      * @param patientID
      */
     public void setPatientID(String patientID) {
@@ -92,6 +98,7 @@ public class Appointment {
     }
 
     /**
+     * getter for staff ID
      * @return
      */
     public String getStaffID() {
@@ -99,6 +106,7 @@ public class Appointment {
     }
 
     /**
+     * setter for staff ID
      * @param staffID
      */
     public void setStaffID(String staffID) {
@@ -106,6 +114,7 @@ public class Appointment {
     }
 
     /**
+     * getter for appointment status
      * @return
      */
     public Status getStatus() {
@@ -113,6 +122,7 @@ public class Appointment {
     }
 
     /**
+     * setter for appointment status
      * @param status
      */
     public void setStatus(Status status) {
@@ -120,6 +130,7 @@ public class Appointment {
     }
 
     /**
+     * getter for appointment date
      * @return
      */
     public String getDate() {
@@ -127,6 +138,7 @@ public class Appointment {
     }
 
     /**
+     * setter for appointment date
      * @param date
      */
     public void setDate(String date) {
@@ -134,6 +146,7 @@ public class Appointment {
     }
 
     /**
+     * getter for appointment time
      * @return
      */
     public String getTime() {
@@ -141,6 +154,7 @@ public class Appointment {
     }
 
     /**
+     * setter for appointment time
      * @param time
      */
     public void setTime(String time) {

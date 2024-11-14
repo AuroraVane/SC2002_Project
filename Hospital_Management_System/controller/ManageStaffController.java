@@ -21,6 +21,7 @@ public class ManageStaffController {
     private TextFileWriter writer;
 
     /**
+     * Manage Staff Controller constructor
      * @param fileName
      * @throws IOException
      */
@@ -56,6 +57,7 @@ public class ManageStaffController {
     }
 
     /**
+     * navigate man menu for staff
      * @param option
      */
     public void navigateMenu(int option) {
@@ -81,7 +83,7 @@ public class ManageStaffController {
     }
 
     /**
-     * @param staffList 
+     * View all staff
      */
     public void viewStaff() {
         manageStaff.printViewStaffMenu();
@@ -191,6 +193,7 @@ public class ManageStaffController {
     }
 
     /**
+     * Check if a staff exists using their id
      * @param id
      * @return
      */
@@ -206,6 +209,7 @@ public class ManageStaffController {
     }
 
     /**
+     * get number of staff
      * @return
      */
     public static List<Integer> getStaffCount(){

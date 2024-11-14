@@ -13,6 +13,7 @@ public class PatientManager {
     private static List<Patient> patientList;
 
     /**
+     * Patient Manager constructor
      * @param doctorId
      * @param OverseeingPatientsFilePath
      * @param PatientFilePath
@@ -25,7 +26,7 @@ public class PatientManager {
     }
 
     /**
-     * @param patient
+     * Print all overseing patients of a doctor
      */
     public void printAlloverseeingPatients() {
         int i=1;
@@ -37,6 +38,7 @@ public class PatientManager {
     }
 
     /**
+     * get patient by index
      * @param index
      * @return
      */
@@ -45,6 +47,7 @@ public class PatientManager {
     }
 
     /**
+     * return ID of overseeing patient
      * @return
      */
     public List<String> getOverseeingPatientsID(){
@@ -52,7 +55,7 @@ public class PatientManager {
     }
 
     /**
-     * @param id
+     * load patient list
      */
     public static void loadPatientList() {
         try {
@@ -63,6 +66,7 @@ public class PatientManager {
     }
 
     /**
+     * check if patient ID exists in patient list
      * @param id
      * @return
      */

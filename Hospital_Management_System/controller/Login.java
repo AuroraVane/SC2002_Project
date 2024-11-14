@@ -22,6 +22,7 @@ public class Login {
     private static List<String> resetPasswordRequests;
 
     /**
+     * Login constructor
      * @param patientFilePath
      * @param staffFilePath
      * @throws IOException
@@ -32,6 +33,7 @@ public class Login {
     }
 
     /**
+     * authenticate respective users
      * @param id
      * @param password
      * @return
@@ -68,6 +70,7 @@ public class Login {
     }
 
     /**
+     * Forget Password to submit request for password reset
      * Forget password function to reset password
      */
     public static void forgetPassword() {

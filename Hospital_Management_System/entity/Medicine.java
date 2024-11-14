@@ -13,6 +13,7 @@ public class Medicine {
     private int lowQAlert;
 
     /**
+     * medcine constructor
      * @param medicineName
      * @param quantity
      * @param lowQAlert
@@ -24,6 +25,7 @@ public class Medicine {
     }
 
     /**
+     * getter for medicine name
      * @return
      */
     public String getMedicineName() {
@@ -31,6 +33,7 @@ public class Medicine {
     }
 
     /**
+     * getter for medicine quantity
      * @return
      */
     public int getQuantity() {
@@ -38,6 +41,7 @@ public class Medicine {
     }
 
     /**
+     * getter for low quantity alert
      * @return
      */
     public int getLowQAlert() {
@@ -45,6 +49,7 @@ public class Medicine {
     }
 
     /**
+     * setter for quantity of medicine
      * @param quantity
      */
     public void setQuantity(int quantity) {
@@ -52,6 +57,7 @@ public class Medicine {
     }
 
     /**
+     * get all medicine in a list
      * @return
      */
     public static List<Medicine> getAllMedicines(){

@@ -19,25 +19,7 @@ public class PatientAppointmentController{
     }
 
     /**
-     * @param appointments
-     */
-    public static void showAvailableAppointments(List<Appointment> appointments) {
-        System.out.println("Available Appointments:");
-        System.out.println("Appointment ID | Doctor ID | Date     | Time");
-
-        for (Appointment appointment : appointments) {
-            // Check if the appointment has no patient assigned (patientID is "NA")
-            if (appointment.getPatientID().equals("NA")) {
-                System.out.printf("%-14s | %-9s | %s | %s%n",
-                                appointment.getAppointmentID(),
-                                appointment.getStaffID(),
-                                appointment.getDate(),
-                                appointment.getTime());
-            }
-        }
-    }
-
-    /**
+     * Schedule Appointment
      * @param patientID
      * @param appointmentID
      * @return

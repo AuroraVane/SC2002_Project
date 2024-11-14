@@ -16,6 +16,7 @@ public class MedicalRecordController {
 
 
     /**
+     * Medical Record Controller constructor
      * @param filepath
      * @param PatientfilePath
      * @throws IOException
@@ -25,6 +26,7 @@ public class MedicalRecordController {
     }
 
     /**
+     * Get medical record of all overseeing patients of a doctor
      * @param OverseeingPatientsID
      * @return
      */
@@ -39,6 +41,7 @@ public class MedicalRecordController {
     }
 
     /**
+     * print all medical record in a list of medical records
      * @param MRList
      * @throws IOException
      */
@@ -64,6 +67,7 @@ public class MedicalRecordController {
     }
 
     /**
+     * find medical record of patient using their id
      * @param patientID
      * @return
      */

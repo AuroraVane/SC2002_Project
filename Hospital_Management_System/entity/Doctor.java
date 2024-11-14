@@ -11,6 +11,7 @@ public class Doctor extends Staff{
     private DoctorUI doctorUI;
 
     /**
+     * Doctor constructor
      * @param id
      * @param name
      * @param password
@@ -24,6 +25,7 @@ public class Doctor extends Staff{
     }
 
     /**
+     * getter of role doctor
      * @return
      */
     @Override

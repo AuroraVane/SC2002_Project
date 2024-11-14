@@ -10,6 +10,7 @@ public class Administrator extends Staff{
     private AdministratorUI administratorUI;
 
     /**
+     * Administrator constructor
      * @param id
      * @param name
      * @param password
@@ -23,6 +24,7 @@ public class Administrator extends Staff{
     }
 
     /**
+     * getter for role administrator
      * @return
      */
     @Override

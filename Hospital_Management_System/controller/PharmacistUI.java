@@ -14,6 +14,7 @@ public class PharmacistUI extends StaffUI{
     private ReplenishmentRequestController replenishmentRequestController;
 
     /**
+     * Pharmacist UI constructor
      * @param pharmacist
      */
     public PharmacistUI(Pharmacist pharmacist){
@@ -29,7 +30,7 @@ public class PharmacistUI extends StaffUI{
     }
 
     /**
-     *
+     *print display UI for Pharmacist
      */
     public void printMenu(){
         System.out.println("=========================================");
@@ -45,6 +46,7 @@ public class PharmacistUI extends StaffUI{
     }
 
     /**
+     * navigate main menu for Pharmacist
      * @param option
      */
     public void navigateMenu(int option){
@@ -73,7 +75,7 @@ public class PharmacistUI extends StaffUI{
     }
 
     /**
-     *
+     *Update Prescription Status
      */
     public void updatePrescriptionStatus() { //Rain Check
         @SuppressWarnings("resource")
@@ -84,7 +86,7 @@ public class PharmacistUI extends StaffUI{
     }
 
     /**
-     *
+     *Submit Replenish Request
      */
     public void submitReplenishmentRequest() {
         System.out.println("Select medicine for replenishment");

@@ -12,6 +12,7 @@ public class AppointmentOutcome{
     private String consultationNotes;
 
     /**
+     * constructor for new Appointment Outcome
      * @param appointmentId
      * @param dateOfAppointment
      * @param service
@@ -28,6 +29,7 @@ public class AppointmentOutcome{
     }
 
     /**
+     * constructor for existing appointment outcome
      * @param appointmentId
      * @param dateOfAppointment
      * @param service
@@ -45,6 +47,7 @@ public class AppointmentOutcome{
     }
 
     /**
+     * getter for appointment ID
      * @return
      */
     public int getAppointmentId() {
@@ -52,6 +55,7 @@ public class AppointmentOutcome{
     }
 
     /**
+     * getter for medicine prescription
      * @return
      */
     public String getMedicine() {
@@ -59,6 +63,7 @@ public class AppointmentOutcome{
     }
 
     /**
+     * getter for prescription status
      * @return
      */
     public boolean isPStatus() {
@@ -66,6 +71,7 @@ public class AppointmentOutcome{
     }
 
     /**
+     * setter for prescription status
      * @param status
      */
     public void setPStatus(boolean status) {
@@ -73,6 +79,7 @@ public class AppointmentOutcome{
     }
 
     /**
+     * getter for appointment outcome date
      * @return
      */
     public String getDateOfAppointment() {
@@ -80,6 +87,7 @@ public class AppointmentOutcome{
     }
 
     /**
+     * getter for appointment outcome service
      * @return
      */
     public String getService() {
@@ -87,6 +95,7 @@ public class AppointmentOutcome{
     }
 
     /**
+     * getter for consultation notes
      * @return
      */
     public String getConsultationNotes() {

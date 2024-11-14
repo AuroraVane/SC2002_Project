@@ -19,6 +19,7 @@ public class PatientUI implements UserUI {
     private PatientNonMedicalRecordUI nonmedicalrecordUI;
 
     /**
+     * Patient UI constructor
      * @param patient
      */
     public PatientUI(Patient patient) {
@@ -35,7 +36,7 @@ public class PatientUI implements UserUI {
     }
 
     /**
-     *
+     *print display UI for Patient
      */
     public void printMenu() {
         System.out.println("1. View Medical Record");
@@ -51,7 +52,7 @@ public class PatientUI implements UserUI {
         System.out.println("0. Log Out");
     }
 
-    /**
+    /**naviagte main menu of Patient
      * @param option
      */
     public void navigateMenu(int option) {
@@ -96,7 +97,7 @@ public class PatientUI implements UserUI {
 
 
     /**
-     *
+     *Patient Skeleton for Appointment
      */
     public void skeletonAppointment() {
         System.out.println("Skeleton for Appointment");
@@ -107,6 +108,7 @@ public class PatientUI implements UserUI {
     }
 
     /**
+     * Change password for patient
      * @param patient
      */
     @Override
@@ -126,7 +128,7 @@ public class PatientUI implements UserUI {
     }
 
     /**
-     *
+     *register new Patient
      */
     public static void createPatient(){
         System.out.println("===================================================");

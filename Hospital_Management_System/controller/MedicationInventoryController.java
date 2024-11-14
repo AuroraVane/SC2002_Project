@@ -18,6 +18,7 @@ public class MedicationInventoryController {
     private TextFileWriter writer;
 
     /**
+     * Medication Inventory Controller constructor
      * @param fileName
      * @throws IOException
      */
@@ -51,6 +52,7 @@ public class MedicationInventoryController {
     }
 
     /**
+     * navigate main menu for Medication Inventory
      * @param option
      */
     public void navigateMenu(int option){
@@ -94,6 +96,7 @@ public class MedicationInventoryController {
     }
 
     /**
+     * Update Medication Inventory
      * @param name
      * @param stock
      */
@@ -111,6 +114,7 @@ public class MedicationInventoryController {
     }
 
     /**
+     * Update Medicine Quantity
      * @param medicineName
      */
     public static void updateMedicineQuantity(String medicineName){
@@ -128,6 +132,7 @@ public class MedicationInventoryController {
     }
 
     /**
+     * Update Medicine file
      * @param medicines
      */
     public static void updateMedicineFile(List<Medicine> medicines) {
