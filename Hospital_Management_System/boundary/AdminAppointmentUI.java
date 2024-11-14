@@ -20,6 +20,10 @@ public class AdminAppointmentUI implements AppointmentUI{
         System.out.println("View Appointments");
     }
 
+    /**
+     * Prints a single appointment
+     * @param appointment
+     */
     @Override
     public void printAppointment(Appointment appointment){
         System.out.printf("%-14s | %-9s | %-9s | %-9s | %s | %s%n",

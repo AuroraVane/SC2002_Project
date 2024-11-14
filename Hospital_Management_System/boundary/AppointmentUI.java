@@ -7,11 +7,17 @@ import java.util.List;
  */
 public interface AppointmentUI {
 
+
+    /**
+     * Abstract class for printing a single appointment
+     * @param appmt
+     */
+    public abstract void printAppointment(Appointment appmt);
+
     /**
      * Abstract class for printing all appointments from a list of appointments
      * @param appointmentList
      */
-    public abstract void printAppointment(Appointment appmt);
     public abstract void printAllAppointments(List<Appointment> appointmentList);
 
     

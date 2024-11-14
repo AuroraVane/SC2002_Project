@@ -31,6 +31,10 @@ public class DoctorAppointmentUI implements AppointmentUI{
         this.doctorAppmtController=new DoctorAppointmentController(appointmentfilepath, doctor);
     }
 
+    /**
+     * Prints an appointment while omitting doctorID
+     * @param appointment
+     */
     public void printAppointment(Appointment appointment){
         System.out.printf("%-14s | %-14s | %s | %s | %s%n",
                             appointment.getAppointmentID(),

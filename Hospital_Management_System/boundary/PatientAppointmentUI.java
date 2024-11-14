@@ -40,7 +40,7 @@ public class PatientAppointmentUI implements AppointmentUI{
     }
 
     /**
-     * prints all appointments from a list of appointments
+     * prints all appointments from a list of appointments while omitting Patient ID
      * @param appointmentList
      */
     @Override
