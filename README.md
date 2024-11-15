@@ -74,7 +74,7 @@ Extensive testing was conducted, covering scenarios such as:
 
 ## Links
 - **Github Repository:** https://github.com/AuroraVane/SC2002_Project.git
-- **Project Video:** http://youtube.com
+- **Project Video:** https://youtu.be/yoPL52y4f9I
 
 ## Reflection
 This project has been a valuable learning experience in OOP and teamwork. Challenges included creating a comprehensive UML diagram, task coordination, and applying OOP principles. We developed a functional skeleton first and iteratively improved the design, leading to a robust, user-friendly HMS.
